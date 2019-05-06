@@ -1,0 +1,7 @@
+[package]
+name = "rust-crash-course"
+version = "0.1.0"
+authors = ["wdeceuninck <wouter.deceuninck@persgroep.be>"]
+edition = "2018"
+
+[dependencies]

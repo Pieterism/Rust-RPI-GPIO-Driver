@@ -42,8 +42,8 @@ struct GPIO {
     gpio_set_bits_: *mut u32,               // A raw pointer that points to the pin output register (see section 2.1 in the assignment)
     gpio_clr_bits_: *mut u32,               // A raw pointer that points to the pin output clear register (see section 2.1)
     gpio_read_bits_: *mut u32,              // A raw pointer that points to the pin level register (see section 2.1)
-    row_mask: u32,                      
-    bitplane_timings: [u32; COLOR_DEPTH]    
+    row_mask: u32,
+    bitplane_timings: [u32; COLOR_DEPTH]
 }
 
 // This is a representation of the "raw" image
@@ -109,12 +109,12 @@ const VALID_BITS: u64 = GPIO_BIT!(PIN_OE) | GPIO_BIT!(PIN_CLK) | GPIO_BIT!(PIN_L
 
 fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
 
-    let mem_file = 
+    let mem_file =
         match OpenOptions::new()
-        .read(true)
-        .write(true)
-        .custom_flags(libc::O_SYNC)
-        .open("/dev/mem") {
+            .read(true)
+            .write(true)
+            .custom_flags(libc::O_SYNC)
+            .open("/dev/mem") {
             Err(why) => panic!("couldn't open /dev/mem: {}", why.description()),
             Ok(file) => file
         };
@@ -124,8 +124,8 @@ fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
         MapOption::MapReadable,
         MapOption::MapWritable,
         MapOption::MapFd(mem_file.as_raw_fd()),
-        MapOption::MapOffset(BCM2709_PERI_BASE as usize + register_offset as usize)       
-    ];    
+        MapOption::MapOffset(BCM2709_PERI_BASE as usize + register_offset as usize)
+    ];
 
     let result = MemoryMap::new(REGISTER_BLOCK_SIZE as usize, mmap_options).unwrap();
 
@@ -137,7 +137,7 @@ fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
         },
         false => Some(result)
     };
-    
+
     // NOTE/WARNING: When a MemoryMap struct is dropped, the mapped 
     // memory region is automatically unmapped!
 }
@@ -196,14 +196,14 @@ impl GPIO {
         // This function expects a bitmask as the @value argument
     }
 
-    fn clear_bits(self: &mut GPIO, value: u32) {        
+    fn clear_bits(self: &mut GPIO, value: u32) {
         // TODO: Implement this yourself. Remember to take the slowdown_ value into account!
         // This function expects a bitmask as the @value argument
     }
 
     // Write all the bits of @value that also appear in @mask. Leave the rest untouched.
     // @value and @mask are bitmasks
-    fn write_masked_bits( 
+    fn write_masked_bits(
         self: &mut GPIO,
         value: u32,
         mask: u32
@@ -215,7 +215,7 @@ impl GPIO {
 
         // Map the GPIO register file. See section 2.1 in the assignment for details
         let map = mmap_bcm_register(GPIO_REGISTER_OFFSET as usize);
-        
+
         // Initialize the GPIO struct with default values
         let mut io: GPIO = GPIO {
             gpio_map_: None,
@@ -227,7 +227,7 @@ impl GPIO {
             gpio_clr_bits_: 0 as *mut u32,
             gpio_read_bits_: 0 as *mut u32,
             row_mask: 0,
-            bitplane_timings: [0; COLOR_DEPTH]  
+            bitplane_timings: [0; COLOR_DEPTH]
         };
 
         match &map {
@@ -239,7 +239,7 @@ impl GPIO {
                     // Keep in mind that Rust raw pointer arithmetic works exactly like
                     // C pointer arithmetic. See the course slides for details
                 }
-                
+
                 // TODO: Implement this yourself.
             },
             None => {}
@@ -248,7 +248,7 @@ impl GPIO {
         io.gpio_map_ = map;
         io
     }
-    
+
     // Calculates the pins we must activate to push the address of the specified double_row
     fn get_row_bits(self: &GPIO, double_row: u8) -> u32 {
         // TODO: Implement this yourself.
@@ -303,18 +303,18 @@ pub fn main() {
     } else if args.len() < 2 {
         eprintln!("Syntax: {:?} [image]", args[0]);
         std::process::exit(1);
-    } 
-    
+    }
+
     // TODO: Read the PPM file here. You can find its name in args[1]
     // TODO: Initialize the GPIO struct and the Timer struct
-    
+
     // This code sets up a CTRL-C handler that writes "true" to the 
     // interrupt_received bool.
     let int_recv = interrupt_received.clone();
     ctrlc::set_handler(move || {
         int_recv.store(true, Ordering::SeqCst);
     }).unwrap();
-    
+
     while interrupt_received.load(Ordering::SeqCst) == false {
         // TODO: Implement your rendering loop here
     }
@@ -324,6 +324,6 @@ pub fn main() {
     } else {
         println!("Timeout reached");
     }
-    
+
     // TODO: You may want to reset the board here (i.e., disable all LEDs)
 }

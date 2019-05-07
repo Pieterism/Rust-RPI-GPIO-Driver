@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/project-code/project-code.iml" filepath="$PROJECT_DIR$/project-code/project-code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rust-crash-course/rust-crash-course.iml" filepath="$PROJECT_DIR$/rust-crash-course/rust-crash-course.iml" />
+      <module fileurl="file://$PROJECT_DIR$/veilige-software-code/veilige-software-code.iml" filepath="$PROJECT_DIR$/veilige-software-code/veilige-software-code.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/veiligesoftware-20182019-groep7.iml" filepath="$PROJECT_DIR$/.idea/veiligesoftware-20182019-groep7.iml" />
     </modules>
   </component>

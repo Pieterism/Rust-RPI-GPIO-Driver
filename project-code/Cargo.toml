@@ -1,7 +1,8 @@
 [package]
-name = "rust_project"
+name = "project-code"
 version = "0.1.0"
-authors = ["stijn-volckaert"]
+authors = ["wdeceuninck <wouter.deceuninck@persgroep.be>"]
+edition = "2018"
 
 [dependencies]
 libc="0.2"

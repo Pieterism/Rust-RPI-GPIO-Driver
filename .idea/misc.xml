@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CargoProjects">
-    <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
     <cargoProject FILE="$PROJECT_DIR$/rust-crash-course/Cargo.toml" />
     <cargoProject FILE="$PROJECT_DIR$/project-code/Cargo.toml" />
+    <cargoProject FILE="$PROJECT_DIR$/guessing_game/Cargo.toml" />
+    <cargoProject FILE="$PROJECT_DIR$/adder/Cargo.toml" />
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />

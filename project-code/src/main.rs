@@ -6,10 +6,10 @@
 // I will grade your code quality primarily on how "idiomatic" your Rust 
 // code is, and how well you implemented the "safe unsafety" guidelines.
 
+#[macro_use] extern crate simple_error;
 extern crate libc;
 extern crate time;
 extern crate ctrlc;
-#[macro_use] extern crate simple_error;
 extern crate shuteye;
 extern crate mmap;
 extern crate nix;
@@ -186,10 +186,10 @@ impl GPIO {
         unsafe { std::ptr::write_volatile(register_ref, new_val) };
     }
 
-    fn init_outputs(self: &mut GPIO, mut outputs: u32) -> u32 {
+  //  fn init_outputs(self: &mut GPIO, mut outputs: u32) -> u32 {
         // TODO: Implement this yourself. Note: this function expects 
         // a bitmask as the @outputs argument
-    }
+  //  }
 
     fn set_bits(self: &mut GPIO, value: u32) {
         // TODO: Implement this yourself. Remember to take the slowdown_ value into account!
@@ -250,20 +250,20 @@ impl GPIO {
     }
 
     // Calculates the pins we must activate to push the address of the specified double_row
-    fn get_row_bits(self: &GPIO, double_row: u8) -> u32 {
+    //fn get_row_bits(self: &GPIO, double_row: u8) -> u32 {
         // TODO: Implement this yourself.
-    }
+    //}
 }
 
 impl Timer {
     // Reads from the 1Mhz timer register (see Section 2.5 in the assignment)
-    unsafe fn read(self: &Timer) -> u32 {
+    //unsafe fn read(self: &Timer) -> u32 {
         // TODO: Implement this yourself.
-    }
+    //}
 
-    fn new() -> Timer {
+//    fn new() -> Timer {
         // TODO: Implement this yourself.
-    }
+ //   }
 
     // High-precision sleep function (see section 2.5 in the assignment)
     // NOTE/WARNING: Since the raspberry pi's timer frequency is only 1Mhz, 
@@ -326,4 +326,18 @@ pub fn main() {
     }
 
     // TODO: You may want to reset the board here (i.e., disable all LEDs)
+}
+
+pub fn read_ppm_file(path: &str) -> std::io::Result<String> {
+    let mut file = File::open(path)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    Ok(contents)
+}
+
+#[test]
+fn can_read_file() {
+    let result = read_ppm_file("resources/file.txt");
+    assert!(result.is_ok());
+    assert_eq!(result.ok(), Some(String::from("Hello world!")));
 }

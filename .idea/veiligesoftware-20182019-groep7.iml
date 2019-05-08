@@ -11,6 +11,11 @@
       <sourceFolder url="file://$MODULE_DIR$/veilige-software-code/examples" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/veilige-software-code/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/veilige-software-code/benches" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/adder/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/adder/examples" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/adder/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/adder/benches" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/adder/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
       <excludeFolder url="file://$MODULE_DIR$/veilige-software-code/target" />
     </content>

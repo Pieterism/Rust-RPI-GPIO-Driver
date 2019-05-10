@@ -28,13 +28,6 @@ use shuteye::sleep;
 use mmap::{MemoryMap, MapOption};
 use utils::file_reader;
 
-#[derive(Copy, Clone)]
-struct Pixel {
-    r: u16,
-    g: u16,
-    b: u16,
-}
-
 struct GPIO {
     gpio_map_: Option<MemoryMap>,
     output_bits_: u32,
@@ -48,12 +41,7 @@ struct GPIO {
     bitplane_timings: [u32; COLOR_DEPTH]
 }
 
-// This is a representation of the "raw" image
-struct Image {
-    width: usize,
-    height: usize,
-    pixels: Vec<Vec<Pixel>>
-}
+
 
 // This is a representation of the frame we're currently rendering
 struct Frame {
@@ -282,15 +270,6 @@ impl Timer {
 // on the LED board. In most cases, the Frame will have less pixels
 // than the input Image!
 impl Frame {
-
-}
-
-// TODO: Add your PPM parser here
-// NOTE/WARNING: Please make sure that your implementation can handle comments in the PPM file
-// You do not need to add support for any formats other than P6
-// You may assume that the max_color value is always 255, but you should add sanity checks
-// to safely reject files with other max_color values
-impl Image {
 
 }
 

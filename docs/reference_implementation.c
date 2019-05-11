@@ -168,6 +168,7 @@ uint32_t GPIO_InitOutputs(struct GPIO* io, uint32_t outputs) {
       OUT_GPIO(io, b);
     }
   }
+
   io->output_bits_ |= outputs;
   return outputs;
 }

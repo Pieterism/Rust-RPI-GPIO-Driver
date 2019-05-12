@@ -186,7 +186,7 @@ impl GPIO {
         unsafe { std::ptr::write_volatile(register_ref, new_val) };
     }
 
-    fn init_outputs(self: &mut GPIO, mut outputs: u32) -> u32 {
+   /* fn init_outputs(self: &mut GPIO, mut outputs: u32) -> u32 {
         // TODO: Implement this yourself. Note: this function expects 
         // a bitmask as the @outputs argument
     }
@@ -209,7 +209,7 @@ impl GPIO {
         mask: u32
     ) {
         // TODO: Implement this yourself.
-    }
+    }*/
 
     fn new(slowdown: u32) -> GPIO {
 
@@ -230,7 +230,7 @@ impl GPIO {
             bitplane_timings: [0; COLOR_DEPTH]  
         };
 
-        match &map {
+       /* match &map {
             Some(m) => {
                 unsafe {
                     io.gpio_port_ = m.data() as *mut u32;
@@ -245,16 +245,16 @@ impl GPIO {
             None => {}
         }
 
-        io.gpio_map_ = map;
+        io.gpio_map_ = map;*/
         io
     }
     
-    // Calculates the pins we must activate to push the address of the specified double_row
+ /*   // Calculates the pins we must activate to push the address of the specified double_row
     fn get_row_bits(self: &GPIO, double_row: u8) -> u32 {
         // TODO: Implement this yourself.
-    }
+    }*/
 }
-
+/*
 impl Timer {
     // Reads from the 1Mhz timer register (see Section 2.5 in the assignment)
     unsafe fn read(self: &Timer) -> u32 {
@@ -290,7 +290,7 @@ impl Frame {
 // to safely reject files with other max_color values
 impl Image {
 
-}
+}*/
 
 pub fn main() {
     let args : Vec<String> = std::env::args().collect();

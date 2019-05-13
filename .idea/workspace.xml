@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CargoProjects">
-    <cargoProject FILE="$PROJECT_DIR$/rust-crash-course/Cargo.toml" />
-    <cargoProject FILE="$PROJECT_DIR$/project-code/Cargo.toml" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="969a170f-e8a0-4b71-8f5b-70f6bdea44ae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/project-code/resources/testbeeld.ppm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rust-crash-course/src/alternative_main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/reference_implementation.c" beforeDir="false" afterPath="$PROJECT_DIR$/docs/reference_implementation.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-code/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-code/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust-crash-course/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/rust-crash-course/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust-crash-course/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/rust-crash-course/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust-crash-course/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/rust-crash-course/target/.rustc_info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust-crash-course/target/debug/rust-crash-course" beforeDir="false" afterPath="$PROJECT_DIR$/rust-crash-course/target/debug/rust-crash-course" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust-crash-course/target/debug/rust-crash-course.d" beforeDir="false" afterPath="$PROJECT_DIR$/rust-crash-course/target/debug/rust-crash-course.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-code/src/utils/image.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/utils/image.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-code/src/utils/pixel.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/utils/pixel.rs" afterDir="false" />
     </list>
     <ignored path="rust-crash-course/target/debug/rust-crash-course.dSYM/" />
     <ignored path="tryout-module/target/debug/tryout-module.dSYM/" />
@@ -22,46 +18,86 @@
     <ignored mask="*.o" />
     <ignored path="rust-crash-course/target/" />
     <ignored path="tryout-module/target/" />
+    <ignored path="$PROJECT_DIR$/.idea/shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/project-code/Cargo.toml">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="210">
+                    <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="325" column="32" lean-forward="true" selection-start-line="325" selection-start-column="32" selection-end-line="325" selection-end-column="32" />
+            <state relative-caret-position="385">
+              <caret line="100" column="28" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
+        <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/libstd/path.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="141" column="13" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rust-crash-course/src/main.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="245" column="30" selection-start-line="245" selection-start-column="30" selection-end-line="245" selection-end-column="30" />
+            <state relative-caret-position="209">
+              <caret line="2281" column="11" selection-start-line="2281" selection-start-column="11" selection-end-line="2281" selection-end-column="11" />
               <folding>
-                <element signature="e#18452#19302#0" />
-                <element signature="e#19366#19791#0" />
+                <element signature="e#72363#72364#0" expanded="true" />
+                <element signature="e#72400#72401#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="517">
+              <caret line="301" column="40" lean-forward="true" selection-start-line="301" selection-start-column="40" selection-end-line="301" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project-code/src/utils/image.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rust-crash-course/src/alternative_main.rs">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -77,17 +113,21 @@
     <findStrings>
       <find>get_row_bits</find>
       <find>init_outputs</find>
-      <find>getuid</find>
-      <find>main</find>
-      <find>init</find>
+      <find>pixel</find>
+      <find>return;</find>
+      <find>byteorder</find>
+      <find>LittleEndian</find>
+      <find>ReadBytesExt</find>
     </findStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$/project-code</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="REBASE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="gpio" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -96,7 +136,6 @@
         <option value="$PROJECT_DIR$/veilige-software-code/Cargo.toml" />
         <option value="$PROJECT_DIR$/veilige-software-code/Cargo.lock" />
         <option value="$PROJECT_DIR$/Cargo.toml" />
-        <option value="$PROJECT_DIR$/project-code/Cargo.toml" />
         <option value="$PROJECT_DIR$/src/main.rs" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/guessing_game/Cargo.toml" />
@@ -113,26 +152,25 @@
         <option value="$PROJECT_DIR$/project-code/src/lib.rs" />
         <option value="$PROJECT_DIR$/project-code/src/file_reader/file_reader.rs" />
         <option value="$PROJECT_DIR$/project-code/src/utils/lib.rs" />
-        <option value="$PROJECT_DIR$/project-code/src/utils/mod.rs" />
-        <option value="$PROJECT_DIR$/project-code/src/main/mod.rs" />
         <option value="$PROJECT_DIR$/project-code/tests/utils/file_reader_test.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/main/mod.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/mod.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/main/main.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/Pixel.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/Image.rs" />
+        <option value="$PROJECT_DIR$/project-code/Cargo.toml" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/image.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/pixel.rs" />
         <option value="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" />
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/rust-crash-course/Cargo.toml" />
-        <option value="$PROJECT_DIR$/docs/reference_implementation.c" />
-        <option value="$PROJECT_DIR$/rust-crash-course/src/main.rs" />
+        <option value="$PROJECT_DIR$/rust-crash-course/src/alternative_main.rs" />
         <option value="$PROJECT_DIR$/project-code/src/main.rs" />
       </list>
     </option>
   </component>
-  <component name="MacroExpansionManager">
-    <option name="directoryName" value="biOXjLEC" />
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="298" />
-    <option name="y" value="143" />
-    <option name="width" value="1391" />
-    <option name="height" value="701" />
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="1027" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -140,7 +178,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -157,6 +194,12 @@
               <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
               <item name="veiligesoftware-20182019-groep7" type="462c0819:PsiDirectoryNode" />
               <item name="project-code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
+              <item name="veiligesoftware-20182019-groep7" type="462c0819:PsiDirectoryNode" />
+              <item name="project-code" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
@@ -193,37 +236,38 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557399260722" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557778133898" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8.0_201" />
     <property name="jdk.selected.PYTHON_MODULE" value="Python 3.7" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/project-code" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Cargo.toml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/project-code" />
-      <recent name="$PROJECT_DIR$/project-code/tests" />
-      <recent name="$PROJECT_DIR$/veilige-software-code/src" />
-      <recent name="$PROJECT_DIR$/rust-crash-course/src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/project-code/resources" />
       <recent name="$PROJECT_DIR$/rust-crash-course/src" />
       <recent name="$PROJECT_DIR$/veilige-software-code/src" />
       <recent name="$PROJECT_DIR$/rust-crash-course" />
       <recent name="$PROJECT_DIR$/parser" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/project-code/resources" />
+      <recent name="$PROJECT_DIR$/project-code" />
+      <recent name="$PROJECT_DIR$/project-code/tests" />
+      <recent name="$PROJECT_DIR$/veilige-software-code/src" />
+      <recent name="$PROJECT_DIR$/rust-crash-course/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -238,40 +282,10 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Cargo Command.Run project-code">
+  <component name="RunManager" selected="Cargo Command.Test utils::file_reader::decode_ppm_image_test">
     <configuration name="Run project-code" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="run --package project-code --bin project-code" />
-      <option name="allFeatures" value="false" />
-      <option name="nocapture" value="false" />
-      <option name="backtrace" value="SHORT" />
-      <option name="workingDirectory" value="file://$PROJECT_DIR$/project-code" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="Run rust-crash-course" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
-      <option name="channel" value="DEFAULT" />
-      <option name="command" value="run --package rust-crash-course --bin rust-crash-course" />
-      <option name="allFeatures" value="false" />
-      <option name="nocapture" value="false" />
-      <option name="backtrace" value="SHORT" />
-      <option name="workingDirectory" value="file://$PROJECT_DIR$/rust-crash-course" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test can_read_file" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
-      <option name="channel" value="DEFAULT" />
-      <option name="command" value="test --package project-code --bin project-code can_read_file -- --exact" />
-      <option name="allFeatures" value="false" />
-      <option name="nocapture" value="false" />
-      <option name="backtrace" value="SHORT" />
-      <option name="workingDirectory" value="file://$PROJECT_DIR$/project-code" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test lib (2)" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
-      <option name="channel" value="DEFAULT" />
-      <option name="command" value="test --package project-code --lib &quot;&quot;" />
       <option name="allFeatures" value="false" />
       <option name="nocapture" value="false" />
       <option name="backtrace" value="SHORT" />
@@ -289,19 +303,55 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="Test tests::can_read_file" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="test --package project-code --lib tests::can_read_file -- --exact" />
+      <option name="allFeatures" value="false" />
+      <option name="nocapture" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$/project-code" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test utils::file_reader::decode_ppm_image_test" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="test --package project-code --bin project-code utils::file_reader::decode_ppm_image_test -- --exact" />
+      <option name="allFeatures" value="false" />
+      <option name="nocapture" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$/project-code" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test utils::file_reader::read_size_properties_test" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="test --package project-code --bin project-code utils::file_reader::read_size_properties_test -- --exact" />
+      <option name="allFeatures" value="false" />
+      <option name="nocapture" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$/project-code" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="run" />
+      <option name="allFeatures" value="false" />
+      <option name="nocapture" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$/project-code" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo Command.Test utils::file_reader::decode_ppm_image_test" />
+        <item itemvalue="Cargo Command.Test utils::file_reader::read_size_properties_test" />
         <item itemvalue="Cargo Command.Run project-code" />
-        <item itemvalue="Cargo Command.Run rust-crash-course" />
-        <item itemvalue="Cargo Command.Test can_read_file" />
+        <item itemvalue="Cargo Command.Test tests::can_read_file" />
         <item itemvalue="Cargo Command.Test main::can_read_file" />
-        <item itemvalue="Cargo Command.Test lib (2)" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="RustProjectSettings">
-    <option name="toolchainHomeDirectory" value="$PROJECT_DIR$/../.cargo/bin" />
-    <option name="version" value="2" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -321,12 +371,8 @@
       <workItem from="1556125903968" duration="599000" />
       <workItem from="1556290463764" duration="5472000" />
       <workItem from="1557242743665" duration="10291000" />
-      <workItem from="1557299291488" duration="3941000" />
-      <workItem from="1557411570577" duration="318000" />
-      <workItem from="1557415395893" duration="1527000" />
-      <workItem from="1557418211542" duration="2812000" />
-      <workItem from="1557495521347" duration="2300000" />
-      <workItem from="1557563980137" duration="20920000" />
+      <workItem from="1557299291488" duration="6787000" />
+      <workItem from="1557732506719" duration="11445000" />
     </task>
     <task id="LOCAL-00001" summary="re-organized the module lay-out of the project&#10;updated the .gitingore file">
       <created>1557244674685</created>
@@ -342,16 +388,24 @@
       <option name="project" value="LOCAL" />
       <updated>1557291419032</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Latest update&#10;added a test file&#10;init to splitting up the code">
+      <created>1557399298885</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1557399298885</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Merge branch 'gpio' of https://github.com/ku-leuven-msec/veiligesoftware-20182019-groep7 into gpio&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;project-code/src/main.rs">
+      <created>1557607966046</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1557607966047</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_can_read_file - 2019.05.07 at 21h 41m 32s.xml">
-      <configuration name="Test can_read_file" configurationId="CargoCommandRunConfiguration" />
-    </history-entry>
-    <history-entry file="Test_can_read_file - 2019.05.07 at 21h 43m 02s.xml">
-      <configuration name="Test can_read_file" configurationId="CargoCommandRunConfiguration" />
-    </history-entry>
     <history-entry file="Test_can_read_file - 2019.05.07 at 21h 53m 08s.xml">
       <configuration name="Test can_read_file" configurationId="CargoCommandRunConfiguration" />
     </history-entry>
@@ -376,15 +430,21 @@
     <history-entry file="Test_can_read_file - 2019.05.07 at 22h 04m 39s.xml">
       <configuration name="Test can_read_file" configurationId="CargoCommandRunConfiguration" />
     </history-entry>
+    <history-entry file="Test_utils__file_reader__read_size_properties_test - 2019.05.13 at 18h 22m 32s.xml">
+      <configuration name="Test utils::file_reader::read_size_properties_test" configurationId="CargoCommandRunConfiguration" />
+    </history-entry>
+    <history-entry file="Test_utils__file_reader__read_size_properties_test - 2019.05.13 at 18h 25m 56s.xml">
+      <configuration name="Test utils::file_reader::read_size_properties_test" configurationId="CargoCommandRunConfiguration" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56561000" />
+    <option name="totallyTimeSpent" value="43772000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="935" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="1027" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09795241" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25274727" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -393,24 +453,23 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4980631" weight="0.22456576" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49960285" weight="0.32834226" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49960285" weight="0.17617866" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49960285" weight="0.2812834" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4975097" visible="true" weight="0.3138958" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5019369" side_tool="true" weight="0.16997519" />
-      <window_info anchor="bottom" id="Messages" order="12" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.30053475" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50039715" side_tool="true" weight="0.3284974" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info anchor="right" id="Maven" order="5" />
-      <window_info anchor="right" id="Cargo" order="6" weight="0.09054805" />
+      <window_info anchor="right" id="Cargo" order="6" visible="true" weight="0.09035409" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Database" order="9" />
@@ -495,13 +554,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="re-organized the module lay-out of the project&#10;updated the .gitingore file" />
     <MESSAGE value="some more tying out &#10;first test in project-code" />
-    <option name="LAST_COMMIT_MESSAGE" value="some more tying out &#10;first test in project-code" />
+    <MESSAGE value="Latest update&#10;added a test file&#10;init to splitting up the code" />
+    <MESSAGE value="Merge branch 'gpio' of https://github.com/ku-leuven-msec/veiligesoftware-20182019-groep7 into gpio&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;project-code/src/main.rs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'gpio' of https://github.com/ku-leuven-msec/veiligesoftware-20182019-groep7 into gpio&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;project-code/src/main.rs" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/parser/main.rs" />
     <entry file="file://$PROJECT_DIR$/parser/src/main.rs" />
     <entry file="file://$PROJECT_DIR$/parser/build.rs" />
     <entry file="file://$PROJECT_DIR$/rust-crash-course/.gitignore" />
+    <entry file="file://$PROJECT_DIR$/rust-crash-course/Cargo.toml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/tryout-module/src/main.rs" />
     <entry file="file://$PROJECT_DIR$/veilige-software-code/src/main.rs" />
     <entry file="file://$PROJECT_DIR$/veilige-software-code/Cargo.lock" />
@@ -524,103 +588,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/guessing_game/Cargo.toml" />
+    <entry file="file://$PROJECT_DIR$/guessing_game/Cargo.toml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/rust-crash-course/src/loops.rs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/guessing_game/src/main.rs" />
+    <entry file="file://$PROJECT_DIR$/guessing_game/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="50" column="17" selection-start-line="50" selection-start-column="17" selection-end-line="50" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/guessing_game/src/lib.rs" />
     <entry file="file://$PROJECT_DIR$/project-code/tests/main.test.rs" />
     <entry file="file://$PROJECT_DIR$/rust-crash-course/src/enums.rs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/adder/src/lib.rs" />
-    <entry file="file://$PROJECT_DIR$/../.cargo/registry/src/github.com-1ecc6299db9ec823/simple-error-0.1.13/src/lib.rs" />
-    <entry file="file://$PROJECT_DIR$/project-code/src/lib.rs" />
-    <entry file="file://$PROJECT_DIR$/project-code/tests/integration_test.rs" />
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils.rs" />
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/lib.rs" />
-    <entry file="file://$PROJECT_DIR$/project-code/tests/utils/file_reader_test.rs" />
-    <entry file="file://$PROJECT_DIR$/project-code/resources/file.txt">
+    <entry file="file://$PROJECT_DIR$/adder/src/lib.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        <state relative-caret-position="75">
+          <caret line="5" selection-end-line="30" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/adder/src/main.rs" />
+    <entry file="file://$USER_HOME$/.cargo/registry/src/github.com-1ecc6299db9ec823/simple-error-0.1.13/src/lib.rs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/lib.rs" />
+    <entry file="file://$PROJECT_DIR$/project-code/tests/integration_test.rs" />
     <entry file="file://$PROJECT_DIR$/rust-crash-course/src/pointer_ref.rs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/rust-crash-course/src/strings.rs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/Cargo.lock">
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils.rs" />
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/lib.rs" />
+    <entry file="file://$PROJECT_DIR$/project-code/tests/utils/file_reader_test.rs" />
+    <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/libstd/io/cursor.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-675" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/adder/src/main.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="3315">
+          <caret line="223" column="7" selection-start-line="223" selection-start-column="7" selection-end-line="223" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/guessing_game/src/lib.rs">
+    <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/liballoc/slice.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        <state relative-caret-position="5445">
+          <caret line="372" column="11" selection-start-line="372" selection-start-column="11" selection-end-line="372" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rust-crash-course/Cargo.toml">
+    <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/libcore/char/methods.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
+        <state relative-caret-position="1650">
+          <caret line="112" column="11" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/Cargo.toml">
+    <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/liballoc/string.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="13" selection-end-column="12" />
+        <state relative-caret-position="24990">
+          <caret line="1714" column="7" selection-start-line="1714" selection-start-column="7" selection-end-line="1714" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="65" selection-start-line="4" selection-start-column="65" selection-end-line="4" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rust-crash-course/src/var.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rust-crash-course/src/types.rs">
+    <entry file="file://$PROJECT_DIR$/project-code/target/.rustc_info.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/main/mod.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
-          <caret line="100" lean-forward="true" selection-start-line="100" selection-end-line="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/mod.rs">
+    <entry file="file://$PROJECT_DIR$/project-code/target/release/project-code.d">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -629,26 +675,99 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="141" column="13" selection-start-line="141" selection-start-column="13" selection-end-line="141" selection-end-column="13" />
+        <state relative-caret-position="-944">
+          <caret line="347" column="5" selection-start-line="347" selection-start-column="5" selection-end-line="347" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/resources/file.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/Cargo.toml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/mod.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/libcore/ptr.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="1695" column="18" selection-start-line="1695" selection-start-column="18" selection-end-line="1695" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rust-crash-course/src/main.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="245" column="30" selection-start-line="245" selection-start-column="30" selection-end-line="245" selection-end-column="30" />
+        <state relative-caret-position="-4424">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/main/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="48" column="9" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/Cargo.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="617">
+          <caret line="372" selection-start-line="372" selection-end-line="372" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src/libstd/path.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="2281" column="11" selection-start-line="2281" selection-start-column="11" selection-end-line="2281" selection-end-column="11" />
           <folding>
-            <element signature="e#18452#19302#0" />
-            <element signature="e#19366#19791#0" />
+            <element signature="e#72363#72364#0" expanded="true" />
+            <element signature="e#72400#72401#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/image.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="100" column="28" selection-start-line="100" selection-start-column="28" selection-end-line="100" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rust-crash-course/src/alternative_main.rs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="325" column="32" lean-forward="true" selection-start-line="325" selection-start-column="32" selection-end-line="325" selection-end-column="32" />
+        <state relative-caret-position="517">
+          <caret line="301" column="40" lean-forward="true" selection-start-line="301" selection-start-column="40" selection-end-line="301" selection-end-column="40" />
         </state>
       </provider>
     </entry>

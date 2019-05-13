@@ -2,9 +2,9 @@ use crate::utils::pixel::Pixel;
 
 // This is a representation of the "raw" image
 pub struct Image {
-    width: usize,
-    height: usize,
-    pixels: Vec<Vec<Pixel>>
+    pub width: u32,
+    pub height: u32,
+    pub pixels: Vec<Vec<Pixel>>
 }
 
 // TODO: Add your PPM parser here

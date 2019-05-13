@@ -3,8 +3,10 @@
 // _Please_ read them carefully. They are very important.
 // The most important comments are all annotated with "NOTE/WARNING:"
 
-// I will grade your code quality primarily on how "idiomatic" your Rust 
+// I will grade your code quality primarily on how "idiomatic" your Rust
 // code is, and how well you implemented the "safe unsafety" guidelines.
+//mods
+mod utils;
 
 #[macro_use]
 extern crate simple_error;
@@ -27,7 +29,7 @@ use std::fs::File;
 use std::time::Duration;
 use shuteye::sleep;
 use mmap::{MemoryMap, MapOption};
-//use utils::file_reader;
+use utils::file_reader;
 
 #[derive(Copy, Clone)]
 struct Pixel {
@@ -148,15 +150,15 @@ fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
         false => Some(result)
     };
 
-    // NOTE/WARNING: When a MemoryMap struct is dropped, the mapped 
+    // NOTE/WARNING: When a MemoryMap struct is dropped, the mapped
     // memory region is automatically unmapped!
 }
 
 //
-// NOTE/WARNING: In many cases, particularly those where you need to set or clear 
-// multiple bits at once, it is convenient to store multiple pin numbers in one bit 
-// mask value. If you want to simultaneously set PIN_A and PIN_C to high, for example, 
-// you should probably create a bit mask with the positions of PIN_A and PIN_C set to 1, 
+// NOTE/WARNING: In many cases, particularly those where you need to set or clear
+// multiple bits at once, it is convenient to store multiple pin numbers in one bit
+// mask value. If you want to simultaneously set PIN_A and PIN_C to high, for example,
+// you should probably create a bit mask with the positions of PIN_A and PIN_C set to 1,
 // and all other positions set to 0. You can do this using the GPIO_BIT! macro.
 //
 // In this example, you would do something like:
@@ -165,10 +167,10 @@ fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
 //
 impl GPIO {
     //
-    // configures pin number @pin_num as an output pin by writing to the 
+    // configures pin number @pin_num as an output pin by writing to the
     // appropriate Function Select register (see section 2.1).
-    // 
-    // NOTE/WARNING: This method configures one pin at a time. The @pin_num argument 
+    //
+    // NOTE/WARNING: This method configures one pin at a time. The @pin_num argument
     // that is expected here is really a pin number and not a bitmask!
     //
     // Doing something like:
@@ -184,13 +186,13 @@ impl GPIO {
     fn configure_output_pin(self: &mut GPIO, pin_num: u64) {
         let register_num = (pin_num / 10) as isize;
         let register_ref = unsafe { self.gpio_port_.offset(register_num) };
-        // NOTE/WARNING: When reading from or writing to MMIO memory regions, you MUST 
+        // NOTE/WARNING: When reading from or writing to MMIO memory regions, you MUST
         // use the std::ptr::read_volatile and std::ptr::write_volatile functions
         let current_val = unsafe { std::ptr::read_volatile(register_ref) };
         // the bit range within the register is [(pin_num % 10) * 3 .. (pin_num % 10) * 3 + 2]
         // we need to set these bits to 001
         let new_val = (current_val & !(7 << ((pin_num % 10) * 3))) | (1 << ((pin_num % 10) * 3));
-        // NOTE/WARNING: When reading from or writing to MMIO memory regions, you MUST 
+        // NOTE/WARNING: When reading from or writing to MMIO memory regions, you MUST
         // use the std::ptr::read_volatile and std::ptr::write_volatile functions
         unsafe { std::ptr::write_volatile(register_ref, new_val) };
     }

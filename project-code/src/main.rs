@@ -83,6 +83,7 @@ const TIMER_REGISTER_OFFSET: u64 = 0x3000;
 const REGISTER_BLOCK_SIZE: u64 = 4096;
 const COLOR_DEPTH: usize = 8;
 const ROWS: u32 = 16;
+const COLUMNS: u32 = 32;
 const SUB_PANELS: u32 = 2;
 
 const PIN_OE: u64 = 4;
@@ -389,7 +390,32 @@ impl Timer {
 // The Frame should contain the pixels that are currently shown
 // on the LED board. In most cases, the Frame will have less pixels
 // than the input Image!
-impl Frame {}
+impl Frame {
+
+    fn new() -> Frame {
+        let mut frame: Frame = Frame {
+            pos: 0,
+            pixels:vec![vec![Pixel::new();COLUMNS as usize]; ROWS as usize] ,
+        };
+        frame
+    }
+
+    fn nextFrame(){
+
+    }
+
+}
+
+impl Pixel{
+    fn new() -> Pixel {
+        let mut pixel: Pixel = Pixel{
+            r: 0,
+            g: 0,
+            b: 0,
+        };
+        pixel
+    }
+}
 
 // TODO: Add your PPM parser here
 // NOTE/WARNING: Please make sure that your implementation can handle comments in the PPM file
@@ -426,7 +452,31 @@ pub fn main() {
     }).unwrap();
 
     while interrupt_received.load(Ordering::SeqCst) == false {
-// TODO: Implement your rendering loop here
+        //TODO: Implement your rendering loop here
+        let mut color_clk_mask = 0;
+        color_clk_mask |= PIN_R1 | PIN_G1 | PIN_B1 | PIN_R2 | PIN_G2 | PIN_B2 | PIN_CLK;
+
+        for c in 0..32{
+            if c%2 ==1 {
+                gpio.set_bits((PIN_R1 | PIN_G2) as u32);
+            }
+            else{
+                gpio.set_bits((PIN_B1 | PIN_B2) as u32);
+            }
+
+            gpio.set_bits(PIN_CLK as u32);
+        }
+
+        gpio.clear_bits((PIN_R1 | PIN_G1 | PIN_B1 | PIN_R2 | PIN_G2 | PIN_B2 | PIN_CLK) as u32);
+
+        gpio.set_bits((PIN_A | PIN_C) as u32);
+
+        gpio.set_bits(PIN_LAT as u32);
+
+        gpio.clear_bits(PIN_LAT as u32);
+
+        gpio.clear_bits(PIN_OE as u32);
+
     }
     println!("Exiting.");
     if interrupt_received.load(Ordering::SeqCst) == true {
@@ -436,7 +486,7 @@ pub fn main() {
     }
 
     //TODO
-    gpio.set_bits(PIN_OE as u32);
+    //gpio.set_bits(PIN_OE as u32);
 }
 
 

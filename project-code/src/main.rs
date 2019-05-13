@@ -193,7 +193,7 @@ impl GPIO {
     }
 
     fn init_outputs(self: &mut GPIO, mut outputs: u32) -> u32 {
-        //TODO: Check if correct
+        //TODO
         outputs &= VALID_BITS as u32;
         outputs &= !(self.output_bits_ | self.input_bits_);
 
@@ -208,7 +208,7 @@ impl GPIO {
     }
 
     fn set_bits(self: &mut GPIO, value: u32) {
-        // TODO: check if correct
+        //TODO
         self.gpio_set_bits_ = value as *mut u32;
 
         for i in 0..self.slowdown_ {
@@ -217,7 +217,7 @@ impl GPIO {
     }
 
     fn clear_bits(self: &mut GPIO, value: u32) {
-        // TODO: check if correct
+        //TODO
         self.gpio_clr_bits_ = value as *mut u32;
         for i in 0..self.slowdown_ {
             self.gpio_clr_bits_ = value as *mut u32;
@@ -226,12 +226,10 @@ impl GPIO {
 
     // Write all the bits of @value that also appear in @mask. Leave the rest untouched.
     // @value and @mask are bitmasks
-    fn write_masked_bits(
-        self: &mut GPIO,
-        value: u32,
-        mask: u32,
-    ) {
-        // TODO: Implement this yourself.
+    fn write_masked_bits(self: &mut GPIO, value: u32, mask: u32) {
+        //TODO
+        self.clear_bits(!value & mask);
+        self.set_bits(value & mask);
     }
 
     fn new(slowdown: u32) -> GPIO {

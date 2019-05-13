@@ -27,7 +27,7 @@ use std::fs::File;
 use std::time::Duration;
 use shuteye::sleep;
 use mmap::{MemoryMap, MapOption};
-use utils::file_reader;
+//use utils::file_reader;
 
 #[derive(Copy, Clone)]
 struct Pixel {
@@ -82,6 +82,8 @@ const GPIO_REGISTER_OFFSET: u64 = 0x200000;
 const TIMER_REGISTER_OFFSET: u64 = 0x3000;
 const REGISTER_BLOCK_SIZE: u64 = 4096;
 const COLOR_DEPTH: usize = 8;
+const ROWS: u32 = 16;
+const SUB_PANELS: u32 = 2;
 
 const PIN_OE: u64 = 4;
 const PIN_CLK: u64 = 17;
@@ -255,13 +257,36 @@ impl GPIO {
             Some(m) => {
                 unsafe {
                     io.gpio_port_ = m.data() as *mut u32;
-                    // TODO: Calculate the correct values of the other raw pointers here.
-                    // You should use the offset() method on the gpio_port_ pointer.
-                    // Keep in mind that Rust raw pointer arithmetic works exactly like
-                    // C pointer arithmetic. See the course slides for details
+                    // TODO:
+                    io.gpio_set_bits_ = io.gpio_port_.offset(7);
+                    io.gpio_clr_bits_ = io.gpio_port_.offset(10);
+                    io.gpio_read_bits_ = io.gpio_port_.offset(13);
+
+                    let mut all_used_bits: u32 = 0;
+                    all_used_bits |= GPIO_BIT!(PIN_OE) | GPIO_BIT!(PIN_CLK) | GPIO_BIT!(PIN_LAT) |
+                        GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) |
+                        GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2);
+
+                    io.row_mask = GPIO_BIT!(PIN_A);
+                    match ROWS / SUB_PANELS {
+                        d if d > 2 => io.row_mask |= GPIO_BIT!(PIN_B),
+                        d if d > 4 => io.row_mask |= GPIO_BIT!(PIN_C),
+                        d if d > 8 => io.row_mask |= GPIO_BIT!(PIN_D),
+                        d if d > 16 => io.row_mask |= GPIO_BIT!(PIN_E),
+                        _ => {}
+                    }
+
+                    all_used_bits |= io.row_mask;
+                    let result = io.init_outputs(all_used_bits);
+                    assert!(result == all_used_bits);
                 }
 
-                // TODO: Implement this yourself.
+                // TODO
+                let mut timing_ns: u32 = 200;
+                for b in 0..COLOR_DEPTH {
+                    io.bitplane_timings[b] = timing_ns;
+                    timing_ns *= 2;
+                }
             }
             None => {}
         }
@@ -271,28 +296,52 @@ impl GPIO {
     }
 
     // Calculates the pins we must activate to push the address of the specified double_row
-    //fn get_row_bits(self: &GPIO, double_row: u8) -> u32 {
-    // TODO: Implement this yourself.
-    //}
+    fn get_row_bits(self: &GPIO, double_row: u8) -> u32 {
+        //TODO: Implement this yourself.
+        let mut row_adress: u8;
+        match double_row & 0x01 != 0 {
+            True => row_adress = GPIO_BIT!(PIN_A),
+            False => row_adress = 0,
+        };
+        match double_row & 0x02 != 0 {
+            True => row_adress = GPIO_BIT!(PIN_B),
+            False => row_adress = 0,
+        };
+        match double_row & 0x04 != 0 {
+            True => row_adress = GPIO_BIT!(PIN_C),
+            False => row_adress = 0,
+        };
+        match double_row & 0x08 != 0 {
+            True => row_adress = GPIO_BIT!(PIN_D),
+            False => row_adress = 0,
+        };
+        match double_row & 0x10 != 0 {
+            True => row_adress = GPIO_BIT!(PIN_E),
+            False => row_adress = 0,
+        };
+        unsafe {
+            row_adress as u32 & self.row_mask
+        }
+    }
 }
 
 impl Timer {
-    // Reads from the 1Mhz timer register (see Section 2.5 in the assignment)
-    //unsafe fn read(self: &Timer) -> u32 {
-    // TODO: Implement this yourself.
-    //}
+// Reads from the 1Mhz timer register (see Section 2.5 in the assignment)
+//unsafe fn read(self: &Timer) -> u32 {
+// TODO: Implement this yourself.
+//}
 
 //    fn new() -> Timer {
-    // TODO: Implement this yourself.
-    //   }
+// TODO: Implement this yourself.
+//   }
 
     // High-precision sleep function (see section 2.5 in the assignment)
-    // NOTE/WARNING: Since the raspberry pi's timer frequency is only 1Mhz, 
-    // you cannot reach full nanosecond precision here. You will have to think
-    // about how you can approximate the desired precision. Obviously, there is
-    // no perfect solution here.
+// NOTE/WARNING: Since the raspberry pi's timer frequency is only 1Mhz,
+// you cannot reach full nanosecond precision here. You will have to think
+// about how you can approximate the desired precision. Obviously, there is
+// no perfect solution here.
     fn nanosleep(self: &Timer, mut nanos: u32) {
-        // TODO: Implement this yourself.
+// TODO: Implement this yourself.
     }
 }
 
@@ -313,27 +362,23 @@ pub fn main() {
     let args: Vec<String> = std::env::args().collect();
     let interrupt_received = Arc::new(AtomicBool::new(false));
 
-    // sanity checks
+// sanity checks
     if nix::unistd::Uid::current().is_root() == false {
         eprintln!("Must run as root to be able to access /dev/mem\nPrepend \'sudo\' to the command");
         std::process::exit(1);
-    } else if args.len() < 2 {
-        eprintln!("Syntax: {:?} [image]", args[0]);
-        std::process::exit(1);
     }
 
-    // TODO: Read the PPM file here. You can find its name in args[1]
-    // TODO: Initialize the GPIO struct and the Timer struct
-
-    // This code sets up a CTRL-C handler that writes "true" to the 
-    // interrupt_received bool.
+// TODO: Read the PPM file here. You can find its name in args[1]
+// TODO: Initialize the GPIO struct and the Timer struct
+// This code sets up a CTRL-C handler that writes "true" to the
+// interrupt_received bool.
     let int_recv = interrupt_received.clone();
     ctrlc::set_handler(move || {
         int_recv.store(true, Ordering::SeqCst);
     }).unwrap();
 
     while interrupt_received.load(Ordering::SeqCst) == false {
-        // TODO: Implement your rendering loop here
+// TODO: Implement your rendering loop here
     }
     println!("Exiting.");
     if interrupt_received.load(Ordering::SeqCst) == true {
@@ -342,6 +387,6 @@ pub fn main() {
         println!("Timeout reached");
     }
 
-    // TODO: You may want to reset the board here (i.e., disable all LEDs)
+// TODO: You may want to reset the board here (i.e., disable all LEDs)
 }
 

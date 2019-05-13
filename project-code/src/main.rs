@@ -407,9 +407,17 @@ pub fn main() {
         eprintln!("Must run as root to be able to access /dev/mem\nPrepend \'sudo\' to the command");
         std::process::exit(1);
     }
+    /*else if args.len() < 2 {
+        eprintln!("Syntax: {:?} [image]", args[0]);
+        std::process::exit(1);
+    }*/
 
 // TODO: Read the PPM file here. You can find its name in args[1]
 // TODO: Initialize the GPIO struct and the Timer struct
+    let mut gpio = GPIO::new(1);
+    let timer = Timer::new();
+
+
 // This code sets up a CTRL-C handler that writes "true" to the
 // interrupt_received bool.
     let int_recv = interrupt_received.clone();

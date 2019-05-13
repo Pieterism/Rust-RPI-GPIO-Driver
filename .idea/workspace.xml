@@ -31,11 +31,10 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="801">
-                  <caret line="358" column="13" lean-forward="true" selection-start-line="358" selection-start-column="13" selection-end-line="358" selection-end-column="13" />
+                <state relative-caret-position="277">
+                  <caret line="414" column="65" lean-forward="true" selection-start-line="414" selection-start-column="65" selection-end-line="414" selection-end-column="65" />
                   <folding>
                     <element signature="e#3856#4956#0" />
-                    <element signature="e#5495#10622#0" />
                     <element signature="e#6228#7080#0" />
                     <element signature="e#7146#7259#0" />
                     <element signature="e#7314#7480#0" />
@@ -43,7 +42,7 @@
                     <element signature="e#7918#7967#0" />
                     <element signature="e#8003#9257#0" />
                     <element signature="e#10581#10620#0" />
-                    <element signature="e#12218#13407#0" />
+                    <element signature="e#11558#11666#0" />
                   </folding>
                 </state>
               </provider>
@@ -56,9 +55,20 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="211">
-                  <caret line="311" column="13" selection-start-line="311" selection-start-column="2" selection-end-line="311" selection-end-column="13" />
+                <state relative-caret-position="2399">
+                  <caret line="482" column="8" selection-start-line="482" selection-end-line="483" />
                   <folding>
+                    <element signature="e#0#15272#0" />
+                    <element signature="e#0#15272#0" />
+                    <element signature="e#0#15272#0" />
+                    <element signature="e#0#15272#0" />
+                    <element signature="e#0#15272#0" />
+                    <element signature="e#0#15272#0" />
+                    <element signature="e#0#15272#0" />
+                    <element signature="e#0#15272#0" />
+                    <element signature="e#0#15272#0" />
+                    <element signature="e#0#15272#0" />
+                    <element signature="e#0#15272#0" />
                     <element signature="e#0#15272#0" />
                     <element signature="e#0#15272#0" />
                     <element signature="e#0#15272#0" />
@@ -125,6 +135,7 @@
         <option value="$PROJECT_DIR$/project-code/Cargo.toml" />
         <option value="$PROJECT_DIR$/rust-crash-course/Cargo.toml" />
         <option value="$PROJECT_DIR$/rust-crash-course/src/main.rs" />
+        <option value="$PROJECT_DIR$/docs/reference_implementation.c" />
         <option value="$PROJECT_DIR$/project-code/src/main.rs" />
       </list>
     </option>
@@ -361,7 +372,21 @@
       <option name="project" value="LOCAL" />
       <updated>1557741188977</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="GPIO finished, still need to check if working correctly">
+      <created>1557758704538</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1557758704538</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Timer implemented, still need to check if working correctly">
+      <created>1557761650549</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1557761650549</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -397,11 +422,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47459000" />
+    <option name="totallyTimeSpent" value="53774000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="935" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09795241" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -418,9 +442,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49960285" weight="0.24565756" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" sideWeight="0.49960285" visible="true" weight="0.24565756" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.29652604" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.29528537" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50039715" side_tool="true" weight="0.3284974" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -515,7 +539,9 @@
     <MESSAGE value="some more tying out &#10;first test in project-code" />
     <MESSAGE value="update code" />
     <MESSAGE value="update gpio" />
-    <option name="LAST_COMMIT_MESSAGE" value="update gpio" />
+    <MESSAGE value="GPIO finished, still need to check if working correctly" />
+    <MESSAGE value="Timer implemented, still need to check if working correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Timer implemented, still need to check if working correctly" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/parser/main.rs" />
@@ -636,18 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rust-crash-course/src/main.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="180" column="8" selection-start-line="180" selection-start-column="8" selection-end-line="190" selection-end-column="15" />
-          <folding>
-            <element signature="e#6210#7062#0" />
-            <element signature="e#9290#9490#0" />
-            <element signature="e#9493#10785#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -661,13 +675,6 @@
     <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/main/main.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/utils/mod.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -675,11 +682,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/main/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="283" column="6" selection-start-line="283" selection-start-column="6" selection-end-line="286" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rust-crash-course/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="308" lean-forward="true" selection-start-line="308" selection-end-line="308" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="311" column="13" selection-start-line="311" selection-start-column="2" selection-end-line="311" selection-end-column="13" />
+        <state relative-caret-position="2399">
+          <caret line="482" column="8" selection-start-line="482" selection-end-line="483" />
           <folding>
+            <element signature="e#0#15272#0" />
+            <element signature="e#0#15272#0" />
+            <element signature="e#0#15272#0" />
+            <element signature="e#0#15272#0" />
+            <element signature="e#0#15272#0" />
+            <element signature="e#0#15272#0" />
+            <element signature="e#0#15272#0" />
+            <element signature="e#0#15272#0" />
+            <element signature="e#0#15272#0" />
+            <element signature="e#0#15272#0" />
+            <element signature="e#0#15272#0" />
             <element signature="e#0#15272#0" />
             <element signature="e#0#15272#0" />
             <element signature="e#0#15272#0" />
@@ -692,11 +724,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="801">
-          <caret line="358" column="13" lean-forward="true" selection-start-line="358" selection-start-column="13" selection-end-line="358" selection-end-column="13" />
+        <state relative-caret-position="277">
+          <caret line="414" column="65" lean-forward="true" selection-start-line="414" selection-start-column="65" selection-end-line="414" selection-end-column="65" />
           <folding>
             <element signature="e#3856#4956#0" />
-            <element signature="e#5495#10622#0" />
             <element signature="e#6228#7080#0" />
             <element signature="e#7146#7259#0" />
             <element signature="e#7314#7480#0" />
@@ -704,7 +735,7 @@
             <element signature="e#7918#7967#0" />
             <element signature="e#8003#9257#0" />
             <element signature="e#10581#10620#0" />
-            <element signature="e#12218#13407#0" />
+            <element signature="e#11558#11666#0" />
           </folding>
         </state>
       </provider>

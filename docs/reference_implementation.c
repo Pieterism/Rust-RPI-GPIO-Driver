@@ -287,6 +287,7 @@ static void Timer_NanoSleep(long nanos) {
     nanosleep(&sleep_time, NULL);
     const uint32_t after = *timer1Mhz;
     const long nanoseconds_passed = 1000 * (uint32_t)(after - before);
+
     if (nanoseconds_passed > nanos) {
       return;  // darn, missed it.
     } else {

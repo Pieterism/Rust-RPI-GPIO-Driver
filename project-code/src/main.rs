@@ -326,24 +326,64 @@ impl GPIO {
 }
 
 impl Timer {
-// Reads from the 1Mhz timer register (see Section 2.5 in the assignment)
-//unsafe fn read(self: &Timer) -> u32 {
-// TODO: Implement this yourself.
-//}
+    // Reads from the 1Mhz timer register (see Section 2.5 in the assignment)
+    unsafe fn read(self: &Timer) -> u32 {
+        //TODO: Implement this yourself.
+        std::ptr::read_volatile(self.timereg)
+    }
 
-//    fn new() -> Timer {
-// TODO: Implement this yourself.
-//   }
+    fn new() -> Timer {
+        //TODO: Implement this yourself.
+        let map = mmap_bcm_register(TIMER_REGISTER_OFFSET as usize);
+
+        let mut timer: Timer = Timer {
+            _timemap: None,
+            timereg: 0 as *mut u32,
+        };
+
+        match &map {
+            Some(map) => {
+                unsafe {
+                    timer.timereg = map.data() as *mut u32;
+                    timer.timereg.offset(1);
+                }
+            }
+            None => {}
+        };
+        timer
+    }
 
     // High-precision sleep function (see section 2.5 in the assignment)
-// NOTE/WARNING: Since the raspberry pi's timer frequency is only 1Mhz,
-// you cannot reach full nanosecond precision here. You will have to think
-// about how you can approximate the desired precision. Obviously, there is
-// no perfect solution here.
+    // NOTE/WARNING: Since the raspberry pi's timer frequency is only 1Mhz,
+    // you cannot reach full nanosecond precision here. You will have to think
+    // about how you can approximate the desired precision. Obviously, there is
+    // no perfect solution here.
     fn nanosleep(self: &Timer, mut nanos: u32) {
-// TODO: Implement this yourself.
+        //TODO: Implement this yourself.
+        let mut kJitterAllowanceNanos = 60 * 1000;
+        if nanos > kJitterAllowanceNanos + 5000 {
+            let before = unsafe { self.read() };
+            match sleep(std::time::Duration::new(0, nanos - kJitterAllowanceNanos)) {
+                Some(time) => {
+                    let after = unsafe { self.read() };
+                    let nanosec_passed = 1000 * (after - before);
+                    nanos -= nanosec_passed;
+                }
+                None => { return; }
+            }
+        }
+
+        if nanos < 20 {
+            return;
+        }
+
+        let mut nanoseconds_left = ((nanos - 20) * 100 / 110) as i64;
+        for x in nanoseconds_left..0 {
+            unsafe { self.read() };
+        }
     }
 }
+
 
 // TODO: Implement your frame calculation/updating logic here.
 // The Frame should contain the pixels that are currently shown
@@ -389,4 +429,5 @@ pub fn main() {
 
 // TODO: You may want to reset the board here (i.e., disable all LEDs)
 }
+
 

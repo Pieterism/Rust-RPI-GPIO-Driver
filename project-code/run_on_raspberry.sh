@@ -1,3 +1,4 @@
+#!/bin/bash
 first_argument="$1"
 echo $first_argument
 

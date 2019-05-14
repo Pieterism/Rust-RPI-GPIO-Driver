@@ -6,8 +6,7 @@
 // I will grade your code quality primarily on how "idiomatic" your Rust
 // code is, and how well you implemented the "safe unsafety" guidelines.
 //mods
-mod utils;
-
+//mod utils;
 #[macro_use]
 extern crate simple_error;
 extern crate libc;
@@ -16,20 +15,19 @@ extern crate ctrlc;
 extern crate shuteye;
 extern crate mmap;
 extern crate nix;
-//extern crate utils;
 
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
-use std::{fs::OpenOptions, os::unix::fs::OpenOptionsExt};
-use std::error::Error;
 use std::os::unix::io::AsRawFd;
+use std::fs::OpenOptions;
+use std::os::unix::fs::OpenOptionsExt;
+use std::error::Error;
 use std::path::Path;
 use std::io::prelude::*;
 use std::fs::File;
 use std::time::Duration;
 use shuteye::sleep;
 use mmap::{MemoryMap, MapOption};
-use utils::file_reader;
 
 #[derive(Copy, Clone)]
 struct Pixel {
@@ -120,7 +118,10 @@ const VALID_BITS: u64 = GPIO_BIT!(PIN_OE) | GPIO_BIT!(PIN_CLK) | GPIO_BIT!(PIN_L
 // mmap_bcm_register - convenience function used to map the GPIO register block
 // ============================================================================
 
+
 fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
+    eprintln!("starting bcm register");
+
     let mem_file =
         match OpenOptions::new()
             .read(true)
@@ -139,7 +140,15 @@ fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
         MapOption::MapOffset(BCM2709_PERI_BASE as usize + register_offset as usize)
     ];
 
-    let result = MemoryMap::new(REGISTER_BLOCK_SIZE as usize, mmap_options).unwrap();
+    let result = match MemoryMap::new(REGISTER_BLOCK_SIZE as usize, mmap_options)
+        {
+            Ok(mmap) => {
+                println!("Successfully created the mmap: {}", mmap.len());
+                mmap
+            }
+            Err(err) => panic!("Could not read the mmap: {}", err),
+        };
+
 
     return match result.data().is_null() {
         true => {
@@ -202,7 +211,7 @@ impl GPIO {
         outputs &= VALID_BITS as u32;
         outputs &= !(self.output_bits_ | self.input_bits_);
 
-        for b in 0..=27 {
+        for b in 0..28 {
             if GPIO_BIT!(b) & outputs != 0 {
                 self.configure_output_pin(b as u64);
             }
@@ -238,9 +247,14 @@ impl GPIO {
     }
 
     fn new(slowdown: u32) -> GPIO {
+        eprintln!("Start building GPIO");
 
         // Map the GPIO register file. See section 2.1 in the assignment for details
         let map = mmap_bcm_register(GPIO_REGISTER_OFFSET as usize);
+
+        if map.is_none() {
+            eprint!("map error");
+        }
 
         // Initialize the GPIO struct with default values
         let mut io: GPIO = GPIO {
@@ -257,7 +271,7 @@ impl GPIO {
         };
 
         match &map {
-            Some(m) => {
+            &Some(ref m) => {
                 unsafe {
                     io.gpio_port_ = m.data() as *mut u32;
                     // TODO:
@@ -291,7 +305,7 @@ impl GPIO {
                     timing_ns *= 2;
                 }
             }
-            None => {}
+            &None => {}
         }
 
         io.gpio_map_ = map;
@@ -301,25 +315,25 @@ impl GPIO {
     // Calculates the pins we must activate to push the address of the specified double_row
     fn get_row_bits(self: &GPIO, double_row: u8) -> u32 {
         //TODO: Implement this yourself.
-        let mut row_adress: u8;
+        let mut row_adress: u32 = 0;
         match double_row & 0x01 != 0 {
-            True => row_adress = GPIO_BIT!(PIN_A),
+            True => row_adress |= GPIO_BIT!(PIN_A),
             False => row_adress = 0,
         };
         match double_row & 0x02 != 0 {
-            True => row_adress = GPIO_BIT!(PIN_B),
+            True => row_adress |= GPIO_BIT!(PIN_B),
             False => row_adress = 0,
         };
         match double_row & 0x04 != 0 {
-            True => row_adress = GPIO_BIT!(PIN_C),
+            True => row_adress |= GPIO_BIT!(PIN_C),
             False => row_adress = 0,
         };
         match double_row & 0x08 != 0 {
-            True => row_adress = GPIO_BIT!(PIN_D),
+            True => row_adress |= GPIO_BIT!(PIN_D),
             False => row_adress = 0,
         };
         match double_row & 0x10 != 0 {
-            True => row_adress = GPIO_BIT!(PIN_E),
+            True => row_adress |= GPIO_BIT!(PIN_E),
             False => row_adress = 0,
         };
         unsafe {
@@ -345,13 +359,13 @@ impl Timer {
         };
 
         match &map {
-            Some(map) => {
+            &Some(ref map) => {
                 unsafe {
                     timer.timereg = map.data() as *mut u32;
                     timer.timereg.offset(1);
                 }
             }
-            None => {}
+            &None => {}
         };
         timer
     }
@@ -393,24 +407,20 @@ impl Timer {
 // on the LED board. In most cases, the Frame will have less pixels
 // than the input Image!
 impl Frame {
-
     fn new() -> Frame {
         let mut frame: Frame = Frame {
             pos: 0,
-            pixels:vec![vec![Pixel::new();COLUMNS as usize]; ROWS as usize] ,
+            pixels: vec![vec![Pixel::new(); COLUMNS as usize]; ROWS as usize],
         };
         frame
     }
 
-    fn nextFrame(){
-
-    }
-
+    fn nextFrame() {}
 }
 
-impl Pixel{
+impl Pixel {
     fn new() -> Pixel {
-        let mut pixel: Pixel = Pixel{
+        let mut pixel: Pixel = Pixel {
             r: 0,
             g: 0,
             b: 0,
@@ -443,8 +453,11 @@ pub fn main() {
 // TODO: Read the PPM file here. You can find its name in args[1]
 // TODO: Initialize the GPIO struct and the Timer struct
     let mut gpio = GPIO::new(1);
+    println!("gpio  done");
     let timer = Timer::new();
+    println!("timer done");
 
+    gpio.clear_bits(PIN_OE as u32);
 
 // This code sets up a CTRL-C handler that writes "true" to the
 // interrupt_received bool.
@@ -455,29 +468,6 @@ pub fn main() {
 
     while interrupt_received.load(Ordering::SeqCst) == false {
         //TODO: Implement your rendering loop here
-        let mut color_clk_mask = 0;
-        color_clk_mask |= PIN_R1 | PIN_G1 | PIN_B1 | PIN_R2 | PIN_G2 | PIN_B2 | PIN_CLK;
-
-        for c in 0..32{
-            if c%2 ==1 {
-                gpio.set_bits((PIN_R1 | PIN_G2) as u32);
-            }
-            else{
-                gpio.set_bits((PIN_B1 | PIN_B2) as u32);
-            }
-
-            gpio.set_bits(PIN_CLK as u32);
-        }
-
-        gpio.clear_bits((PIN_R1 | PIN_G1 | PIN_B1 | PIN_R2 | PIN_G2 | PIN_B2 | PIN_CLK) as u32);
-
-        gpio.set_bits((PIN_A | PIN_C) as u32);
-
-        gpio.set_bits(PIN_LAT as u32);
-
-        gpio.clear_bits(PIN_LAT as u32);
-
-        gpio.clear_bits(PIN_OE as u32);
 
     }
     println!("Exiting.");

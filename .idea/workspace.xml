@@ -29,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1682">
-              <caret line="246" column="2" selection-start-line="246" selection-end-line="248" selection-end-column="7" />
+            <state relative-caret-position="-446">
+              <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
               <folding>
                 <element signature="e#919#958#0" />
                 <element signature="e#972#1706#0" />
@@ -38,6 +38,7 @@
                 <element signature="e#1919#1967#0" />
                 <element signature="e#2040#2179#0" />
                 <element signature="e#3821#5181#0" />
+                <element signature="e#5762#12927#0" />
                 <element signature="e#6445#7299#0" />
                 <element signature="e#7363#7686#0" />
                 <element signature="e#7733#7905#0" />
@@ -47,8 +48,13 @@
                 <element signature="e#9470#10701#0" />
                 <element signature="e#11171#12024#0" />
                 <element signature="e#12102#12925#0" />
+                <element signature="e#12940#14839#0" />
                 <element signature="e#13060#13154#0" />
                 <element signature="e#13178#13675#0" />
+                <element signature="e#14065#14837#0" />
+                <element signature="e#15073#15269#0" />
+                <element signature="e#15282#15433#0" />
+                <element signature="e#15802#17355#0" />
               </folding>
             </state>
           </provider>
@@ -74,6 +80,7 @@
       <find>custom</find>
       <find>row_mask</find>
       <find>shute</find>
+      <find>PIN_A</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -117,6 +124,7 @@
         <option value="$PROJECT_DIR$/project-code/Cargo.toml" />
         <option value="$PROJECT_DIR$/rust-crash-course/src/main.rs" />
         <option value="$PROJECT_DIR$/docs/reference_implementation.c" />
+        <option value="$PROJECT_DIR$/docs/test" />
         <option value="$PROJECT_DIR$/project-code/src/main.rs" />
       </list>
     </option>
@@ -319,7 +327,7 @@
       <workItem from="1557242743665" duration="10291000" />
       <workItem from="1557299291488" duration="3941000" />
       <workItem from="1557820100739" duration="26432000" />
-      <workItem from="1557868690837" duration="18819000" />
+      <workItem from="1557868690837" duration="25978000" />
     </task>
     <task id="LOCAL-00001" summary="re-organized the module lay-out of the project&#10;updated the .gitingore file">
       <created>1557244674685</created>
@@ -398,7 +406,21 @@
       <option name="project" value="LOCAL" />
       <updated>1557847978442</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="working display">
+      <created>1557942412407</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1557942412407</updated>
+    </task>
+    <task id="LOCAL-00013" summary="working display">
+      <created>1557944810538</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1557944810538</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -434,7 +456,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112529000" />
+    <option name="totallyTimeSpent" value="119688000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="935" extended-state="6" />
@@ -454,9 +476,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49960285" weight="0.18982631" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" sideWeight="0.49960285" visible="true" weight="0.44168735" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4991699" visible="true" weight="0.2841191" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4991699" weight="0.2841191" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5008301" side_tool="true" weight="0.29528537" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -556,7 +578,8 @@
     <MESSAGE value="reset LED matrix added" />
     <MESSAGE value="testing matrix added" />
     <MESSAGE value="solved Result.unwrap() error" />
-    <option name="LAST_COMMIT_MESSAGE" value="solved Result.unwrap() error" />
+    <MESSAGE value="working display" />
+    <option name="LAST_COMMIT_MESSAGE" value="working display" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/parser/main.rs" />
@@ -706,10 +729,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/test">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="43" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1682">
-          <caret line="246" column="2" selection-start-line="246" selection-end-line="248" selection-end-column="7" />
+        <state relative-caret-position="-446">
+          <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
           <folding>
             <element signature="e#919#958#0" />
             <element signature="e#972#1706#0" />
@@ -717,6 +747,7 @@
             <element signature="e#1919#1967#0" />
             <element signature="e#2040#2179#0" />
             <element signature="e#3821#5181#0" />
+            <element signature="e#5762#12927#0" />
             <element signature="e#6445#7299#0" />
             <element signature="e#7363#7686#0" />
             <element signature="e#7733#7905#0" />
@@ -726,8 +757,13 @@
             <element signature="e#9470#10701#0" />
             <element signature="e#11171#12024#0" />
             <element signature="e#12102#12925#0" />
+            <element signature="e#12940#14839#0" />
             <element signature="e#13060#13154#0" />
             <element signature="e#13178#13675#0" />
+            <element signature="e#14065#14837#0" />
+            <element signature="e#15073#15269#0" />
+            <element signature="e#15282#15433#0" />
+            <element signature="e#15802#17355#0" />
           </folding>
         </state>
       </provider>

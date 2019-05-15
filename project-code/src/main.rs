@@ -80,11 +80,12 @@ struct Timer {
 const BCM2709_PERI_BASE: u64 = 0x3F000000;
 const GPIO_REGISTER_OFFSET: u64 = 0x200000;
 const TIMER_REGISTER_OFFSET: u64 = 0x3000;
+const TIMER_OVERFLOW_VALUE: u32 = 4294967295;
 const REGISTER_BLOCK_SIZE: u64 = 4096;
 const COLOR_DEPTH: usize = 8;
-const ROWS: usize = 16;
-const COLUMNS: usize = 32;
-const SUB_PANELS: usize = 2;
+const ROWS: u32 = 16;
+const COLUMNS: u32 = 32;
+const SUB_PANELS: u32 = 2;
 
 const PIN_OE: u64 = 4;
 const PIN_CLK: u64 = 17;
@@ -244,9 +245,9 @@ impl GPIO {
         self.set_bits(value & mask);
     }
 
-/*    fn GPIO_Write(self: &mut GPIO, value: u32) {
-        self.write_masked_bits(value, self.output_bits_);
-    }*/
+    /*    fn GPIO_Write(self: &mut GPIO, value: u32) {
+            self.write_masked_bits(value, self.output_bits_);
+        }*/
 
     /*    fn GPIO_Read(self: &mut GPIO) -> u32 {
             self.gpio_read_bits_ & self.input_bits_
@@ -412,16 +413,27 @@ impl Timer {
     // no perfect solution here.
     fn nanosleep(self: &Timer, mut nanos: u32) {
         //TODO: Implement this yourself.
-        let mut kJitterAllowanceNanos = 60 * 1000;
-        if nanos > kJitterAllowanceNanos + 5000 {
-            let before = unsafe { self.read() };
-            match sleep(std::time::Duration::new(0, nanos - kJitterAllowanceNanos)) {
+        let mut k_jitter_allowance = 60 * 1000;
+
+        if nanos > k_jitter_allowance {
+            let before_microsecs = unsafe { self.read() };
+            let nanosec_passed: u64;
+
+            match sleep(std::time::Duration::new(0, nanos - k_jitter_allowance)) {
                 Some(time) => {
-                    let after = unsafe { self.read() };
-                    let nanosec_passed = 1000 * (after - before);
-                    nanos -= nanosec_passed;
+                    let after_microsec = unsafe { self.read() };
+                    if after_microsec > before_microsecs {
+                        nanosec_passed = (1000 * (after_microsec - before_microsecs)) as u64;
+                    } else {
+                        nanosec_passed = 1000 * (TIMER_OVERFLOW_VALUE - before_microsecs + after_microsec) as u64;
+                    }
+                    if nanosec_passed > nanos as u64 {
+                        return;
+                    } else {
+                        nanos -= nanosec_passed as u32;
+                    }
                 }
-                None => { return; }
+                None => {}
             }
         }
 
@@ -429,10 +441,13 @@ impl Timer {
             return;
         }
 
-        let mut nanoseconds_left = ((nanos - 20) * 100 / 110) as i64;
-        for x in nanoseconds_left..0 {
-            unsafe { self.read() };
+        let mut start_time: u32 = unsafe { self.read() };
+        let mut current_time: u32 = start_time;
+
+        while start_time + nanos * 1000 <= current_time {
+            current_time = unsafe { self.read() };
         }
+        return;
     }
 }
 
@@ -500,9 +515,6 @@ pub fn main() {
     }).unwrap();
 
     while interrupt_received.load(Ordering::SeqCst) == false {
-
-        gpio.clear_bits(GPIO_BIT!(PIN_OE));
-
         for c in 0..32 {
             gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
 
@@ -517,7 +529,8 @@ pub fn main() {
 
         gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
 
-        gpio.set_bits(GPIO_BIT!(PIN_A));
+        let mut pin_mask = GPIO_BIT!(PIN_B) | GPIO_BIT!(PIN_A);
+        gpio.set_bits(pin_mask);
 
         gpio.set_bits(GPIO_BIT!(PIN_LAT));
 

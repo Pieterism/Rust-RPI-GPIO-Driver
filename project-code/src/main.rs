@@ -5,8 +5,9 @@
 
 // I will grade your code quality primarily on how "idiomatic" your Rust
 // code is, and how well you implemented the "safe unsafety" guidelines.
+
 //mods
-//mod utils;
+mod utils;
 #[macro_use]
 extern crate simple_error;
 extern crate libc;
@@ -28,6 +29,8 @@ use std::fs::File;
 use std::time::Duration;
 use shuteye::sleep;
 use mmap::{MemoryMap, MapOption};
+use utils::file_reader;
+use utils::image;
 
 #[derive(Copy, Clone)]
 struct Pixel {
@@ -50,7 +53,7 @@ struct GPIO {
     // A raw pointer that points to the pin output clear register (see section 2.1)
     gpio_read_bits_: *mut u32,
     // A raw pointer that points to the pin level register (see section 2.1)
-    row_mask: u32,
+    pub row_mask: u32,
     bitplane_timings: [u32; COLOR_DEPTH],
 }
 
@@ -313,7 +316,6 @@ impl GPIO {
             }
             &None => {}
         }
-
         io.gpio_map_ = map;
         io
     }
@@ -342,13 +344,11 @@ impl GPIO {
             True => row_adress |= GPIO_BIT!(PIN_E),
             False => row_adress = 0,
         };
-        unsafe {
-            row_adress as u32 & self.row_mask
-        }
+        row_adress & self.row_mask
     }
 
     //TODO: Not sure if needed, in C reference code, not in RUST skeleton code.
-    /*fn get_plane_bits(self: GPIO, top: Pixel, bot: Pixel, plane: u8) -> u32 {
+    pub fn get_plane_bits(self: GPIO, top: Pixel, bot: Pixel, plane: u8) -> u32 {
         let mut out: u32 = 0;
         match top.r & (1 << plane) != 0 {
             True => out |= GPIO_BIT!(PIN_R1),
@@ -375,7 +375,7 @@ impl GPIO {
             False => out = 0,
         };
         out
-    }*/
+    }
 }
 
 impl Timer {
@@ -498,6 +498,9 @@ pub fn main() {
         std::process::exit(1);
     }*/
 
+    let path = Path::new(&args[0]);
+    let image = file_reader::read_ppm_file(&path);
+
 // TODO: Read the PPM file here. You can find its name in args[1]
 // TODO: Initialize the GPIO struct and the Timer struct
     let mut gpio = GPIO::new(1);
@@ -515,37 +518,46 @@ pub fn main() {
     }).unwrap();
 
     while interrupt_received.load(Ordering::SeqCst) == false {
-        for c in 0..32 {
-            gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
-
-            if c % 2 == 1 {
-                gpio.set_bits((GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G2)));
-            } else {
-                gpio.set_bits((GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_B2)));
-            }
-
-            gpio.set_bits(GPIO_BIT!(PIN_CLK));
-        }
-
-        gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
-
-        let mut pin_mask = GPIO_BIT!(PIN_B) | GPIO_BIT!(PIN_A);
-        gpio.set_bits(pin_mask);
-
-        gpio.set_bits(GPIO_BIT!(PIN_LAT));
-
-        gpio.clear_bits(GPIO_BIT!(PIN_LAT));
 
         gpio.clear_bits(GPIO_BIT!(PIN_OE));
+        for iter in 0..7 {
 
-        println!("I tried!");
-    }
+            for c in 0..32 {
+                gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
+
+                if c % 2 == 1 {
+                    gpio.set_bits((GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G2)));
+                } else {
+                    gpio.set_bits((GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_B2)));
+                };
+
+                gpio.set_bits(GPIO_BIT!(PIN_CLK));
+            };
+
+            gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
+
+            let pins = gpio.get_row_bits(iter);
+            println!("{}", pins);
+
+            gpio.clear_bits(!pins & row_mask);
+            gpio.set_bits(pins);
+
+            gpio.set_bits(GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B));
+
+            gpio.set_bits(GPIO_BIT!(PIN_LAT));
+
+            gpio.clear_bits(GPIO_BIT!(PIN_LAT));
+
+            gpio.clear_bits(GPIO_BIT!(PIN_OE));
+        };
+
+    };
     println!("Exiting.");
     if interrupt_received.load(Ordering::SeqCst) == true {
         println!("Received CTRL-C");
     } else {
         println!("Timeout reached");
-    }
+    };
 
     //TODO
     gpio.set_bits(GPIO_BIT!(PIN_OE));

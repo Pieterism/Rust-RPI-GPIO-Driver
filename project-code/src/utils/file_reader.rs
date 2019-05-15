@@ -8,14 +8,15 @@ use std::io::{Read, Cursor};
 use std::fmt;
 use std::io::prelude::*;
 use std::io::{Seek, SeekFrom};
-use sdl2::pixels::Color;
-use sdl2::rect::Rect;
 use shuteye::sleep;
 use std::time::Duration;
 use std::num::ParseIntError;
 use super::pixel::Pixel as Pixel;
 use super::image::Image;
+// use sdl2::pixels::Color;
+// use sdl2::rect::Rect;
 
+/*
 pub fn show_image(image: &Image)
 {
     let sdl = sdl2::init().unwrap();
@@ -70,8 +71,30 @@ pub fn show_image(image: &Image)
         }
 
 }
-//return type -> Result<Image, Box<std::error::Error>>
-pub fn decode_ppm_image(cursor: &mut Cursor<Vec<u8>>) -> Result<Image, ParseIntError> {
+*/
+
+pub fn read_ppm_file(path: &Path) -> Image {
+    let display = path.display();
+
+    let mut file = match File::open(&path)    {
+        Err(why) => panic!("Could not open file: {} (Reason: {})",
+                           display, why.description()),
+        Ok(file) => file
+    };
+
+    let mut raw_file = Vec::new();
+    file.read_to_end(&mut raw_file).unwrap();
+
+    let mut cursor = Cursor::new(raw_file);
+    let mut image = match decode_ppm_image(&mut cursor) {
+        Ok(img) => img,
+        Err(why) => panic!("Could not parse PPM file - Desc: {}", why.description()),
+    };
+
+    image
+}
+
+fn decode_ppm_image(cursor: &mut Cursor<Vec<u8>>) -> Result<Image, ParseIntError> {
     let mut image = Image {
         width: 0,
         height: 0,
@@ -97,9 +120,7 @@ pub fn decode_ppm_image(cursor: &mut Cursor<Vec<u8>>) -> Result<Image, ParseIntE
             let mut row: Vec<Pixel> = Vec::new();
             for width in 0..image.width {
                 let pixel = build_pixel_u8(cursor);
-                println!("{:?}", pixel);
                 counter+= 1;
-                println!("{:?}", counter);
                 row.push(pixel);
             };
             pixels.push(row);
@@ -109,8 +130,6 @@ pub fn decode_ppm_image(cursor: &mut Cursor<Vec<u8>>) -> Result<Image, ParseIntE
             let mut row: Vec<Pixel> = Vec::new();
             for width in 0..image.width {
                 let pixel = build_pixel_u16(cursor);
-                println!("{:?}", pixel);
-                println!("{:?}", counter);
                 row.push(pixel);
                 counter+= 1;
             };
@@ -180,26 +199,6 @@ fn read_constants(cursor: &mut Cursor<Vec<u8>>){
     println!("P6");
 }
 
-pub fn read_ppm_file(path: &Path) {
-    let display = path.display();
-
-    let mut file = match File::open(&path)    {
-        Err(why) => panic!("Could not open file: {} (Reason: {})",
-                           display, why.description()),
-        Ok(file) => file
-    };
-
-    let mut raw_file = Vec::new();
-    file.read_to_end(&mut raw_file).unwrap();
-
-    let mut cursor = Cursor::new(raw_file);
-    let mut image = match decode_ppm_image(&mut cursor) {
-        Ok(img) => img,
-        Err(why) => panic!("Could not parse PPM file - Desc: {}", why.description()),
-    };
-
-    show_image(&image);
-}
 
 #[test]
 fn decode_ppm_image_test() {

@@ -82,9 +82,9 @@ const GPIO_REGISTER_OFFSET: u64 = 0x200000;
 const TIMER_REGISTER_OFFSET: u64 = 0x3000;
 const REGISTER_BLOCK_SIZE: u64 = 4096;
 const COLOR_DEPTH: usize = 8;
-const ROWS: u32 = 16;
-const COLUMNS: u32 = 32;
-const SUB_PANELS: u32 = 2;
+const ROWS: usize = 16;
+const COLUMNS: usize = 32;
+const SUB_PANELS: usize = 2;
 
 const PIN_OE: u64 = 4;
 const PIN_CLK: u64 = 17;
@@ -158,7 +158,6 @@ fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
         }
         false => Some(result)
     };
-
     // NOTE/WARNING: When a MemoryMap struct is dropped, the mapped
     // memory region is automatically unmapped!
 }
@@ -207,7 +206,6 @@ impl GPIO {
     }
 
     fn init_outputs(self: &mut GPIO, mut outputs: u32) -> u32 {
-        //TODO
         outputs &= VALID_BITS as u32;
         outputs &= !(self.output_bits_ | self.input_bits_);
 
@@ -222,29 +220,38 @@ impl GPIO {
     }
 
     fn set_bits(self: &mut GPIO, value: u32) {
-        //TODO
-        self.gpio_set_bits_ = value as *mut u32;
-
-        for i in 0..self.slowdown_ {
-            self.gpio_set_bits_ = value as *mut u32;
+        unsafe {
+            std::ptr::write_volatile(self.gpio_set_bits_, value);
+            for i in 0..self.slowdown_ {
+                std::ptr::write_volatile(self.gpio_set_bits_, value);
+            }
         }
     }
 
     fn clear_bits(self: &mut GPIO, value: u32) {
-        //TODO
-        self.gpio_clr_bits_ = value as *mut u32;
-        for i in 0..self.slowdown_ {
-            self.gpio_clr_bits_ = value as *mut u32;
+        unsafe {
+            std::ptr::write_volatile(self.gpio_clr_bits_, value);
+            for i in 0..self.slowdown_ {
+                std::ptr::write_volatile(self.gpio_clr_bits_, value);
+            }
         }
     }
 
     // Write all the bits of @value that also appear in @mask. Leave the rest untouched.
     // @value and @mask are bitmasks
     fn write_masked_bits(self: &mut GPIO, value: u32, mask: u32) {
-        //TODO
         self.clear_bits(!value & mask);
         self.set_bits(value & mask);
     }
+
+/*    fn GPIO_Write(self: &mut GPIO, value: u32) {
+        self.write_masked_bits(value, self.output_bits_);
+    }*/
+
+    /*    fn GPIO_Read(self: &mut GPIO) -> u32 {
+            self.gpio_read_bits_ & self.input_bits_
+
+        }*/
 
     fn new(slowdown: u32) -> GPIO {
         eprintln!("Start building GPIO");
@@ -274,7 +281,6 @@ impl GPIO {
             &Some(ref m) => {
                 unsafe {
                     io.gpio_port_ = m.data() as *mut u32;
-                    // TODO:
                     io.gpio_set_bits_ = io.gpio_port_.offset(7);
                     io.gpio_clr_bits_ = io.gpio_port_.offset(10);
                     io.gpio_read_bits_ = io.gpio_port_.offset(13);
@@ -298,8 +304,7 @@ impl GPIO {
                     assert!(result == all_used_bits);
                 }
 
-                // TODO
-                let mut timing_ns: u32 = 200;
+                let mut timing_ns: u32 = 1000;
                 for b in 0..COLOR_DEPTH {
                     io.bitplane_timings[b] = timing_ns;
                     timing_ns *= 2;
@@ -340,6 +345,36 @@ impl GPIO {
             row_adress as u32 & self.row_mask
         }
     }
+
+    //TODO: Not sure if needed, in C reference code, not in RUST skeleton code.
+    /*fn get_plane_bits(self: GPIO, top: Pixel, bot: Pixel, plane: u8) -> u32 {
+        let mut out: u32 = 0;
+        match top.r & (1 << plane) != 0 {
+            True => out |= GPIO_BIT!(PIN_R1),
+            False => out = 0,
+        };
+        match bot.r & (1 << plane) != 0 {
+            True => out |= GPIO_BIT!(PIN_R2),
+            False => out = 0,
+        };
+        match top.g & (1 << plane) != 0 {
+            True => out |= GPIO_BIT!(PIN_G1),
+            False => out = 0,
+        };
+        match bot.g & (1 << plane) != 0 {
+            True => out |= GPIO_BIT!(PIN_G2),
+            False => out = 0,
+        };
+        match top.b & (1 << plane) != 0 {
+            True => out |= GPIO_BIT!(PIN_B1),
+            False => out = 0,
+        };
+        match bot.b & (1 << plane) != 0 {
+            True => out |= GPIO_BIT!(PIN_B2),
+            False => out = 0,
+        };
+        out
+    }*/
 }
 
 impl Timer {
@@ -414,14 +449,12 @@ impl Frame {
         };
         frame
     }
-
-    fn nextFrame() {}
 }
 
 impl Pixel {
     fn new() -> Pixel {
         let mut pixel: Pixel = Pixel {
-            r: 0,
+            r: 1,
             g: 0,
             b: 0,
         };
@@ -453,11 +486,11 @@ pub fn main() {
 // TODO: Read the PPM file here. You can find its name in args[1]
 // TODO: Initialize the GPIO struct and the Timer struct
     let mut gpio = GPIO::new(1);
-    println!("gpio  done");
+    println!("GPIO  done");
     let timer = Timer::new();
-    println!("timer done");
+    println!("Timer done");
 
-    gpio.clear_bits(PIN_OE as u32);
+    println!("Awaiting exit...");
 
 // This code sets up a CTRL-C handler that writes "true" to the
 // interrupt_received bool.
@@ -467,8 +500,32 @@ pub fn main() {
     }).unwrap();
 
     while interrupt_received.load(Ordering::SeqCst) == false {
-        //TODO: Implement your rendering loop here
 
+        gpio.clear_bits(GPIO_BIT!(PIN_CLK));
+
+        for c in 0..32 {
+            gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
+
+            if c % 2 == 1 {
+                gpio.set_bits((GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G2)));
+            } else {
+                gpio.set_bits((GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_B2)));
+            }
+
+            gpio.set_bits(GPIO_BIT!(PIN_CLK));
+        }
+
+        gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
+
+        gpio.set_bits((GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_C)));
+
+        gpio.set_bits(GPIO_BIT!(PIN_LAT));
+
+        gpio.clear_bits(GPIO_BIT!(PIN_LAT));
+
+        gpio.clear_bits(GPIO_BIT!(PIN_OE));
+
+        println!("I tried!");
     }
     println!("Exiting.");
     if interrupt_received.load(Ordering::SeqCst) == true {

@@ -501,7 +501,7 @@ pub fn main() {
 
     while interrupt_received.load(Ordering::SeqCst) == false {
 
-        gpio.clear_bits(GPIO_BIT!(PIN_CLK));
+        gpio.clear_bits(GPIO_BIT!(PIN_OE));
 
         for c in 0..32 {
             gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
@@ -517,7 +517,7 @@ pub fn main() {
 
         gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
 
-        gpio.set_bits((GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_C)));
+        gpio.set_bits(GPIO_BIT!(PIN_A));
 
         gpio.set_bits(GPIO_BIT!(PIN_LAT));
 
@@ -535,7 +535,7 @@ pub fn main() {
     }
 
     //TODO
-    //gpio.set_bits(PIN_OE as u32);
+    gpio.set_bits(GPIO_BIT!(PIN_OE));
 }
 
 

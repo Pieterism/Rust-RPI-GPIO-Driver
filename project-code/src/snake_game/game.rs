@@ -1,12 +1,15 @@
+extern crate rand;
+
 use super::snake::{Snake, Direction};
-use rand::{thread_rng, Rng};
-use crate::utils::gpio_driver::{COLUMNS, ROWS};
-use crate::utils::frame::Frame;
-use crate::utils::pixel::Pixel;
+use self::rand::thread_rng;
+use self::rand::Rng;
+use utils::gpio_driver::{COLUMNS, ROWS};
+use utils::frame::Frame;
+use utils::pixel::Pixel;
+
 
 const MOVING_PERIOD: f64 = 0.2; // in second
 const RESTART_TIME: f64 = 1.0; // in second
-const FOOD_BLOCK:Pixel = Pixel::new_colored_pixel(255,0,0);
 
 pub struct Game {
     snake: Snake,
@@ -15,7 +18,7 @@ pub struct Game {
     food_exist: bool,
     food_x: i32,
     food_y: i32,
-
+    FOOD_BLOCK:Pixel,
     // Game Space
     width: i32,
     height: i32,
@@ -35,39 +38,40 @@ impl Game {
             food_exist: true,
             food_x: 5,
             food_y: 3,
+            FOOD_BLOCK:Pixel::new_colored_pixel(255,0,0),
             width: COLUMNS as i32,
             height: ROWS as i32,
             is_game_over: false
         }
     }
 
-    pub fn key_pressed(&mut self, key: Key) {
-        if self.is_game_over {
-            return;
-        }
-
-        let dir = match key {
-            Key::Up => Some(Direction::Up),
-            Key::Down => Some(Direction::Down),
-            Key::Left => Some(Direction::Left),
-            Key::Right => Some(Direction::Right),
-            _ => None
-        };
-
-        if dir.unwrap() == self.snake.head_direction().opposite() {
-            return;
-        }
-
-        // Check if the snake hits the border
-        self.update_snake(dir);
-    }
+ //   pub fn key_pressed(&mut self, key: Key) {
+ //       if self.is_game_over {
+ //           return;
+ //       }
+//
+ //       let dir = match key {
+ //           Key::Up => Some(Direction::Up),
+ //           Key::Down => Some(Direction::Down),
+ //           Key::Left => Some(Direction::Left),
+ //           Key::Right => Some(Direction::Right),
+ //           _ => None
+ //       };
+//
+ //       if dir.unwrap() == self.snake.head_direction().opposite() {
+ //           return;
+ //       }
+//
+ //       // Check if the snake hits the border
+ //       self.update_snake(dir);
+ //   }
 
     pub fn draw(&self, frame: &mut Frame) {
         self.snake.draw(frame);
 
         // Draw the food
         if self.food_exist {
-            frame.pixels[self.food_x as usize][self.food_y as usize] = FOOD_BLOCK;
+            frame.pixels[self.food_x as usize][self.food_y as usize] = self.FOOD_BLOCK;
         }
     }
 

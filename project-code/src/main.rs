@@ -45,7 +45,7 @@ pub fn main() {
     ctrlc::set_handler(move || {
         int_recv.store(true, Ordering::SeqCst);
     }).unwrap();
-
+    frame.draw_border();
     gpio.render_frame(interrupt_received, &image, &mut frame, &timer);
 }
 

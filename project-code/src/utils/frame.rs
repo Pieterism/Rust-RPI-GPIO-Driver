@@ -3,9 +3,8 @@ use super::image::Image;
 use super::gpio_driver::ROWS;
 use super::gpio_driver::COLUMNS;
 
-const BORDER_PIXEL: Pixel = Pixel::new_colored_pixel(230, 230, 230);
-
 pub struct Frame {
+    BORDER_PIXEL: Pixel,
     pos: usize,
     pub pixels: Vec<Vec<Pixel>>,
 }
@@ -13,6 +12,7 @@ pub struct Frame {
 impl Frame {
     pub fn new() -> Frame {
         let mut frame: Frame = Frame {
+            BORDER_PIXEL: Pixel::new_colored_pixel(230, 230, 230),
             pos: 0,
             pixels: vec![vec![Pixel::new(); COLUMNS as usize]; ROWS as usize],
         };
@@ -38,7 +38,7 @@ impl Frame {
         for row in 0..ROWS {
             for col in 0..COLUMNS {
                 if row == 0 || row == ROWS || col == 0 || col == COLUMNS {
-                    self.pixels[row][col] = BORDER_PIXEL;
+                    self.pixels[row][col] = self.BORDER_PIXEL;
                 }
             }
         }

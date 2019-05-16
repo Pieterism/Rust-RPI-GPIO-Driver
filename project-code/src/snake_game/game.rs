@@ -1,9 +1,11 @@
-
 use super::snake::{Snake, Direction};
 use rand::{thread_rng, Rng};
+use crate::utils::gpio_driver::{COLUMNS, ROWS};
+use crate::utils::frame::Frame;
 
 const MOVING_PERIOD: f64 = 0.2; // in second
 const RESTART_TIME: f64 = 1.0; // in second
+const FOOD_BLOCK:Pixel = Pixel::new_colored_pixel(255,0,0);
 
 pub struct Game {
     snake: Snake,
@@ -25,15 +27,15 @@ pub struct Game {
 }
 
 impl Game {
-    pub fn new(width: i32, height: i32) -> Game {
+    pub fn new() -> Game {
         Game {
             snake: Snake::new(2, 2),
             waiting_time: 0.0,
             food_exist: true,
             food_x: 5,
             food_y: 3,
-            width: width,
-            height: height,
+            width: COLUMNS,
+            height: ROWS,
             is_game_over: false
         }
     }
@@ -59,13 +61,14 @@ impl Game {
         self.update_snake(dir);
     }
 
-    pub fn draw(&self, con: &Context, g: &mut G2d) {
-        self.snake.draw(con, g);
+    pub fn draw(&self, frame: &mut Frame) {
+        self.snake.draw(frame);
 
         // Draw the food
         if self.food_exist {
-            draw_block(FOOD_COLOR, self.food_x, self.food_y, con, g);
+            frame.pixels[self.food.x][self.food.y] = FOOD_BLOCK;
         }
+
 
         // Draw the border
         draw_rectange(BORDER_COLOR, 0, 0, self.width, 1, con, g);

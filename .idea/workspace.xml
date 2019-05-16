@@ -6,8 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="969a170f-e8a0-4b71-8f5b-70f6bdea44ae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/project-code/src/utils/frame.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-code/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-code/src/main/main.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-code/src/utils/pixel.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/utils/pixel.rs" afterDir="false" />
     </list>
     <ignored path="rust-crash-course/target/debug/rust-crash-course.dSYM/" />
     <ignored path="tryout-module/target/debug/tryout-module.dSYM/" />
@@ -25,67 +28,47 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="250">
-                  <caret line="446" column="32" lean-forward="true" selection-start-line="446" selection-start-column="32" selection-end-line="446" selection-end-column="32" />
-                  <folding>
-                    <element signature="e#1046#1784#0" />
-                    <element signature="e#1987#2126#0" />
-                    <element signature="e#3814#5173#0" />
-                    <element signature="e#13037#15458#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/project-code/src/utils/image.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="45">
-                  <caret line="3" selection-start-line="3" selection-end-line="3" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2970">
-                  <caret line="239" lean-forward="true" selection-start-line="233" selection-start-column="3" selection-end-line="239" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="109" selection-start-line="109" selection-end-line="109" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="55" selection-start-line="55" selection-end-line="55" />
+              <folding>
+                <element signature="e#17813#18059#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/project-code/src/utils/frame.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="4" selection-start-column="4" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project-code/src/utils/image.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -106,6 +89,7 @@
       <find>row_mask</find>
       <find>shute</find>
       <find>PIN_A</find>
+      <find>&lt;&lt;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -149,10 +133,11 @@
         <option value="$PROJECT_DIR$/rust-crash-course/src/main.rs" />
         <option value="$PROJECT_DIR$/docs/reference_implementation.c" />
         <option value="$PROJECT_DIR$/docs/test" />
-        <option value="$PROJECT_DIR$/project-code/src/utils/pixel.rs" />
         <option value="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" />
         <option value="$PROJECT_DIR$/project-code/src/utils/image.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/pixel.rs" />
         <option value="$PROJECT_DIR$/project-code/src/main.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/frame.rs" />
       </list>
     </option>
   </component>
@@ -176,11 +161,6 @@
             <path>
               <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
               <item name="veiligesoftware-20182019-groep7" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="veiligesoftware-20182019-groep7" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
@@ -258,7 +238,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Cargo Command.Run project-code">
+  <component name="RunManager" selected="Cargo Command.Test get_row_bits_test">
     <configuration name="Run project-code" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="run --package project-code --bin project-code" />
@@ -289,6 +269,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="Test get_row_bits_test" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="test --package project-code --bin project-code get_row_bits_test -- --exact" />
+      <option name="allFeatures" value="false" />
+      <option name="nocapture" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$/project-code" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="Test lib (2)" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="channel" value="DEFAULT" />
       <option name="command" value="test --package project-code --lib &quot;&quot;" />
@@ -309,23 +299,13 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="Test tests::can_read_file" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
-      <option name="channel" value="DEFAULT" />
-      <option name="command" value="test --package project-code --lib tests::can_read_file -- --exact" />
-      <option name="allFeatures" value="false" />
-      <option name="nocapture" value="false" />
-      <option name="backtrace" value="SHORT" />
-      <option name="workingDirectory" value="file://$PROJECT_DIR$/project-code" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo Command.Test get_row_bits_test" />
         <item itemvalue="Cargo Command.Run rust-crash-course" />
         <item itemvalue="Cargo Command.Test can_read_file" />
         <item itemvalue="Cargo Command.Test main::can_read_file" />
         <item itemvalue="Cargo Command.Test lib (2)" />
-        <item itemvalue="Cargo Command.Test tests::can_read_file" />
       </list>
     </recent_temporary>
   </component>
@@ -355,7 +335,7 @@
       <workItem from="1557820100739" duration="26432000" />
       <workItem from="1557868690837" duration="31585000" />
       <workItem from="1557991580177" duration="327000" />
-      <workItem from="1557993401784" duration="9414000" />
+      <workItem from="1557993401784" duration="16513000" />
     </task>
     <task id="LOCAL-00001" summary="re-organized the module lay-out of the project&#10;updated the .gitingore file">
       <created>1557244674685</created>
@@ -469,13 +449,17 @@
       <option name="project" value="LOCAL" />
       <updated>1558005187987</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="update getnextframe() working">
+      <created>1558013263293</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1558013263293</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Test_can_read_file - 2019.05.07 at 21h 41m 32s.xml">
-      <configuration name="Test can_read_file" configurationId="CargoCommandRunConfiguration" />
-    </history-entry>
     <history-entry file="Test_can_read_file - 2019.05.07 at 21h 43m 02s.xml">
       <configuration name="Test can_read_file" configurationId="CargoCommandRunConfiguration" />
     </history-entry>
@@ -503,9 +487,12 @@
     <history-entry file="Test_can_read_file - 2019.05.07 at 22h 04m 39s.xml">
       <configuration name="Test can_read_file" configurationId="CargoCommandRunConfiguration" />
     </history-entry>
+    <history-entry file="Test_get_row_bits_test - 2019.05.16 at 16h 06m 53s.xml">
+      <configuration name="Test get_row_bits_test" configurationId="CargoCommandRunConfiguration" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135036000" />
+    <option name="totallyTimeSpent" value="142135000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="935" extended-state="6" />
@@ -519,16 +506,16 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49960285" weight="0.32754344" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4991699" weight="0.32754344" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49960285" weight="0.29776675" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4991699" weight="0.29776675" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4991699" visible="true" weight="0.44044665" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5008301" side_tool="true" weight="0.29528537" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4980631" visible="true" weight="0.3312655" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5019369" side_tool="true" weight="0.3312655" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -634,7 +621,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="update getnextframe() working" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/parser/main.rs" />
     <entry file="file://$PROJECT_DIR$/parser/src/main.rs" />
     <entry file="file://$PROJECT_DIR$/parser/build.rs" />
     <entry file="file://$PROJECT_DIR$/rust-crash-course/.gitignore" />
@@ -762,16 +748,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/test" />
-    <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="239" lean-forward="true" selection-start-line="233" selection-start-column="3" selection-end-line="239" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/resources/testfile.ppm">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/resources/testbeeld.ppm">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -782,10 +758,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1789">
+          <caret line="424" lean-forward="true" selection-start-line="424" selection-end-line="424" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/index.ppm">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/resources/testfile.ppm">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        <state>
+          <caret column="4" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="e#17813#18059#0" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -796,16 +795,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/frame.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="446" column="32" lean-forward="true" selection-start-line="446" selection-start-column="32" selection-end-line="446" selection-end-column="32" />
-          <folding>
-            <element signature="e#1046#1784#0" />
-            <element signature="e#1987#2126#0" />
-            <element signature="e#3814#5173#0" />
-            <element signature="e#13037#15458#0" />
-          </folding>
+        <state relative-caret-position="405">
+          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
         </state>
       </provider>
     </entry>

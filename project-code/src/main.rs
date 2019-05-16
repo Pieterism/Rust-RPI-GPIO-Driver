@@ -53,10 +53,7 @@ struct GPIO {
 }
 
 // This is a representation of the frame we're currently rendering
-struct Frame {
-    pos: usize,
-    pixels: Vec<Vec<Pixel>>,
-}
+
 
 // Use this struct to implement high-precision nanosleeps
 struct Timer {
@@ -331,7 +328,6 @@ impl Timer {
     unsafe fn read(self: &Timer) -> u32 {
         //TODO: Implement this yourself.
         std::ptr::read_volatile(self.timereg)
-
     }
 
     fn new() -> Timer {
@@ -401,34 +397,6 @@ impl Timer {
 }
 
 
-// TODO: Implement your frame calculation/updating logic here.
-// The Frame should contain the pixels that are currently shown
-// on the LED board. In most cases, the Frame will have less pixels
-// than the input Image!
-impl Frame {
-    fn new() -> Frame {
-        let mut frame: Frame = Frame {
-            pos: 0,
-            pixels: vec![vec![Pixel::new(); COLUMNS as usize]; ROWS as usize],
-        };
-        frame
-    }
-
-    fn next_image_frame(self: &mut Frame, image: &Image) {
-        for row in 0..ROWS {
-            for col in 0..COLUMNS {
-                let img_pos = (self.pos + col) % image.width as usize;
-
-                self.pixels[row][col] = image.pixels[row][img_pos].clone();
-            }
-        }
-
-        self.pos = self.pos + 1;
-        if self.pos >= image.width as usize {
-            self.pos = 0;
-        }
-    }
-}
 
 pub fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -448,16 +416,14 @@ pub fn main() {
     let image = file_reader::read_ppm_file(&path);
 
     let mut frame = Frame::new();
-
     frame.next_image_frame(&image);
 
-// TODO: Initialize the GPIO struct and the Timer struct
     let mut gpio = GPIO::new(1);
     println!("GPIO  done");
+
     let timer = Timer::new();
     println!("Timer done");
 
-    println!("Awaiting exit...");
 
 // This code sets up a CTRL-C handler that writes "true" to the
 // interrupt_received bool.
@@ -465,6 +431,7 @@ pub fn main() {
     ctrlc::set_handler(move || {
         int_recv.store(true, Ordering::SeqCst);
     }).unwrap();
+
 
     let row_mask = gpio.row_mask;
     let mut prev_frame_time = time::get_time();

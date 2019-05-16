@@ -265,12 +265,18 @@ impl GPIO {
                         GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2);
 
                     io.row_mask = GPIO_BIT!(PIN_A);
-                    match ROWS / SUB_PANELS {
-                        d if d > 2 => io.row_mask |= GPIO_BIT!(PIN_B),
-                        d if d > 4 => io.row_mask |= GPIO_BIT!(PIN_C),
-                        d if d > 8 => io.row_mask |= GPIO_BIT!(PIN_D),
-                        d if d > 16 => io.row_mask |= GPIO_BIT!(PIN_E),
-                        _ => {}
+                    let rows_count = ROWS / SUB_PANELS;
+                    if rows_count > 2 {
+                        io.row_mask |= GPIO_BIT!(PIN_B);
+                    }
+                    if rows_count > 4 {
+                        io.row_mask |= GPIO_BIT!(PIN_C);
+                    }
+                    if rows_count > 8 {
+                        io.row_mask |= GPIO_BIT!(PIN_D);
+                    }
+                    if rows_count > 16 {
+                        io.row_mask |= GPIO_BIT!(PIN_E);
                     }
 
                     all_used_bits |= io.row_mask;
@@ -294,23 +300,23 @@ impl GPIO {
     fn get_row_bits(self: &GPIO, double_row: u8) -> u32 {
         //TODO: Implement this yourself.
         let mut row_adress: u32 = 0;
-        match double_row & 0x01 != 0 {
+        match double_row & 0x01 as u8 != 0 {
             True => row_adress |= GPIO_BIT!(PIN_A),
             False => row_adress = 0,
         };
-        match double_row & 0x02 != 0 {
+        match double_row & 0x02 as u8 != 0 {
             True => row_adress |= GPIO_BIT!(PIN_B),
             False => row_adress = 0,
         };
-        match double_row & 0x04 != 0 {
+        match double_row & 0x04 as u8 != 0 {
             True => row_adress |= GPIO_BIT!(PIN_C),
             False => row_adress = 0,
         };
-        match double_row & 0x08 != 0 {
+        match double_row & 0x08 as u8 != 0 {
             True => row_adress |= GPIO_BIT!(PIN_D),
             False => row_adress = 0,
         };
-        match double_row & 0x10 != 0 {
+        match double_row & 0x10 as u8 != 0 {
             True => row_adress |= GPIO_BIT!(PIN_E),
             False => row_adress = 0,
         };
@@ -487,36 +493,32 @@ pub fn main() {
         int_recv.store(true, Ordering::SeqCst);
     }).unwrap();
 
+    let row_mask = gpio.row_mask;
+
     while interrupt_received.load(Ordering::SeqCst) == false {
-        /*  gpio.clear_bits(GPIO_BIT!(PIN_OE));
-          for iter in 0..7 {
-              for c in 0..32 {
-                  gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
+        let pins1 = GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B) | GPIO_BIT!(PIN_C);
+        let pins2 = GPIO_BIT!(PIN_B) | GPIO_BIT!(PIN_C);
+        let pins3 = GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_C);
+        let pins4 = GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B);
 
-                  if c % 2 == 1 {
-                      gpio.set_bits((GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G2)));
-                  } else {
-                      gpio.set_bits((GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_B2)));
-                  };
+        println!("{}", pins1);
+        println!("{}", pins2);
+        println!("{}", pins3);
+        println!("{}", pins4);
 
-                  gpio.set_bits(GPIO_BIT!(PIN_CLK));
-              };
+        sendValues(&mut gpio, row_mask, pins1);
+        sendValues(&mut gpio, row_mask, pins2);
+        sendValues(&mut gpio, row_mask, pins3);
+        sendValues(&mut gpio, row_mask, GPIO_BIT!(PIN_C));
+        sendValues(&mut gpio, row_mask, pins4);
+        sendValues(&mut gpio, row_mask, GPIO_BIT!(PIN_B));
+        sendValues(&mut gpio, row_mask, GPIO_BIT!(PIN_A));
+        sendValues(&mut gpio, row_mask, 0);
 
-              gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
+        gpio.clear_bits(GPIO_BIT!(PIN_OE));
 
-              let pins = gpio.get_row_bits(iter);
-              println!("{}", pins);
+        std::thread::sleep(std::time::Duration::from_secs(2));
 
-              gpio.set_bits(pins);
-
-              gpio.set_bits(GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B));
-
-              gpio.set_bits(GPIO_BIT!(PIN_LAT));
-
-              gpio.clear_bits(GPIO_BIT!(PIN_LAT));
-
-              gpio.clear_bits(GPIO_BIT!(PIN_OE));
-          };*/
     };
     println!("Exiting.");
     if interrupt_received.load(Ordering::SeqCst) == true {
@@ -527,6 +529,31 @@ pub fn main() {
 
     //TODO
     gpio.set_bits(GPIO_BIT!(PIN_OE));
+}
+
+fn sendValues(gpio: &mut GPIO, row_mask: u32, pins: u32) {
+
+    for c in 0..32 {
+        gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
+
+        if c % 2 == 1 {
+            gpio.set_bits((GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G2)));
+        } else {
+            gpio.set_bits((GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_B2)));
+        };
+
+        gpio.set_bits(GPIO_BIT!(PIN_CLK));
+    };
+    gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
+
+    gpio.write_masked_bits(pins, row_mask);
+    println!("Set bits {}", pins);
+
+    gpio.set_bits(GPIO_BIT!(PIN_LAT));
+    gpio.clear_bits(GPIO_BIT!(PIN_LAT));
+
+    gpio.clear_bits(GPIO_BIT!(PIN_OE));
+    std::thread::sleep(std::time::Duration::from_millis(1000));
 }
 
 

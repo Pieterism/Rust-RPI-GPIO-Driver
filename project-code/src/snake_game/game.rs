@@ -67,12 +67,19 @@ impl Game {
  //   }
 
     pub fn draw(&self, frame: &mut Frame) {
+        //Draw the snake
         self.snake.draw(frame);
 
         // Draw the food
         if self.food_exist {
             frame.pixels[self.food_x as usize][self.food_y as usize] = self.FOOD_BLOCK;
         }
+
+        //Draw the border
+        frame.draw_border();
+
+        //Draw game over
+        if self.is_game_over { frame.draw_game_over() }
     }
 
     pub fn update(&mut self, delta_time: f64) {

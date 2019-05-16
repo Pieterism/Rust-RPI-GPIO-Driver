@@ -30,9 +30,9 @@ use std::fs::File;
 use std::time::Duration;
 use shuteye::sleep;
 use mmap::{MemoryMap, MapOption};
-use crate::utils::file_reader;
-use crate::utils::image::Image;
-use crate::utils::pixel::Pixel;
+use utils::file_reader;
+use utils::image::Image;
+use utils::pixel::Pixel;
 
 struct GPIO {
     gpio_map_: Option<MemoryMap>,
@@ -323,35 +323,7 @@ impl GPIO {
         row_adress & self.row_mask
     }
 
-    //TODO: Not sure if needed, in C reference code, not in RUST skeleton code.
-    pub fn get_plane_bits(self: GPIO, top: Pixel, bot: Pixel, plane: u8) -> u32 {
-        let mut out: u32 = 0;
-        match top.r & (1 << plane) != 0 {
-            True => out |= GPIO_BIT!(PIN_R1),
-            False => out = 0,
-        };
-        match bot.r & (1 << plane) != 0 {
-            True => out |= GPIO_BIT!(PIN_R2),
-            False => out = 0,
-        };
-        match top.g & (1 << plane) != 0 {
-            True => out |= GPIO_BIT!(PIN_G1),
-            False => out = 0,
-        };
-        match bot.g & (1 << plane) != 0 {
-            True => out |= GPIO_BIT!(PIN_G2),
-            False => out = 0,
-        };
-        match top.b & (1 << plane) != 0 {
-            True => out |= GPIO_BIT!(PIN_B1),
-            False => out = 0,
-        };
-        match bot.b & (1 << plane) != 0 {
-            True => out |= GPIO_BIT!(PIN_B2),
-            False => out = 0,
-        };
-        out
-    }
+
 }
 
 impl Timer {
@@ -466,10 +438,10 @@ pub fn main() {
         eprintln!("Must run as root to be able to access /dev/mem\nPrepend \'sudo\' to the command");
         std::process::exit(1);
     }
-    /*else if args.len() < 2 {
+    else if args.len() < 2 {
         eprintln!("Syntax: {:?} [image]", args[0]);
         std::process::exit(1);
-    }*/
+    }
 
     let path = Path::new(&args[1]);
     let image = file_reader::read_ppm_file(&path);
@@ -500,8 +472,10 @@ pub fn main() {
     }
 
     while interrupt_received.load(Ordering::SeqCst) == false {
-        for row_counter in 0..8 {
-            send_values(&mut gpio, &timer, row_mask, row_counter);
+        for row_counter in 0..ROWS / 2 {
+            for bitplane_counter in 0..COLOR_DEPTH {
+                send_values(&mut gpio, &timer, &frame, row_counter, bitplane_counter);
+            }
         }
 
     };
@@ -516,11 +490,17 @@ pub fn main() {
     gpio.set_bits(GPIO_BIT!(PIN_OE));
 }
 
-fn send_values(gpio: &mut GPIO, timer: &Timer, row_mask: u32, row: u8) {
+fn send_values(gpio: &mut GPIO, timer: &Timer, frame: &Frame, row: usize, bitplane_counter: usize) {
+    let row_mask = gpio.row_mask;
+    let color_clock_mask = GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK);
 
     for c in 0..32 {
-        gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
-        gpio.set_bits((GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_B2)));
+        gpio.clear_bits(color_clock_mask);
+        let pixel_top = frame.pixels[row][c];
+        let pixel_bot = frame.pixels[ROWS / 2 + row][c];
+        let plane_bits = get_plane_bits(pixel_top, pixel_bot, bitplane_counter);
+
+        gpio.write_masked_bits(plane_bits, color_clock_mask);
         gpio.set_bits(GPIO_BIT!(PIN_CLK));
     };
     gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
@@ -529,11 +509,42 @@ fn send_values(gpio: &mut GPIO, timer: &Timer, row_mask: u32, row: u8) {
 
     gpio.set_bits(GPIO_BIT!(PIN_LAT));
     gpio.clear_bits(GPIO_BIT!(PIN_LAT));
-
     gpio.clear_bits(GPIO_BIT!(PIN_OE));
+    timer.nanosleep(gpio.bitplane_timings[bitplane_counter] as u32);
+    gpio.set_bits(GPIO_BIT!(PIN_OE));
 }
 
-fn get_row_bits(double_row: u8) -> u32 {
+//TODO: Not sure if needed, in C reference code, not in RUST skeleton code.
+pub fn get_plane_bits(top: Pixel, bot: Pixel, plane: usize) -> u32 {
+    let mut out: u32 = 0;
+    match top.r & (1 << plane) != 0 {
+        True => out |= GPIO_BIT!(PIN_R1),
+        False => out = 0,
+    };
+    match bot.r & (1 << plane) != 0 {
+        True => out |= GPIO_BIT!(PIN_R2),
+        False => out = 0,
+    };
+    match top.g & (1 << plane) != 0 {
+        True => out |= GPIO_BIT!(PIN_G1),
+        False => out = 0,
+    };
+    match bot.g & (1 << plane) != 0 {
+        True => out |= GPIO_BIT!(PIN_G2),
+        False => out = 0,
+    };
+    match top.b & (1 << plane) != 0 {
+        True => out |= GPIO_BIT!(PIN_B1),
+        False => out = 0,
+    };
+    match bot.b & (1 << plane) != 0 {
+        True => out |= GPIO_BIT!(PIN_B2),
+        False => out = 0,
+    };
+    out
+}
+
+fn get_row_bits(double_row: usize) -> u32 {
 
     let mut pin = 0;
     if double_row & 0x01 != 0 {

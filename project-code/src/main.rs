@@ -40,14 +40,14 @@ pub fn main() {
     let mut gpio = GPIO::new(1);
     let timer = Timer::new();
     let int_recv = interrupt_received.clone();
+    let game = Game::new();
+    game.draw(&mut frame);
 
-    frame.next_image_frame(&image);
     ctrlc::set_handler(move || {
         int_recv.store(true, Ordering::SeqCst);
     }).unwrap();
-    frame.draw_border();
-    gpio.render_frame(interrupt_received, &image, &mut frame, &timer);
-    up
+
+    gpio.render_frame(interrupt_received, &image, &mut frame, &timer, false);
 }
 
 fn sanity_check(args: &Vec<String>) {

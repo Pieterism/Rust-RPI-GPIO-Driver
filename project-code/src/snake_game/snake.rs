@@ -1,6 +1,6 @@
 use std::collections::LinkedList;
-use utils::frame::Frame;
-use utils::pixel::Pixel;
+use super::super::utils::frame::Frame;
+use super::super::utils::pixel::Pixel;
 
 #[derive(Clone, Copy, PartialEq)]
 pub enum Direction {

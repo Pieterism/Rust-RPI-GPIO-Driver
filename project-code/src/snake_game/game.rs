@@ -3,9 +3,9 @@ extern crate rand;
 use super::snake::{Snake, Direction};
 use self::rand::thread_rng;
 use self::rand::Rng;
-use utils::gpio_driver::{COLUMNS, ROWS};
-use utils::frame::Frame;
-use utils::pixel::Pixel;
+use super::super::utils::gpio_driver::{COLUMNS, ROWS};
+use super::super::utils::frame::Frame;
+use super::super::utils::pixel::Pixel;
 
 
 const MOVING_PERIOD: f64 = 0.2; // in second

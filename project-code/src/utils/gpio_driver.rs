@@ -163,10 +163,9 @@ impl GPIO {
         io
     }
 
-    pub fn render_frame(&mut self, interrupt_received: Arc<AtomicBool>, image: &Image, frame: &mut Frame, timer: &Timer) {
+    pub fn render_frame(&mut self, interrupt_received: Arc<AtomicBool>, image: &Image, frame: &mut Frame, timer: &Timer, scrolling: bool) {
         let mut prev_frame_time = time::get_time();
         let mut current_time = time::get_time();
-        frame.next_image_frame(&image);
 
         while interrupt_received.load(Ordering::SeqCst) == false {
             for row_counter in 0..ROWS / 2 {
@@ -177,7 +176,7 @@ impl GPIO {
 
             current_time = time::get_time();
             let difference = current_time - prev_frame_time;
-            if difference >= time::Duration::milliseconds(10) {
+            if scrolling && difference >= time::Duration::milliseconds(10) {
                 frame.next_image_frame(&image);
                 prev_frame_time = current_time;
             };

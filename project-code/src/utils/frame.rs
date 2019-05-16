@@ -42,7 +42,7 @@ impl Frame {
     pub fn draw_border(self: &mut Frame) {
         for row in 0..ROWS {
             for col in 0..COLUMNS {
-                if row == 0 || row == ROWS || col == 0 || col == COLUMNS {
+                if row == 0 || row == ROWS -1|| col == 0 || col == COLUMNS-1 {
                     self.pixels[row][col] = self.BORDER_PIXEL;
                 }
             }

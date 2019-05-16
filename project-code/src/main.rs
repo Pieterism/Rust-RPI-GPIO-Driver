@@ -47,6 +47,7 @@ pub fn main() {
     }).unwrap();
     frame.draw_border();
     gpio.render_frame(interrupt_received, &image, &mut frame, &timer);
+    up
 }
 
 fn sanity_check(args: &Vec<String>) {

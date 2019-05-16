@@ -330,7 +330,9 @@ impl Timer {
     // Reads from the 1Mhz timer register (see Section 2.5 in the assignment)
     unsafe fn read(self: &Timer) -> u32 {
         //TODO: Implement this yourself.
-        std::ptr::read_volatile(self.timereg)
+        let i = std::ptr::read_volatile(self.timereg);
+        println!("Time: {}", i);
+        i
     }
 
     fn new() -> Timer {
@@ -466,10 +468,8 @@ pub fn main() {
     }).unwrap();
 
     let row_mask = gpio.row_mask;
-    let time;
-    unsafe {
-        time = timer.read();
-    }
+    let mut prev_frame_time = unsafe { timer.read() };
+    let mut current_time= unsafe { timer.read() };
 
     while interrupt_received.load(Ordering::SeqCst) == false {
         for row_counter in 0..ROWS / 2 {
@@ -477,6 +477,16 @@ pub fn main() {
                 send_values(&mut gpio, &timer, &frame, row_counter, bitplane_counter);
             }
         }
+
+        current_time = unsafe { timer.read() };
+
+        let difference = current_time - prev_frame_time;
+        if difference >= 40 {
+            println!("Triggered!");
+            frame.next_image_frame(&image);
+            prev_frame_time = current_time;
+        }
+
 
     };
     println!("Exiting.");
@@ -497,7 +507,9 @@ fn send_values(gpio: &mut GPIO, timer: &Timer, frame: &Frame, row: usize, bitpla
     for c in 0..32 {
         gpio.clear_bits(color_clock_mask);
         let pixel_top = frame.pixels[row][c];
+
         let pixel_bot = frame.pixels[ROWS / 2 + row][c];
+
         let plane_bits = get_plane_bits(pixel_top, pixel_bot, bitplane_counter);
 
         gpio.write_masked_bits(plane_bits, color_clock_mask);
@@ -517,30 +529,24 @@ fn send_values(gpio: &mut GPIO, timer: &Timer, frame: &Frame, row: usize, bitpla
 //TODO: Not sure if needed, in C reference code, not in RUST skeleton code.
 pub fn get_plane_bits(top: Pixel, bot: Pixel, plane: usize) -> u32 {
     let mut out: u32 = 0;
-    match top.r & (1 << plane) != 0 {
-        True => out |= GPIO_BIT!(PIN_R1),
-        False => out = 0,
-    };
-    match bot.r & (1 << plane) != 0 {
-        True => out |= GPIO_BIT!(PIN_R2),
-        False => out = 0,
-    };
-    match top.g & (1 << plane) != 0 {
-        True => out |= GPIO_BIT!(PIN_G1),
-        False => out = 0,
-    };
-    match bot.g & (1 << plane) != 0 {
-        True => out |= GPIO_BIT!(PIN_G2),
-        False => out = 0,
-    };
-    match top.b & (1 << plane) != 0 {
-        True => out |= GPIO_BIT!(PIN_B1),
-        False => out = 0,
-    };
-    match bot.b & (1 << plane) != 0 {
-        True => out |= GPIO_BIT!(PIN_B2),
-        False => out = 0,
-    };
+    if top.r & (1 << plane) != 0 {
+        out |= GPIO_BIT!(PIN_R1);
+    }
+    if  bot.r & (1 << plane) != 0 {
+        out |= GPIO_BIT!(PIN_R2);
+    }
+    if top.b & (1 << plane) != 0 {
+        out |= GPIO_BIT!(PIN_B1);
+    }
+    if bot.b & (1 << plane) != 0 {
+        out |= GPIO_BIT!(PIN_B2);
+    }
+    if top.g & (1 << plane) != 0 {
+        out |= GPIO_BIT!(PIN_G1);
+    }
+    if bot.g & (1 << plane) != 0 {
+        out |= GPIO_BIT!(PIN_G2);
+    }
     out
 }
 

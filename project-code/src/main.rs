@@ -435,13 +435,12 @@ impl Frame {
         frame
     }
 
-    fn next_image_frame(self: &mut Frame, image: Image) {
+    fn next_image_frame(self: &mut Frame, image: &Image) {
         for row in 0..ROWS {
             for col in 0..COLUMNS {
                 let img_pos = (self.pos + col) % image.width as usize;
-                let image_pixel = &image.pixels[row][img_pos];
 
-                self.pixels[row][col] = *image_pixel;
+                self.pixels[row][col] = image.pixels[row][img_pos].clone();
             }
         }
 
@@ -470,10 +469,8 @@ pub fn main() {
     let image = file_reader::read_ppm_file(&path);
 
     let mut frame = Frame::new();
-    frame.next_image_frame(image);
 
-    eprint!("{}",frame.pos);
-
+    frame.next_image_frame(&image);
 
 // TODO: Initialize the GPIO struct and the Timer struct
     let mut gpio = GPIO::new(1);

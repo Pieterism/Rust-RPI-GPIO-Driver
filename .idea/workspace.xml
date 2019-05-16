@@ -8,8 +8,6 @@
     <list default="true" id="969a170f-e8a0-4b71-8f5b-70f6bdea44ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-code/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-code/src/utils/pixel.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/utils/pixel.rs" afterDir="false" />
     </list>
     <ignored path="rust-crash-course/target/debug/rust-crash-course.dSYM/" />
     <ignored path="tryout-module/target/debug/tryout-module.dSYM/" />
@@ -30,27 +28,35 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="182">
-                  <caret line="59" column="1" lean-forward="true" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
+                <state relative-caret-position="250">
+                  <caret line="446" column="32" lean-forward="true" selection-start-line="446" selection-start-column="32" selection-end-line="446" selection-end-column="32" />
                   <folding>
                     <element signature="e#1046#1784#0" />
                     <element signature="e#1987#2126#0" />
                     <element signature="e#3814#5173#0" />
                     <element signature="e#13037#15458#0" />
-                    <element signature="e#16730#19175#0" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="240">
                   <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/project-code/src/utils/image.rs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="45">
+                  <caret line="3" selection-start-line="3" selection-end-line="3" />
                 </state>
               </provider>
             </entry>
@@ -71,8 +77,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="375">
-                  <caret line="55" column="9" lean-forward="true" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+                <state relative-caret-position="105">
+                  <caret line="109" selection-start-line="109" selection-end-line="109" />
                 </state>
               </provider>
             </entry>
@@ -143,9 +149,10 @@
         <option value="$PROJECT_DIR$/rust-crash-course/src/main.rs" />
         <option value="$PROJECT_DIR$/docs/reference_implementation.c" />
         <option value="$PROJECT_DIR$/docs/test" />
-        <option value="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" />
-        <option value="$PROJECT_DIR$/project-code/src/main.rs" />
         <option value="$PROJECT_DIR$/project-code/src/utils/pixel.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/image.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/main.rs" />
       </list>
     </option>
   </component>
@@ -184,14 +191,13 @@
               <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
               <item name="veiligesoftware-20182019-groep7" type="462c0819:PsiDirectoryNode" />
               <item name="project-code" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
               <item name="veiligesoftware-20182019-groep7" type="462c0819:PsiDirectoryNode" />
               <item name="project-code" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
@@ -226,18 +232,18 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/project-code" />
-      <recent name="$PROJECT_DIR$/project-code/tests" />
-      <recent name="$PROJECT_DIR$/veilige-software-code/src" />
-      <recent name="$PROJECT_DIR$/rust-crash-course/src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/project-code/resources" />
       <recent name="$PROJECT_DIR$/rust-crash-course/src" />
       <recent name="$PROJECT_DIR$/veilige-software-code/src" />
       <recent name="$PROJECT_DIR$/rust-crash-course" />
       <recent name="$PROJECT_DIR$/parser" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/project-code" />
+      <recent name="$PROJECT_DIR$/project-code/tests" />
+      <recent name="$PROJECT_DIR$/veilige-software-code/src" />
+      <recent name="$PROJECT_DIR$/rust-crash-course/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -349,7 +355,7 @@
       <workItem from="1557820100739" duration="26432000" />
       <workItem from="1557868690837" duration="31585000" />
       <workItem from="1557991580177" duration="327000" />
-      <workItem from="1557993401784" duration="5044000" />
+      <workItem from="1557993401784" duration="9414000" />
     </task>
     <task id="LOCAL-00001" summary="re-organized the module lay-out of the project&#10;updated the .gitingore file">
       <created>1557244674685</created>
@@ -449,7 +455,21 @@
       <option name="project" value="LOCAL" />
       <updated>1557949469578</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="update getnextframe()">
+      <created>1558002704546</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1558002704551</updated>
+    </task>
+    <task id="LOCAL-00016" summary="update getnextframe() working">
+      <created>1558005187987</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1558005187987</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -485,7 +505,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130666000" />
+    <option name="totallyTimeSpent" value="135036000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="935" extended-state="6" />
@@ -507,7 +527,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49960285" weight="0.29776675" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4991699" visible="true" weight="0.41191068" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4991699" visible="true" weight="0.44044665" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5008301" side_tool="true" weight="0.29528537" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -609,7 +629,9 @@
     <MESSAGE value="solved Result.unwrap() error" />
     <MESSAGE value="working display" />
     <MESSAGE value="update timer, not sure if working" />
-    <option name="LAST_COMMIT_MESSAGE" value="update timer, not sure if working" />
+    <MESSAGE value="update getnextframe()" />
+    <MESSAGE value="update getnextframe() working" />
+    <option name="LAST_COMMIT_MESSAGE" value="update getnextframe() working" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/parser/main.rs" />
@@ -740,13 +762,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/test" />
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/image.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2970">
@@ -754,24 +769,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/resources/testfile.ppm">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/resources/testbeeld.ppm">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="55" column="9" lean-forward="true" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="59" column="1" lean-forward="true" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
-          <folding>
-            <element signature="e#1046#1784#0" />
-            <element signature="e#1987#2126#0" />
-            <element signature="e#3814#5173#0" />
-            <element signature="e#13037#15458#0" />
-            <element signature="e#16730#19175#0" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
         </state>
       </provider>
     </entry>
@@ -779,6 +786,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/image.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="446" column="32" lean-forward="true" selection-start-line="446" selection-start-column="32" selection-end-line="446" selection-end-column="32" />
+          <folding>
+            <element signature="e#1046#1784#0" />
+            <element signature="e#1987#2126#0" />
+            <element signature="e#3814#5173#0" />
+            <element signature="e#13037#15458#0" />
+          </folding>
         </state>
       </provider>
     </entry>

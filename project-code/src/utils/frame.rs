@@ -1,7 +1,12 @@
 use super::pixel::Pixel;
 use super::image::Image;
+use super::file_reader::read_ppm_file;
 use super::gpio_driver::ROWS;
 use super::gpio_driver::COLUMNS;
+use std::path::Path;
+
+const BORDER_PIXEL: Pixel = Pixel::new_colored_pixel(230, 230, 230);
+const GAME_OVER_IMG_PATH: &str = "resources/snake/game_over.ppm";
 
 pub struct Frame {
     BORDER_PIXEL: Pixel,
@@ -42,5 +47,9 @@ impl Frame {
                 }
             }
         }
+    }
+
+    pub fn draw_game_over(self: &mut Frame) {
+        next_image_frame(&read_ppm_file(&Path::new(GAME_OVER_IMG_PATH)));
     }
 }

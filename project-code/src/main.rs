@@ -1,4 +1,5 @@
 mod utils;
+mod snake_game;
 
 #[macro_use]
 extern crate simple_error;
@@ -8,6 +9,7 @@ extern crate ctrlc;
 extern crate shuteye;
 extern crate mmap;
 extern crate nix;
+extern crate piston_window;
 
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
@@ -25,6 +27,8 @@ use utils::frame::Frame;
 use utils::gpio_driver::GPIO;
 use utils::gpio_driver::mmap_bcm_register;
 use utils::time::Timer;
+use snake_game::snake::*;
+use snake_game::game::*;
 
 pub fn main() {
     let args: Vec<String> = std::env::args().collect();

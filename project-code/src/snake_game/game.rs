@@ -2,6 +2,7 @@ use super::snake::{Snake, Direction};
 use rand::{thread_rng, Rng};
 use crate::utils::gpio_driver::{COLUMNS, ROWS};
 use crate::utils::frame::Frame;
+use crate::utils::pixel::Pixel;
 
 const MOVING_PERIOD: f64 = 0.2; // in second
 const RESTART_TIME: f64 = 1.0; // in second

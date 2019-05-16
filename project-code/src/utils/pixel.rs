@@ -16,6 +16,14 @@ impl Pixel {
         };
         pixel
     }
+    pub fn new_colored_pixel(r:u16, g:u16, b:u16) -> Pixel {
+        let mut pixel: Pixel = Pixel {
+            r: r,
+            g: g,
+            b: b,
+        };
+        pixel
+    }
 
     pub fn toFullColor(self: &mut Pixel){
         self.r = self.r * ((1<< COLOR_DEPTH)-1)/255;

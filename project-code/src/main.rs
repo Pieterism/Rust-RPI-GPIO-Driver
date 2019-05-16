@@ -9,7 +9,6 @@ extern crate ctrlc;
 extern crate shuteye;
 extern crate mmap;
 extern crate nix;
-extern crate piston_window;
 
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;

@@ -5,11 +5,10 @@
     <cargoProject FILE="$PROJECT_DIR$/project-code/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="969a170f-e8a0-4b71-8f5b-70f6bdea44ae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/project-code/src/utils/frame.rs" afterDir="false" />
+    <list default="true" id="969a170f-e8a0-4b71-8f5b-70f6bdea44ae" name="Default Changelist" comment="cleanup code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-code/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-code/src/main/main.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-code/src/snake_game/snake.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/snake_game/snake.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-code/src/utils/pixel.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/utils/pixel.rs" afterDir="false" />
     </list>
     <ignored path="rust-crash-course/target/debug/rust-crash-course.dSYM/" />
@@ -32,20 +31,47 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
-              <folding>
-                <element signature="e#17813#18059#0" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/game.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="915">
+              <caret line="61" column="31" lean-forward="true" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/snake.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="98" column="46" selection-start-line="98" selection-start-column="46" selection-end-line="98" selection-end-column="46" />
+              <folding>
+                <element signature="e#747#1223#0" />
+                <element signature="e#1459#2407#0" />
+                <element signature="e#1514#1598#0" />
+                <element signature="e#1796#2249#0" />
+                <element signature="e#2455#2552#0" />
+                <element signature="e#2600#2601#0" expanded="true" />
+                <element signature="e#2636#2637#0" expanded="true" />
+                <element signature="e#2714#3289#0" />
+                <element signature="e#3334#3435#0" />
+                <element signature="e#3502#3843#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project-code/src/utils/frame.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+            <state relative-caret-position="15">
+              <caret line="1" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -53,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="4" selection-start-column="4" selection-end-column="4" />
+            <state relative-caret-position="180">
+              <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -90,6 +116,7 @@
       <find>shute</find>
       <find>PIN_A</find>
       <find>&lt;&lt;</find>
+      <find>SN</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -135,9 +162,10 @@
         <option value="$PROJECT_DIR$/docs/test" />
         <option value="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" />
         <option value="$PROJECT_DIR$/project-code/src/utils/image.rs" />
-        <option value="$PROJECT_DIR$/project-code/src/utils/pixel.rs" />
-        <option value="$PROJECT_DIR$/project-code/src/main.rs" />
         <option value="$PROJECT_DIR$/project-code/src/utils/frame.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/pixel.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/snake_game/snake.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/main.rs" />
       </list>
     </option>
   </component>
@@ -178,6 +206,13 @@
               <item name="veiligesoftware-20182019-groep7" type="462c0819:PsiDirectoryNode" />
               <item name="project-code" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
+              <item name="veiligesoftware-20182019-groep7" type="462c0819:PsiDirectoryNode" />
+              <item name="project-code" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="snake_game" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="veiligesoftware-20182019-groep7" type="b2602c69:ProjectViewProjectNode" />
@@ -335,7 +370,7 @@
       <workItem from="1557820100739" duration="26432000" />
       <workItem from="1557868690837" duration="31585000" />
       <workItem from="1557991580177" duration="327000" />
-      <workItem from="1557993401784" duration="16513000" />
+      <workItem from="1557993401784" duration="20584000" />
     </task>
     <task id="LOCAL-00001" summary="re-organized the module lay-out of the project&#10;updated the .gitingore file">
       <created>1557244674685</created>
@@ -456,7 +491,21 @@
       <option name="project" value="LOCAL" />
       <updated>1558013263293</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="cleanup code">
+      <created>1558024130192</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1558024130192</updated>
+    </task>
+    <task id="LOCAL-00019" summary="addes test image">
+      <created>1558034429632</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1558034429638</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -492,7 +541,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142135000" />
+    <option name="totallyTimeSpent" value="146206000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="935" extended-state="6" />
@@ -512,9 +561,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4991699" weight="0.29776675" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" sideWeight="0.4991699" visible="true" weight="0.29776675" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4980631" visible="true" weight="0.3312655" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4980631" weight="0.3312655" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5019369" side_tool="true" weight="0.3312655" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -618,11 +667,11 @@
     <MESSAGE value="update timer, not sure if working" />
     <MESSAGE value="update getnextframe()" />
     <MESSAGE value="update getnextframe() working" />
-    <option name="LAST_COMMIT_MESSAGE" value="update getnextframe() working" />
+    <MESSAGE value="cleanup code" />
+    <MESSAGE value="addes test image" />
+    <option name="LAST_COMMIT_MESSAGE" value="addes test image" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/parser/src/main.rs" />
-    <entry file="file://$PROJECT_DIR$/parser/build.rs" />
     <entry file="file://$PROJECT_DIR$/rust-crash-course/.gitignore" />
     <entry file="file://$PROJECT_DIR$/tryout-module/src/main.rs" />
     <entry file="file://$PROJECT_DIR$/veilige-software-code/src/main.rs" />
@@ -751,13 +800,6 @@
     <entry file="file://$PROJECT_DIR$/project-code/resources/testbeeld.ppm">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="109" selection-start-line="109" selection-end-line="109" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1789">
@@ -771,23 +813,6 @@
     <entry file="file://$PROJECT_DIR$/project-code/resources/testfile.ppm">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="e#17813#18059#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/utils/image.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -795,10 +820,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="109" selection-start-line="109" selection-end-line="109" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/utils/frame.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="17" lean-forward="true" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/snake.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="98" column="46" selection-start-line="98" selection-start-column="46" selection-end-line="98" selection-end-column="46" />
+          <folding>
+            <element signature="e#747#1223#0" />
+            <element signature="e#1459#2407#0" />
+            <element signature="e#1514#1598#0" />
+            <element signature="e#1796#2249#0" />
+            <element signature="e#2455#2552#0" />
+            <element signature="e#2600#2601#0" expanded="true" />
+            <element signature="e#2636#2637#0" expanded="true" />
+            <element signature="e#2714#3289#0" />
+            <element signature="e#3334#3435#0" />
+            <element signature="e#3502#3843#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/game.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="61" column="31" lean-forward="true" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
         </state>
       </provider>
     </entry>

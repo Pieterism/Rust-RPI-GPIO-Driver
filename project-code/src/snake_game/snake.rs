@@ -1,10 +1,13 @@
-
 use std::collections::LinkedList;
+use crate::utils::frame::Frame;
+use crate::utils::pixel::Pixel;
 
 #[derive(Clone, Copy, PartialEq)]
 pub enum Direction {
     Up, Down, Left, Right
 }
+
+const SNAKE_BLOCK:Pixel = Pixel::new_colored_pixel(0,255,0);
 
 impl Direction {
     pub fn opposite(&self) -> Direction {
@@ -52,9 +55,9 @@ impl Snake {
         }
     }
 
-    pub fn draw(&self, con: &Context, g: &mut G2d) {
+    pub fn draw(&self, frame: &mut Frame) {
         for block in &self.body {
-            draw_block(SNAKE_COLOR, block.x, block.y, con, g);
+            frame.pixels[block.x][block.y] = SNAKE_BLOCK;
         }
     }
 
@@ -90,6 +93,7 @@ impl Snake {
         self.body.push_front(new_block);
         let removed_blk = self.body.pop_back().unwrap();
         self.last_removed_block = Some(removed_blk);
+
     }
 
     pub fn head_position(&self) -> (i32, i32) {

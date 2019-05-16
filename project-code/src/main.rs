@@ -494,11 +494,16 @@ pub fn main() {
     }).unwrap();
 
     let row_mask = gpio.row_mask;
+    let time;
+    unsafe {
+        time = timer.read();
+    }
 
     while interrupt_received.load(Ordering::SeqCst) == false {
         for row_counter in 0..8 {
             send_values(&mut gpio, &timer, row_mask, row_counter);
         }
+
     };
     println!("Exiting.");
     if interrupt_received.load(Ordering::SeqCst) == true {
@@ -545,13 +550,13 @@ fn get_row_bits(double_row: u8) -> u32 {
 
 #[test]
 fn get_row_bits_test() {
-    assert_eq!(0                        , get_row_bits(0), "Invalid row bits");
-    assert_eq!(PIN_A                    , get_row_bits(1), "Invalid row bits");
-    assert_eq!(PIN_B                    , get_row_bits(2), "Invalid row bits");
-    assert_eq!(PIN_A | PIN_B            , get_row_bits(3), "Invalid row bits");
-    assert_eq!(PIN_C                    , get_row_bits(4), "Invalid row bits");
-    assert_eq!(PIN_C | PIN_A            , get_row_bits(5), "Invalid row bits");
-    assert_eq!(PIN_C | PIN_B            , get_row_bits(6), "Invalid row bits");
-    assert_eq!(PIN_C | PIN_B | PIN_A    , get_row_bits(7), "Invalid row bits");
+    assert_eq!(0                                                            , get_row_bits(0), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_A)                                             , get_row_bits(1), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_B)                                             , get_row_bits(2), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B)                          , get_row_bits(3), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_C)                                             , get_row_bits(4), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_C) | GPIO_BIT!(PIN_A)                          , get_row_bits(5), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_C) | GPIO_BIT!(PIN_B)                          , get_row_bits(6), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_C) | GPIO_BIT!(PIN_B) | GPIO_BIT!(PIN_A)       , get_row_bits(7), "Invalid row bits");
 
 }

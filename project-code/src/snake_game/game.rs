@@ -1,5 +1,5 @@
 
-use snake::{Snake, Direction};
+use super::snake::{Snake, Direction};
 use rand::{thread_rng, Rng};
 
 const MOVING_PERIOD: f64 = 0.2; // in second
@@ -14,8 +14,8 @@ pub struct Game {
     food_y: i32,
 
     // Game Space
-    width: i32,
-    height: i32,
+    width: usize,
+    height: usize,
 
     // Game state
     is_game_over: bool,

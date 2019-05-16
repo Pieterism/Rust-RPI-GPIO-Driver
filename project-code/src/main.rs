@@ -330,9 +330,8 @@ impl Timer {
     // Reads from the 1Mhz timer register (see Section 2.5 in the assignment)
     unsafe fn read(self: &Timer) -> u32 {
         //TODO: Implement this yourself.
-        let i = std::ptr::read_volatile(self.timereg);
-        println!("Time: {}", i);
-        i
+        std::ptr::read_volatile(self.timereg)
+
     }
 
     fn new() -> Timer {
@@ -468,8 +467,8 @@ pub fn main() {
     }).unwrap();
 
     let row_mask = gpio.row_mask;
-    let mut prev_frame_time = unsafe { timer.read() };
-    let mut current_time= unsafe { timer.read() };
+    let mut prev_frame_time = time::get_time();
+    let mut current_time= time::get_time();
 
     while interrupt_received.load(Ordering::SeqCst) == false {
         for row_counter in 0..ROWS / 2 {
@@ -478,11 +477,11 @@ pub fn main() {
             }
         }
 
-        current_time = unsafe { timer.read() };
+        current_time = time::get_time();
 
         let difference = current_time - prev_frame_time;
-        if difference >= 40 {
-            println!("Triggered!");
+
+        if difference >= time::Duration::milliseconds(10) {
             frame.next_image_frame(&image);
             prev_frame_time = current_time;
         }

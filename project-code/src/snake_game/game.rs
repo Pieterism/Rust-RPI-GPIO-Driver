@@ -17,8 +17,8 @@ pub struct Game {
     food_y: i32,
 
     // Game Space
-    width: usize,
-    height: usize,
+    width: i32,
+    height: i32,
 
     // Game state
     is_game_over: bool,
@@ -35,8 +35,8 @@ impl Game {
             food_exist: true,
             food_x: 5,
             food_y: 3,
-            width: COLUMNS,
-            height: ROWS,
+            width: COLUMNS as i32,
+            height: ROWS as i32,
             is_game_over: false
         }
     }
@@ -67,19 +67,7 @@ impl Game {
 
         // Draw the food
         if self.food_exist {
-            frame.pixels[self.food.x][self.food.y] = FOOD_BLOCK;
-        }
-
-
-        // Draw the border
-        draw_rectange(BORDER_COLOR, 0, 0, self.width, 1, con, g);
-        draw_rectange(BORDER_COLOR, 0, self.height - 1, self.width, 1, con, g);
-        draw_rectange(BORDER_COLOR, 0, 0, 1, self.height, con, g);
-        draw_rectange(BORDER_COLOR, self.width - 1, 0, 1, self.height, con, g);
-
-        // Draw a game-over rectangle
-        if self.is_game_over {
-            draw_rectange(GAMEOVER_COLOR, 0, 0, self.width, self.height, con, g);
+            frame.pixels[self.food_x as usize][self.food_y as usize] = FOOD_BLOCK;
         }
     }
 

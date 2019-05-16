@@ -26,8 +26,8 @@ use utils::frame::Frame;
 use utils::gpio_driver::GPIO;
 use utils::gpio_driver::mmap_bcm_register;
 use utils::time::Timer;
-use snake_game::snake::*;
 use snake_game::game::*;
+use snake_game::snake::*;
 
 pub fn main() {
     let args: Vec<String> = std::env::args().collect();

@@ -57,7 +57,7 @@ impl Snake {
 
     pub fn draw(&self, frame: &mut Frame) {
         for block in &self.body {
-            frame.pixels[block.x][block.y] = SNAKE_BLOCK;
+            frame.pixels[block.x as usize][block.y as usize] = SNAKE_BLOCK;
         }
     }
 

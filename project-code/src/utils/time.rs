@@ -45,7 +45,7 @@ impl Timer {
         //TODO: Implement this yourself.
         let mut k_jitter_allowance = 60 * 1000;
 
-        if nanos > k_jitter_allowance {
+        if nanos > k_jitter_allowance + 5000{
             let before_microsecs = unsafe { self.read() };
             let nanosec_passed: u64;
 

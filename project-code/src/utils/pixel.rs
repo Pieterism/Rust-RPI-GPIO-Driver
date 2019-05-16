@@ -6,4 +6,12 @@ pub struct Pixel {
 }
 
 impl Pixel {
+    pub fn new() -> Pixel {
+        let mut pixel: Pixel = Pixel {
+            r: 0,
+            g: 0,
+            b: 0,
+        };
+        pixel
+    }
 }

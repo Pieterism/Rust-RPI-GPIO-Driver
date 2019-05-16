@@ -8,6 +8,8 @@
     <list default="true" id="969a170f-e8a0-4b71-8f5b-70f6bdea44ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-code/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project-code/src/utils/pixel.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/utils/pixel.rs" afterDir="false" />
     </list>
     <ignored path="rust-crash-course/target/debug/rust-crash-course.dSYM/" />
     <ignored path="tryout-module/target/debug/tryout-module.dSYM/" />
@@ -25,42 +27,59 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-446">
-              <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
-              <folding>
-                <element signature="e#919#958#0" />
-                <element signature="e#972#1706#0" />
-                <element signature="e#1768#1837#0" />
-                <element signature="e#1919#1967#0" />
-                <element signature="e#2040#2179#0" />
-                <element signature="e#3821#5181#0" />
-                <element signature="e#5762#12927#0" />
-                <element signature="e#6445#7299#0" />
-                <element signature="e#7363#7686#0" />
-                <element signature="e#7733#7905#0" />
-                <element signature="e#7954#8125#0" />
-                <element signature="e#8525#8624#0" />
-                <element signature="e#8660#11018#0" />
-                <element signature="e#9470#10701#0" />
-                <element signature="e#11171#12024#0" />
-                <element signature="e#12102#12925#0" />
-                <element signature="e#12940#14839#0" />
-                <element signature="e#13060#13154#0" />
-                <element signature="e#13178#13675#0" />
-                <element signature="e#14065#14837#0" />
-                <element signature="e#15073#15269#0" />
-                <element signature="e#15282#15433#0" />
-                <element signature="e#15802#17355#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="182">
+                  <caret line="59" column="1" lean-forward="true" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
+                  <folding>
+                    <element signature="e#1046#1784#0" />
+                    <element signature="e#1987#2126#0" />
+                    <element signature="e#3814#5173#0" />
+                    <element signature="e#13037#15458#0" />
+                    <element signature="e#16730#19175#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="240">
+                  <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2970">
+                  <caret line="239" lean-forward="true" selection-start-line="233" selection-start-column="3" selection-end-line="239" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="375">
+                  <caret line="55" column="9" lean-forward="true" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -118,14 +137,15 @@
         <option value="$PROJECT_DIR$/project-code/src/utils/mod.rs" />
         <option value="$PROJECT_DIR$/project-code/src/main/mod.rs" />
         <option value="$PROJECT_DIR$/project-code/tests/utils/file_reader_test.rs" />
-        <option value="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" />
         <option value="$PROJECT_DIR$/rust-crash-course/Cargo.toml" />
         <option value="$PROJECT_DIR$/project-code/run_on_raspberry.sh" />
         <option value="$PROJECT_DIR$/project-code/Cargo.toml" />
         <option value="$PROJECT_DIR$/rust-crash-course/src/main.rs" />
         <option value="$PROJECT_DIR$/docs/reference_implementation.c" />
         <option value="$PROJECT_DIR$/docs/test" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/file_reader.rs" />
         <option value="$PROJECT_DIR$/project-code/src/main.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/utils/pixel.rs" />
       </list>
     </option>
   </component>
@@ -143,7 +163,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -185,6 +204,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -327,7 +347,9 @@
       <workItem from="1557242743665" duration="10291000" />
       <workItem from="1557299291488" duration="3941000" />
       <workItem from="1557820100739" duration="26432000" />
-      <workItem from="1557868690837" duration="25978000" />
+      <workItem from="1557868690837" duration="31585000" />
+      <workItem from="1557991580177" duration="327000" />
+      <workItem from="1557993401784" duration="5044000" />
     </task>
     <task id="LOCAL-00001" summary="re-organized the module lay-out of the project&#10;updated the .gitingore file">
       <created>1557244674685</created>
@@ -420,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557944810538</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="update timer, not sure if working">
+      <created>1557949469578</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1557949469578</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -456,12 +485,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="119688000" />
+    <option name="totallyTimeSpent" value="130666000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="935" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.110127285" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1123409" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -476,9 +505,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" sideWeight="0.49960285" visible="true" weight="0.44168735" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49960285" weight="0.29776675" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4991699" weight="0.2841191" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4991699" visible="true" weight="0.41191068" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5008301" side_tool="true" weight="0.29528537" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -579,7 +608,8 @@
     <MESSAGE value="testing matrix added" />
     <MESSAGE value="solved Result.unwrap() error" />
     <MESSAGE value="working display" />
-    <option name="LAST_COMMIT_MESSAGE" value="working display" />
+    <MESSAGE value="update timer, not sure if working" />
+    <option name="LAST_COMMIT_MESSAGE" value="update timer, not sure if working" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/parser/main.rs" />
@@ -650,19 +680,6 @@
         <state relative-caret-position="-360" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/image.rs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/utils/mod.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -701,13 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="281" column="10" lean-forward="true" selection-start-line="281" selection-start-column="10" selection-end-line="281" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/Cargo.lock">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2985">
@@ -729,42 +739,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/test">
+    <entry file="file://$PROJECT_DIR$/docs/test" />
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/image.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="43" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="43" />
+        <state relative-caret-position="45">
+          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2970">
+          <caret line="239" lean-forward="true" selection-start-line="233" selection-start-column="3" selection-end-line="239" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="55" column="9" lean-forward="true" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-446">
-          <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
+        <state relative-caret-position="182">
+          <caret line="59" column="1" lean-forward="true" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
           <folding>
-            <element signature="e#919#958#0" />
-            <element signature="e#972#1706#0" />
-            <element signature="e#1768#1837#0" />
-            <element signature="e#1919#1967#0" />
-            <element signature="e#2040#2179#0" />
-            <element signature="e#3821#5181#0" />
-            <element signature="e#5762#12927#0" />
-            <element signature="e#6445#7299#0" />
-            <element signature="e#7363#7686#0" />
-            <element signature="e#7733#7905#0" />
-            <element signature="e#7954#8125#0" />
-            <element signature="e#8525#8624#0" />
-            <element signature="e#8660#11018#0" />
-            <element signature="e#9470#10701#0" />
-            <element signature="e#11171#12024#0" />
-            <element signature="e#12102#12925#0" />
-            <element signature="e#12940#14839#0" />
-            <element signature="e#13060#13154#0" />
-            <element signature="e#13178#13675#0" />
-            <element signature="e#14065#14837#0" />
-            <element signature="e#15073#15269#0" />
-            <element signature="e#15282#15433#0" />
-            <element signature="e#15802#17355#0" />
+            <element signature="e#1046#1784#0" />
+            <element signature="e#1987#2126#0" />
+            <element signature="e#3814#5173#0" />
+            <element signature="e#13037#15458#0" />
+            <element signature="e#16730#19175#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
         </state>
       </provider>
     </entry>

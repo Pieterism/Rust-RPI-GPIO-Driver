@@ -195,7 +195,7 @@ fn read_constants(cursor: &mut Cursor<Vec<u8>>){
     let mut buffer :[u8; 2] = [0,0];
     cursor.read( &mut buffer);
     assert_eq!(buffer[0], 'P' as u8, "Invalid header");
-    assert_eq!(buffer[1], '6' as u8, "Invalid PNM type");
+    assert_eq!(buffer[1], '6' as u8, "Invalid PPM type");
     println!("P6");
 }
 

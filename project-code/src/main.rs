@@ -8,6 +8,7 @@
 
 //mods
 mod utils;
+
 #[macro_use]
 extern crate simple_error;
 extern crate libc;
@@ -31,13 +32,8 @@ use shuteye::sleep;
 use mmap::{MemoryMap, MapOption};
 use utils::file_reader;
 use utils::image;
-
-#[derive(Copy, Clone)]
-struct Pixel {
-    r: u16,
-    g: u16,
-    b: u16,
-}
+use crate::utils::image::Image;
+use crate::utils::pixel::Pixel;
 
 struct GPIO {
     gpio_map_: Option<MemoryMap>,
@@ -55,13 +51,6 @@ struct GPIO {
     // A raw pointer that points to the pin level register (see section 2.1)
     pub row_mask: u32,
     bitplane_timings: [u32; COLOR_DEPTH],
-}
-
-// This is a representation of the "raw" image
-struct Image {
-    width: usize,
-    height: usize,
-    pixels: Vec<Vec<Pixel>>,
 }
 
 // This is a representation of the frame we're currently rendering
@@ -86,9 +75,9 @@ const TIMER_REGISTER_OFFSET: u64 = 0x3000;
 const TIMER_OVERFLOW_VALUE: u32 = 4294967295;
 const REGISTER_BLOCK_SIZE: u64 = 4096;
 const COLOR_DEPTH: usize = 8;
-const ROWS: u32 = 16;
-const COLUMNS: u32 = 32;
-const SUB_PANELS: u32 = 2;
+const ROWS: usize = 16;
+const COLUMNS: usize = 32;
+const SUB_PANELS: usize = 2;
 
 const PIN_OE: u64 = 4;
 const PIN_CLK: u64 = 17;
@@ -117,11 +106,6 @@ const VALID_BITS: u64 = GPIO_BIT!(PIN_OE) | GPIO_BIT!(PIN_CLK) | GPIO_BIT!(PIN_L
     GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B) | GPIO_BIT!(PIN_C) | GPIO_BIT!(PIN_D) | GPIO_BIT!(PIN_E) |
     GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) |
     GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2);
-
-// ============================================================================
-// mmap_bcm_register - convenience function used to map the GPIO register block
-// ============================================================================
-
 
 fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
     eprintln!("starting bcm register");
@@ -162,21 +146,8 @@ fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
         }
         false => Some(result)
     };
-    // NOTE/WARNING: When a MemoryMap struct is dropped, the mapped
-    // memory region is automatically unmapped!
 }
 
-//
-// NOTE/WARNING: In many cases, particularly those where you need to set or clear
-// multiple bits at once, it is convenient to store multiple pin numbers in one bit
-// mask value. If you want to simultaneously set PIN_A and PIN_C to high, for example,
-// you should probably create a bit mask with the positions of PIN_A and PIN_C set to 1,
-// and all other positions set to 0. You can do this using the GPIO_BIT! macro.
-//
-// In this example, you would do something like:
-//     let pin_mask = GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_C);
-//     io.set_bits(pin_mask);
-//
 impl GPIO {
     //
     // configures pin number @pin_num as an output pin by writing to the
@@ -464,25 +435,26 @@ impl Frame {
         };
         frame
     }
-}
 
-impl Pixel {
-    fn new() -> Pixel {
-        let mut pixel: Pixel = Pixel {
-            r: 1,
-            g: 0,
-            b: 0,
-        };
-        pixel
+    fn next_image_frame(self: &mut Frame, image: Image) {
+        for row in 0..ROWS {
+            for col in 0..COLUMNS {
+                let mut pixel = self.pixels[row][col];
+
+                let img_pos = (self.pos + col) % image.width as usize;
+                let image_pixel = &image.pixels[row][img_pos];
+
+                pixel = *image_pixel;
+            }
+        }
+
+        self.pos = self.pos + 1;
+        if self.pos >= image.width as usize {
+            self.pos = 0;
+        }
+        eprintln!("nextframe at pos {}", self.pos);
     }
 }
-
-// TODO: Add your PPM parser here
-// NOTE/WARNING: Please make sure that your implementation can handle comments in the PPM file
-// You do not need to add support for any formats other than P6
-// You may assume that the max_color value is always 255, but you should add sanity checks
-// to safely reject files with other max_color values
-impl Image {}
 
 pub fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -498,10 +470,13 @@ pub fn main() {
         std::process::exit(1);
     }*/
 
-    let path = Path::new(&args[0]);
+    let path = Path::new(&args[1]);
     let image = file_reader::read_ppm_file(&path);
 
-// TODO: Read the PPM file here. You can find its name in args[1]
+    let mut frame = Frame::new();
+    frame.next_image_frame(image);
+
+
 // TODO: Initialize the GPIO struct and the Timer struct
     let mut gpio = GPIO::new(1);
     println!("GPIO  done");
@@ -518,39 +493,35 @@ pub fn main() {
     }).unwrap();
 
     while interrupt_received.load(Ordering::SeqCst) == false {
+        /*  gpio.clear_bits(GPIO_BIT!(PIN_OE));
+          for iter in 0..7 {
+              for c in 0..32 {
+                  gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
 
-        gpio.clear_bits(GPIO_BIT!(PIN_OE));
-        for iter in 0..7 {
+                  if c % 2 == 1 {
+                      gpio.set_bits((GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G2)));
+                  } else {
+                      gpio.set_bits((GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_B2)));
+                  };
 
-            for c in 0..32 {
-                gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
+                  gpio.set_bits(GPIO_BIT!(PIN_CLK));
+              };
 
-                if c % 2 == 1 {
-                    gpio.set_bits((GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G2)));
-                } else {
-                    gpio.set_bits((GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_B2)));
-                };
+              gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
 
-                gpio.set_bits(GPIO_BIT!(PIN_CLK));
-            };
+              let pins = gpio.get_row_bits(iter);
+              println!("{}", pins);
 
-            gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
+              gpio.set_bits(pins);
 
-            let pins = gpio.get_row_bits(iter);
-            println!("{}", pins);
+              gpio.set_bits(GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B));
 
-            gpio.clear_bits(!pins & row_mask);
-            gpio.set_bits(pins);
+              gpio.set_bits(GPIO_BIT!(PIN_LAT));
 
-            gpio.set_bits(GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B));
+              gpio.clear_bits(GPIO_BIT!(PIN_LAT));
 
-            gpio.set_bits(GPIO_BIT!(PIN_LAT));
-
-            gpio.clear_bits(GPIO_BIT!(PIN_LAT));
-
-            gpio.clear_bits(GPIO_BIT!(PIN_OE));
-        };
-
+              gpio.clear_bits(GPIO_BIT!(PIN_OE));
+          };*/
     };
     println!("Exiting.");
     if interrupt_received.load(Ordering::SeqCst) == true {

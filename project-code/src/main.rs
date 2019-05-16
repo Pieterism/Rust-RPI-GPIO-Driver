@@ -30,8 +30,7 @@ use std::fs::File;
 use std::time::Duration;
 use shuteye::sleep;
 use mmap::{MemoryMap, MapOption};
-use utils::file_reader;
-use utils::image;
+use crate::utils::file_reader;
 use crate::utils::image::Image;
 use crate::utils::pixel::Pixel;
 
@@ -439,12 +438,10 @@ impl Frame {
     fn next_image_frame(self: &mut Frame, image: Image) {
         for row in 0..ROWS {
             for col in 0..COLUMNS {
-                let mut pixel = self.pixels[row][col];
-
                 let img_pos = (self.pos + col) % image.width as usize;
                 let image_pixel = &image.pixels[row][img_pos];
 
-                pixel = *image_pixel;
+                self.pixels[row][col] = *image_pixel;
             }
         }
 
@@ -452,7 +449,6 @@ impl Frame {
         if self.pos >= image.width as usize {
             self.pos = 0;
         }
-        eprintln!("nextframe at pos {}", self.pos);
     }
 }
 
@@ -475,6 +471,8 @@ pub fn main() {
 
     let mut frame = Frame::new();
     frame.next_image_frame(image);
+
+    eprint!("{}",frame.pos);
 
 
 // TODO: Initialize the GPIO struct and the Timer struct

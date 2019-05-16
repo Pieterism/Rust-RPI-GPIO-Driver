@@ -108,9 +108,6 @@ fn decode_ppm_image(cursor: &mut Cursor<Vec<u8>>) -> Result<Image, ParseIntError
     image.height = read_size_propertie(cursor)?;
     let max_size = read_size_propertie(cursor)?;
 
-    println!("{}", image.width);
-    println!("{}", image.height);
-    println!("{}", max_size);
 
     let mut pixels: Vec<Vec<Pixel>> = Vec::new();
     let mut counter: usize = 0;
@@ -196,7 +193,6 @@ fn read_constants(cursor: &mut Cursor<Vec<u8>>){
     cursor.read( &mut buffer);
     assert_eq!(buffer[0], 'P' as u8, "Invalid header");
     assert_eq!(buffer[1], '6' as u8, "Invalid PPM type");
-    println!("P6");
 }
 
 

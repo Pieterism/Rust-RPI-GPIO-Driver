@@ -195,14 +195,6 @@ fn read_constants(cursor: &mut Cursor<Vec<u8>>){
     assert_eq!(buffer[1], '6' as u8, "Invalid PPM type");
 }
 
-
-#[test]
-fn decode_ppm_image_test() {
-    let mut vector: Vec<u8> = vec!['P' as u8, '6' as u8, '\n' as u8, '3' as u8, '2' as u8, ' ' as u8, '1' as u8, '6' as u8, '\n' as u8];
-    let mut cursor: Cursor<Vec<u8>> = Cursor::new(vector);
-    decode_ppm_image(&mut cursor);
-}
-
 #[test]
 fn read_size_properties_test_new_line_separated() {
     let mut vector: Vec<u8> = vec!['3' as u8, '2' as u8, '\n' as u8];
@@ -220,9 +212,4 @@ fn read_size_properties_test_blank_space_separated() {
     let result = read_size_propertie(&mut cursor);
     let expected: u32 = 32;
     assert_eq!(expected, result.unwrap(), "Did not get the expected value back");
-}
-
-#[test]
-fn sample_file_test() {
-
 }

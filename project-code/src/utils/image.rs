@@ -1,4 +1,4 @@
-use crate::utils::pixel::Pixel;
+use super::pixel::Pixel;
 
 // This is a representation of the "raw" image
 pub struct Image {

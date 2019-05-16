@@ -496,29 +496,9 @@ pub fn main() {
     let row_mask = gpio.row_mask;
 
     while interrupt_received.load(Ordering::SeqCst) == false {
-        let pins1 = GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B) | GPIO_BIT!(PIN_C);
-        let pins2 = GPIO_BIT!(PIN_B) | GPIO_BIT!(PIN_C);
-        let pins3 = GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_C);
-        let pins4 = GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B);
-
-        println!("{}", pins1);
-        println!("{}", pins2);
-        println!("{}", pins3);
-        println!("{}", pins4);
-
-        sendValues(&mut gpio, row_mask, pins1);
-        sendValues(&mut gpio, row_mask, pins2);
-        sendValues(&mut gpio, row_mask, pins3);
-        sendValues(&mut gpio, row_mask, GPIO_BIT!(PIN_C));
-        sendValues(&mut gpio, row_mask, pins4);
-        sendValues(&mut gpio, row_mask, GPIO_BIT!(PIN_B));
-        sendValues(&mut gpio, row_mask, GPIO_BIT!(PIN_A));
-        sendValues(&mut gpio, row_mask, 0);
-
-        gpio.clear_bits(GPIO_BIT!(PIN_OE));
-
-        std::thread::sleep(std::time::Duration::from_secs(2));
-
+        for row_counter in 0..8 {
+            send_values(&mut gpio, &timer, row_mask, row_counter);
+        }
     };
     println!("Exiting.");
     if interrupt_received.load(Ordering::SeqCst) == true {
@@ -531,29 +511,47 @@ pub fn main() {
     gpio.set_bits(GPIO_BIT!(PIN_OE));
 }
 
-fn sendValues(gpio: &mut GPIO, row_mask: u32, pins: u32) {
+fn send_values(gpio: &mut GPIO, timer: &Timer, row_mask: u32, row: u8) {
 
     for c in 0..32 {
         gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
-
-        if c % 2 == 1 {
-            gpio.set_bits((GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G2)));
-        } else {
-            gpio.set_bits((GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_B2)));
-        };
-
+        gpio.set_bits((GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_B2)));
         gpio.set_bits(GPIO_BIT!(PIN_CLK));
     };
     gpio.clear_bits(GPIO_BIT!(PIN_R1) | GPIO_BIT!(PIN_G1) | GPIO_BIT!(PIN_B1) | GPIO_BIT!(PIN_R2) | GPIO_BIT!(PIN_G2) | GPIO_BIT!(PIN_B2) | GPIO_BIT!(PIN_CLK));
 
-    gpio.write_masked_bits(pins, row_mask);
-    println!("Set bits {}", pins);
+    gpio.write_masked_bits(get_row_bits(row), row_mask);
 
     gpio.set_bits(GPIO_BIT!(PIN_LAT));
     gpio.clear_bits(GPIO_BIT!(PIN_LAT));
 
     gpio.clear_bits(GPIO_BIT!(PIN_OE));
-    std::thread::sleep(std::time::Duration::from_millis(1000));
 }
 
+fn get_row_bits(double_row: u8) -> u32 {
 
+    let mut pin = 0;
+    if double_row & 0x01 != 0 {
+        pin |= GPIO_BIT!(PIN_A);
+    }
+    if double_row & 0x02 != 0 {
+        pin |= GPIO_BIT!(PIN_B);
+    }
+    if double_row & 0x04 != 0 {
+        pin |= GPIO_BIT!(PIN_C);
+    }
+    pin
+}
+
+#[test]
+fn get_row_bits_test() {
+    assert_eq!(0                        , get_row_bits(0), "Invalid row bits");
+    assert_eq!(PIN_A                    , get_row_bits(1), "Invalid row bits");
+    assert_eq!(PIN_B                    , get_row_bits(2), "Invalid row bits");
+    assert_eq!(PIN_A | PIN_B            , get_row_bits(3), "Invalid row bits");
+    assert_eq!(PIN_C                    , get_row_bits(4), "Invalid row bits");
+    assert_eq!(PIN_C | PIN_A            , get_row_bits(5), "Invalid row bits");
+    assert_eq!(PIN_C | PIN_B            , get_row_bits(6), "Invalid row bits");
+    assert_eq!(PIN_C | PIN_B | PIN_A    , get_row_bits(7), "Invalid row bits");
+
+}

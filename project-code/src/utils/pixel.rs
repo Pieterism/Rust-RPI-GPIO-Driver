@@ -1,4 +1,4 @@
-use COLOR_DEPTH;
+use super::gpio_driver::COLOR_DEPTH;
 
 #[derive(Copy, Clone, Debug)]
 pub struct Pixel {

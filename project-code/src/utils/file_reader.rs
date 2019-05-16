@@ -13,65 +13,6 @@ use std::time::Duration;
 use std::num::ParseIntError;
 use super::pixel::Pixel as Pixel;
 use super::image::Image;
-// use sdl2::pixels::Color;
-// use sdl2::rect::Rect;
-
-/*
-pub fn show_image(image: &Image)
-{
-    let sdl = sdl2::init().unwrap();
-    let video_subsystem = sdl.video().unwrap();
-    let display_mode = video_subsystem.current_display_mode(0).unwrap();
-
-    let w = match display_mode.w as u32 > image.width {
-        true => image.width,
-        false => display_mode.w as u32
-    };
-    let h = match display_mode.h as u32 > image.height {
-        true => image.height,
-        false => display_mode.h as u32
-    };
-
-    let window = video_subsystem
-        .window("Image", w, h)
-        .build()
-        .unwrap();
-    let mut canvas = window
-        .into_canvas()
-        .present_vsync()
-        .build()
-        .unwrap();
-    let black = sdl2::pixels::Color::RGB(0, 0, 0);
-
-    let mut event_pump = sdl.event_pump().unwrap();
-    // render image
-    canvas.set_draw_color(black);
-    canvas.clear();
-
-    for r in 0..image.height {
-        for c in 0..image.width {
-            let pixel = &image.pixels[image.height as usize - r as usize - 1][c as usize];
-            canvas.set_draw_color(Color::RGB(pixel.r as u8, pixel.g as u8, pixel.b as u8));
-            canvas.fill_rect(Rect::new(c as i32, r as i32, 1, 1)).unwrap();
-        }
-    }
-
-    canvas.present();
-
-    'main: loop
-        {
-            for event in event_pump.poll_iter() {
-                match event {
-                    sdl2::event::Event::Quit {..} => break 'main,
-                    _ => {},
-                }
-            }
-
-            sleep(Duration::new(0, 250000000));
-        }
-
-}
-*/
 
 pub fn read_ppm_file(path: &Path) -> Image {
     let display = path.display();

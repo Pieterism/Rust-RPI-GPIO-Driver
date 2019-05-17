@@ -2,9 +2,13 @@ use std::collections::LinkedList;
 use super::super::utils::frame::Frame;
 use super::super::utils::pixel::Pixel;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Clone, Copy, PartialEq, Debug)]
 pub enum Direction {
-    UP, DOWN, LEFT, RIGHT
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
+    NULL,
 }
 
 impl Direction {
@@ -13,7 +17,8 @@ impl Direction {
             Direction::UP => Direction::DOWN,
             Direction::DOWN => Direction::UP,
             Direction::LEFT => Direction::RIGHT,
-            Direction::RIGHT => Direction::LEFT
+            Direction::RIGHT => Direction::LEFT,
+            Direction::NULL => Direction::NULL
         }
     }
 }
@@ -21,14 +26,14 @@ impl Direction {
 #[derive(Debug, Clone)]
 struct Block {
     x: i32,
-    y: i32
+    y: i32,
 }
 
 pub struct Snake {
     SNAKE_BLOCK: Pixel,
     moving_direction: Direction,
     body: LinkedList<Block>,
-    last_removed_block: Option<Block>
+    last_removed_block: Option<Block>,
 }
 
 impl Snake {
@@ -36,22 +41,22 @@ impl Snake {
         let mut body: LinkedList<Block> = LinkedList::new();
         body.push_back(Block {
             x: init_x + 2,
-            y: init_y
+            y: init_y,
         });
         body.push_back(Block {
             x: init_x + 1,
-            y: init_y
+            y: init_y,
         });
         body.push_back(Block {
             x: init_x,
-            y: init_y
+            y: init_y,
         });
 
         Snake {
-            SNAKE_BLOCK: Pixel::new_colored_pixel(0,255,0),
+            SNAKE_BLOCK: Pixel::new_colored_pixel(0, 255, 0),
             moving_direction: Direction::RIGHT,
             body: body,
-            last_removed_block: None
+            last_removed_block: None,
         }
     }
 
@@ -75,25 +80,28 @@ impl Snake {
         let new_block = match self.moving_direction {
             Direction::UP => Block {
                 x: last_x,
-                y: last_y - 1
+                y: last_y - 1,
             },
             Direction::DOWN => Block {
                 x: last_x,
-                y: last_y + 1
+                y: last_y + 1,
             },
             Direction::LEFT => Block {
                 x: last_x - 1,
-                y: last_y
+                y: last_y,
             },
             Direction::RIGHT => Block {
                 x: last_x + 1,
-                y: last_y
+                y: last_y,
+            },
+            Direction::NULL => Block {
+                x: last_x,
+                y: last_y,
             }
         };
         self.body.push_front(new_block);
         let removed_blk = self.body.pop_back().unwrap();
         self.last_removed_block = Some(removed_blk);
-
     }
 
     pub fn head_position(&self) -> (i32, i32) {
@@ -121,7 +129,8 @@ impl Snake {
             Direction::UP => (head_x, head_y - 1),
             Direction::DOWN => (head_x, head_y + 1),
             Direction::LEFT => (head_x - 1, head_y),
-            Direction::RIGHT => (head_x + 1, head_y)
+            Direction::RIGHT => (head_x + 1, head_y),
+            Direction::NULL => (head_x, head_y)
         }
     }
 

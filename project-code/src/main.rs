@@ -59,8 +59,7 @@ pub fn main() {
         }).unwrap();
 
         //TODO: while until game-over
-
-        key_pressed();
+        wait_for_key_press();
         gpio.render_frame(interrupt_received, &mut frame, &timer);
     }
     //RENDER IMAGE
@@ -88,35 +87,46 @@ fn sanity_check(args: &Vec<String>) {
     }
 }
 
-fn key_pressed() -> Direction {
+fn wait_for_key_press() -> Direction {
     let mut stdout = stdout().into_raw_mode().unwrap();
     let mut stdin = termion::async_stdin().keys();
+    let mut dir: Direction = Direction::NULL;
 
     loop {
         let input = stdin.next();
-
         if let Some(Ok(key)) = input {
             match key {
                 termion::event::Key::Up => {
-                    println!("UP pressed");
+                    dir = Direction::UP;
+                    println!("{:?} pressed", dir );
+                    break;
                 }
                 termion::event::Key::Down => {
-                    println!("DOWN pressed");
+                    dir = Direction::DOWN;
+                    println!("{:?} pressed", dir);
+                    break;
                 }
                 termion::event::Key::Right => {
-                    println!("RIGHT pressed");
+                    dir = Direction::RIGHT;
+                    println!("{:?} pressed", dir);
+                    break;
                 }
                 termion::event::Key::Left => {
-                    println!("LEFT pressed");
+                    dir = Direction::LEFT;
+                    println!("{:?} pressed", dir);
+                    break;
+                }
+                termion::event::Key::Esc => {
+                    println!("Esc pressed");
+                    exit(0);
                 }
                 _ => {
                     stdout.lock().flush().unwrap();
-                    //TODO: dont exit program here
-                    exit(0);
                 }
             }
         }
         thread::sleep(Duration::from_millis(50));
     }
+    dir
 }
 

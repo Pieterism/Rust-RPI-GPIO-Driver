@@ -34,20 +34,37 @@ pub fn main() {
     sanity_check(&args);
 
     let interrupt_received = Arc::new(AtomicBool::new(false));
-    let path = Path::new(&args[1]);
-    let image = file_reader::read_ppm_file(&path);
-    let mut frame = Frame::new();
     let mut gpio = GPIO::new(1);
     let timer = Timer::new();
-    let int_recv = interrupt_received.clone();
-    let game = Game::new();
-    game.draw(&mut frame);
+    let mut frame = Frame::new();
+    let mut image = Image::new();
 
-    ctrlc::set_handler(move || {
-        int_recv.store(true, Ordering::SeqCst);
-    }).unwrap();
 
-    gpio.render_frame(interrupt_received, &image, &mut frame, &timer, false);
+    if &args[1] == "snake" {
+        println!("Starting Snake");
+        let game = Game::new();
+        game.draw(&mut frame);
+        let int_recv = interrupt_received.clone();
+
+        ctrlc::set_handler(move || {
+            int_recv.store(true, Ordering::SeqCst);
+        }).unwrap();
+
+        gpio.render_frame(interrupt_received, &mut frame, &timer);
+    }
+    //RENDER IMAGE
+    else {
+        println!("Rendering Image");
+        let path = Path::new(&args[1]);
+        image = file_reader::read_ppm_file(&path);
+        let int_recv = interrupt_received.clone();
+
+        ctrlc::set_handler(move || {
+            int_recv.store(true, Ordering::SeqCst);
+        }).unwrap();
+
+        gpio.render_image_frame(interrupt_received, &image, &mut frame, &timer, true);
+    }
 }
 
 fn sanity_check(args: &Vec<String>) {

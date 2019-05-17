@@ -1,4 +1,5 @@
 use super::pixel::Pixel;
+use super::gpio_driver::{COLUMNS, ROWS};
 
 // This is a representation of the "raw" image
 pub struct Image {
@@ -13,5 +14,12 @@ pub struct Image {
 // You may assume that the max_color value is always 255, but you should add sanity checks
 // to safely reject files with other max_color values
 impl Image {
-
+    pub fn new() -> Image {
+        let mut image: Image = Image {
+            width: COLUMNS as u32,
+            height: ROWS as u32,
+            pixels: vec![vec![Pixel::new(); COLUMNS as usize]; ROWS as usize],
+        };
+        image
+    }
 }

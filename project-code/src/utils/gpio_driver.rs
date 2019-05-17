@@ -1,4 +1,3 @@
-
 use mmap::{MemoryMap, MapOption};
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
@@ -163,14 +162,15 @@ impl GPIO {
         io
     }
 
-    pub fn render_frame(&mut self, interrupt_received: Arc<AtomicBool>, image: &Image, frame: &mut Frame, timer: &Timer, scrolling: bool) {
+    pub fn render_image_frame(&mut self, interrupt_received: Arc<AtomicBool>, image: &Image, frame: &mut Frame, timer: &Timer, scrolling: bool) {
+        frame.next_image_frame(&image);
         let mut prev_frame_time = time::get_time();
         let mut current_time = time::get_time();
 
         while interrupt_received.load(Ordering::SeqCst) == false {
             for row_counter in 0..ROWS / 2 {
                 for bitplane_counter in 0..COLOR_DEPTH {
-                    self.send_values( &timer, &frame, row_counter, bitplane_counter);
+                    self.send_values(&timer, &frame, row_counter, bitplane_counter);
                 };
             };
 
@@ -188,6 +188,23 @@ impl GPIO {
         };
         self.set_bits(GPIO_BIT!(PIN_OE));
     }
+
+    pub fn render_frame(&mut self, interrupt_received: Arc<AtomicBool>, frame: &mut Frame, timer: &Timer) {
+        while interrupt_received.load(Ordering::SeqCst) == false {
+            for row_counter in 0..ROWS / 2 {
+                for bitplane_counter in 0..COLOR_DEPTH {
+                    self.send_values(&timer, &frame, row_counter, bitplane_counter);
+                };
+            };
+        };
+        if interrupt_received.load(Ordering::SeqCst) == true {
+            println!("Received CTRL-C");
+        } else {
+            println!("Timeout reached");
+        };
+        self.set_bits(GPIO_BIT!(PIN_OE));
+    }
+
 
     fn send_values(&mut self, timer: &Timer, frame: &Frame, row: usize, bitplane_counter: usize) {
         let row_mask = self.row_mask;
@@ -212,12 +229,9 @@ impl GPIO {
         timer.nanosleep(self.bitplane_timings[bitplane_counter] as u32);
         self.set_bits(GPIO_BIT!(PIN_OE));
     }
-
 }
 
 pub fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
-    eprintln!("starting bcm register");
-
     let mem_file =
         match OpenOptions::new()
             .read(true)
@@ -239,7 +253,6 @@ pub fn mmap_bcm_register(register_offset: usize) -> Option<MemoryMap> {
     let result = match MemoryMap::new(REGISTER_BLOCK_SIZE as usize, mmap_options)
         {
             Ok(mmap) => {
-                println!("Successfully created the mmap: {}", mmap.len());
                 mmap
             }
             Err(err) => panic!("Could not read the mmap: {}", err),
@@ -261,7 +274,7 @@ fn get_plane_bits(top: Pixel, bot: Pixel, plane: usize) -> u32 {
     if top.r & (1 << plane) != 0 {
         out |= GPIO_BIT!(PIN_R1);
     }
-    if  bot.r & (1 << plane) != 0 {
+    if bot.r & (1 << plane) != 0 {
         out |= GPIO_BIT!(PIN_R2);
     }
     if top.b & (1 << plane) != 0 {
@@ -280,7 +293,6 @@ fn get_plane_bits(top: Pixel, bot: Pixel, plane: usize) -> u32 {
 }
 
 fn get_row_bits(double_row: usize) -> u32 {
-
     let mut pin = 0;
     if double_row & 0x01 != 0 {
         pin |= GPIO_BIT!(PIN_A);
@@ -313,13 +325,12 @@ fn set_row_mask(gpio: &mut GPIO) {
 
 #[test]
 fn get_row_bits_test() {
-    assert_eq!(0                                                            , get_row_bits(0), "Invalid row bits");
-    assert_eq!(GPIO_BIT!(PIN_A)                                             , get_row_bits(1), "Invalid row bits");
-    assert_eq!(GPIO_BIT!(PIN_B)                                             , get_row_bits(2), "Invalid row bits");
-    assert_eq!(GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B)                          , get_row_bits(3), "Invalid row bits");
-    assert_eq!(GPIO_BIT!(PIN_C)                                             , get_row_bits(4), "Invalid row bits");
-    assert_eq!(GPIO_BIT!(PIN_C) | GPIO_BIT!(PIN_A)                          , get_row_bits(5), "Invalid row bits");
-    assert_eq!(GPIO_BIT!(PIN_C) | GPIO_BIT!(PIN_B)                          , get_row_bits(6), "Invalid row bits");
-    assert_eq!(GPIO_BIT!(PIN_C) | GPIO_BIT!(PIN_B) | GPIO_BIT!(PIN_A)       , get_row_bits(7), "Invalid row bits");
-
+    assert_eq!(0, get_row_bits(0), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_A), get_row_bits(1), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_B), get_row_bits(2), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_A) | GPIO_BIT!(PIN_B), get_row_bits(3), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_C), get_row_bits(4), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_C) | GPIO_BIT!(PIN_A), get_row_bits(5), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_C) | GPIO_BIT!(PIN_B), get_row_bits(6), "Invalid row bits");
+    assert_eq!(GPIO_BIT!(PIN_C) | GPIO_BIT!(PIN_B) | GPIO_BIT!(PIN_A), get_row_bits(7), "Invalid row bits");
 }

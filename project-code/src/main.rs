@@ -58,6 +58,8 @@ pub fn main() {
             int_recv.store(true, Ordering::SeqCst);
         }).unwrap();
 
+        //TODO: while until game-over
+
         key_pressed();
         gpio.render_frame(interrupt_received, &mut frame, &timer);
     }

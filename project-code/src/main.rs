@@ -35,6 +35,7 @@ use std::thread;
 
 use termion::input::TermRead;
 use termion::raw::IntoRawMode;
+use std::process::exit;
 
 pub fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -108,6 +109,8 @@ fn key_pressed() -> Direction {
                 }
                 _ => {
                     stdout.lock().flush().unwrap();
+                    //TODO: dont exit program here
+                    exit(0);
                 }
             }
         }

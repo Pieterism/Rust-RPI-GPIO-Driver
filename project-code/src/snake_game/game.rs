@@ -49,6 +49,9 @@ impl Game {
     pub fn key_pressed(&mut self, dir: Option<Direction>) {
         println!("Key pressed: {:?}",dir);
 
+        if dir.is_none() {
+            return;
+        }
         if dir.unwrap() == self.snake.head_direction().opposite() {
             println!("opposite direction");
             return;
@@ -59,7 +62,9 @@ impl Game {
     }
 
     pub fn draw(&self, frame: &mut Frame) {
+        frame.clear_frame();
         //Draw the snake
+
         self.snake.draw(frame);
 
         // Draw the food

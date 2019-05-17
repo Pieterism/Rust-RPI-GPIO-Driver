@@ -12,7 +12,7 @@ extern crate nix;
 extern crate termion;
 
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::Arc;
+use std::sync::{Arc, mpsc};
 use std::fs::OpenOptions;
 use std::path::Path;
 use std::io::prelude::*;
@@ -59,13 +59,22 @@ pub fn main() {
             int_recv.store(true, Ordering::SeqCst);
         }).unwrap();
 
+        let (tx, rx) = mpsc::channel::<Option<Direction>>();
+        thread::spawn(move || loop {
+            let mut buffer: Option < Direction >;
+            buffer = wait_for_key_press();
+            tx.send(buffer).unwrap();
+        });
+
         loop{
             if !game.is_game_over(){
+                let option = match rx.try_recv() {
+                    Ok(dir) => dir,
+                    Err(err) => None
+                };
 
-                game.key_pressed(wait_for_key_press());
+                game.key_pressed(option);
                 game.draw(&mut frame);
-
-            }else{
 
             }
             gpio.render_frame(interrupt_received.clone(), &mut frame, &timer);
@@ -130,7 +139,7 @@ fn wait_for_key_press() -> Option<Direction> {
                 }
             }
         }
-        thread::sleep(Duration::from_millis(50));
+        thread::sleep(Duration::from_millis(100 ));
     }
     println!("{:?} pressed", dir);
     dir

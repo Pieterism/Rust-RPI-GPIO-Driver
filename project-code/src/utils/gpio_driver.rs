@@ -190,19 +190,11 @@ impl GPIO {
     }
 
     pub fn render_frame(&mut self, interrupt_received: Arc<AtomicBool>, frame: &mut Frame, timer: &Timer) {
-        while interrupt_received.load(Ordering::SeqCst) == false {
             for row_counter in 0..ROWS / 2 {
                 for bitplane_counter in 0..COLOR_DEPTH {
                     self.send_values(&timer, &frame, row_counter, bitplane_counter);
                 };
             };
-        };
-        if interrupt_received.load(Ordering::SeqCst) == true {
-            println!("Received CTRL-C");
-        } else {
-            println!("Timeout reached");
-        };
-        self.set_bits(GPIO_BIT!(PIN_OE));
     }
 
 

@@ -53,6 +53,6 @@ impl Frame {
     }
 
     pub fn clear_frame(self:&mut Frame){
-        self.pixels=pixels: vec![vec![Pixel::new(); COLUMNS as usize]; ROWS as usize];
+        self.pixels=vec![vec![Pixel::new(); COLUMNS as usize]; ROWS as usize];
     }
 }

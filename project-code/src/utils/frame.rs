@@ -51,4 +51,8 @@ impl Frame {
     pub fn draw_game_over(self: &mut Frame) {
         self.next_image_frame(&read_ppm_file(&Path::new(GAME_OVER_IMG_PATH)));
     }
+
+    pub fn clear_frame(self:&mut Frame){
+        self.pixels=pixels: vec![vec![Pixel::new(); COLUMNS as usize]; ROWS as usize];
+    }
 }

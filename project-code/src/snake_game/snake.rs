@@ -4,16 +4,16 @@ use super::super::utils::pixel::Pixel;
 
 #[derive(Clone, Copy, PartialEq)]
 pub enum Direction {
-    Up, Down, Left, Right
+    UP, DOWN, LEFT, RIGHT
 }
 
 impl Direction {
     pub fn opposite(&self) -> Direction {
         match *self {
-            Direction::Up => Direction::Down,
-            Direction::Down => Direction::Up,
-            Direction::Left => Direction::Right,
-            Direction::Right => Direction::Left
+            Direction::UP => Direction::DOWN,
+            Direction::DOWN => Direction::UP,
+            Direction::LEFT => Direction::RIGHT,
+            Direction::RIGHT => Direction::LEFT
         }
     }
 }
@@ -49,7 +49,7 @@ impl Snake {
 
         Snake {
             SNAKE_BLOCK: Pixel::new_colored_pixel(0,255,0),
-            moving_direction: Direction::Right,
+            moving_direction: Direction::RIGHT,
             body: body,
             last_removed_block: None
         }
@@ -73,19 +73,19 @@ impl Snake {
 
         // The snake moves
         let new_block = match self.moving_direction {
-            Direction::Up => Block {
+            Direction::UP => Block {
                 x: last_x,
                 y: last_y - 1
             },
-            Direction::Down => Block {
+            Direction::DOWN => Block {
                 x: last_x,
                 y: last_y + 1
             },
-            Direction::Left => Block {
+            Direction::LEFT => Block {
                 x: last_x - 1,
                 y: last_y
             },
-            Direction::Right => Block {
+            Direction::RIGHT => Block {
                 x: last_x + 1,
                 y: last_y
             }
@@ -118,10 +118,10 @@ impl Snake {
 
         // The snake moves
         match moving_dir {
-            Direction::Up => (head_x, head_y - 1),
-            Direction::Down => (head_x, head_y + 1),
-            Direction::Left => (head_x - 1, head_y),
-            Direction::Right => (head_x + 1, head_y)
+            Direction::UP => (head_x, head_y - 1),
+            Direction::DOWN => (head_x, head_y + 1),
+            Direction::LEFT => (head_x - 1, head_y),
+            Direction::RIGHT => (head_x + 1, head_y)
         }
     }
 

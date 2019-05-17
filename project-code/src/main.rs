@@ -9,6 +9,7 @@ extern crate ctrlc;
 extern crate shuteye;
 extern crate mmap;
 extern crate nix;
+extern crate termion;
 
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
@@ -28,6 +29,12 @@ use utils::gpio_driver::mmap_bcm_register;
 use utils::time::Timer;
 use snake_game::game::*;
 use snake_game::snake::*;
+use std::io::stdout;
+use std::io::Write;
+use std::thread;
+
+use termion::input::TermRead;
+use termion::raw::IntoRawMode;
 
 pub fn main() {
     let args: Vec<String> = std::env::args().collect();
@@ -50,6 +57,7 @@ pub fn main() {
             int_recv.store(true, Ordering::SeqCst);
         }).unwrap();
 
+        key_pressed();
         gpio.render_frame(interrupt_received, &mut frame, &timer);
     }
     //RENDER IMAGE
@@ -74,6 +82,36 @@ fn sanity_check(args: &Vec<String>) {
     } else if args.len() < 2 {
         eprintln!("Syntax: {:?} [image]", args[0]);
         std::process::exit(1);
+    }
+}
+
+fn key_pressed() -> Direction {
+    let mut stdout = stdout().into_raw_mode().unwrap();
+    let mut stdin = termion::async_stdin().keys();
+
+    loop {
+        let input = stdin.next();
+
+        if let Some(Ok(key)) = input {
+            match key {
+                termion::event::Key::Up => {
+                    println!("UP pressed");
+                }
+                termion::event::Key::Down => {
+                    println!("DOWN pressed");
+                }
+                termion::event::Key::Right => {
+                    println!("RIGHT pressed");
+                }
+                termion::event::Key::Left => {
+                    println!("LEFT pressed");
+                }
+                _ => {
+                    stdout.lock().flush().unwrap();
+                }
+            }
+        }
+        thread::sleep(Duration::from_millis(50));
     }
 }
 

@@ -9,7 +9,7 @@ use super::super::utils::pixel::Pixel;
 
 
 const MOVING_PERIOD: f64 = 0.2; // in second
-const RESTART_TIME: f64 = 1.0; // in second
+const RESTART_TIME: f64 = 3.0; // in second
 
 pub struct Game {
     snake: Snake,
@@ -45,26 +45,26 @@ impl Game {
         }
     }
 
- //   pub fn key_pressed(&mut self, key: Key) {
- //       if self.is_game_over {
- //           return;
- //       }
-//
- //       let dir = match key {
- //           Key::Up => Some(Direction::Up),
- //           Key::Down => Some(Direction::Down),
- //           Key::Left => Some(Direction::Left),
- //           Key::Right => Some(Direction::Right),
- //           _ => None
- //       };
-//
- //       if dir.unwrap() == self.snake.head_direction().opposite() {
- //           return;
- //       }
-//
- //       // Check if the snake hits the border
- //       self.update_snake(dir);
- //   }
+    pub fn key_pressed(&mut self, dir:Direction) {
+        if self.is_game_over {
+            return;
+        }
+
+        let direction = match dir {
+            dir => Some(Direction::UP),
+            dir => Some(Direction::DOWN),
+            dir => Some(Direction::LEFT),
+            dir => Some(Direction::RIGHT),
+            _ => None
+        };
+
+        if direction.unwrap() == self.snake.head_direction().opposite() {
+            return;
+        }
+
+        // Check if the snake hits the border
+        self.update_snake(direction);
+    }
 
     pub fn draw(&self, frame: &mut Frame) {
         //Draw the snake

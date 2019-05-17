@@ -8,7 +8,6 @@ pub enum Direction {
     DOWN,
     LEFT,
     RIGHT,
-    NULL,
 }
 
 impl Direction {
@@ -18,7 +17,6 @@ impl Direction {
             Direction::DOWN => Direction::UP,
             Direction::LEFT => Direction::RIGHT,
             Direction::RIGHT => Direction::LEFT,
-            Direction::NULL => Direction::NULL
         }
     }
 }
@@ -93,10 +91,6 @@ impl Snake {
             Direction::RIGHT => Block {
                 x: last_x + 1,
                 y: last_y,
-            },
-            Direction::NULL => Block {
-                x: last_x,
-                y: last_y,
             }
         };
         self.body.push_front(new_block);
@@ -117,6 +111,8 @@ impl Snake {
         // Retrieve the position of the head block
         let (head_x, head_y): (i32, i32) = self.head_position();
 
+        println!("head position({},{})", head_x, head_y);
+
         // Get moving direction
         let mut moving_dir = self.moving_direction;
         match dir {
@@ -124,13 +120,14 @@ impl Snake {
             None => {}
         }
 
+        println!("Move direction {:?}", moving_dir);
+
         // The snake moves
         match moving_dir {
             Direction::UP => (head_x, head_y - 1),
             Direction::DOWN => (head_x, head_y + 1),
             Direction::LEFT => (head_x - 1, head_y),
-            Direction::RIGHT => (head_x + 1, head_y),
-            Direction::NULL => (head_x, head_y)
+            Direction::RIGHT => (head_x + 1, head_y)
         }
     }
 

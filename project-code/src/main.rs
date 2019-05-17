@@ -50,17 +50,26 @@ pub fn main() {
 
     if &args[1] == "snake" {
         println!("Starting Snake");
-        let game = Game::new();
+        let mut game = Game::new();
         game.draw(&mut frame);
         let int_recv = interrupt_received.clone();
+
 
         ctrlc::set_handler(move || {
             int_recv.store(true, Ordering::SeqCst);
         }).unwrap();
 
-        //TODO: while until game-over
-        wait_for_key_press();
-        gpio.render_frame(interrupt_received, &mut frame, &timer);
+        loop{
+            if !game.is_game_over(){
+
+                game.key_pressed(wait_for_key_press());
+                game.draw(&mut frame);
+
+            }else{
+
+            }
+            gpio.render_frame(interrupt_received.clone(), &mut frame, &timer);
+        }
     }
     //RENDER IMAGE
     else {
@@ -87,33 +96,29 @@ fn sanity_check(args: &Vec<String>) {
     }
 }
 
-fn wait_for_key_press() -> Direction {
+fn wait_for_key_press() -> Option<Direction> {
     let mut stdout = stdout().into_raw_mode().unwrap();
     let mut stdin = termion::async_stdin().keys();
-    let mut dir: Direction = Direction::NULL;
+    let mut dir: Option<Direction>;
 
-    loop {
+    loop{
         let input = stdin.next();
         if let Some(Ok(key)) = input {
             match key {
                 termion::event::Key::Up => {
-                    dir = Direction::UP;
-                    println!("{:?} pressed", dir );
+                    dir = Some(Direction::UP);
                     break;
                 }
                 termion::event::Key::Down => {
-                    dir = Direction::DOWN;
-                    println!("{:?} pressed", dir);
+                    dir = Some(Direction::DOWN);
                     break;
                 }
                 termion::event::Key::Right => {
-                    dir = Direction::RIGHT;
-                    println!("{:?} pressed", dir);
+                    dir = Some(Direction::RIGHT);
                     break;
                 }
                 termion::event::Key::Left => {
-                    dir = Direction::LEFT;
-                    println!("{:?} pressed", dir);
+                    dir = Some(Direction::LEFT);
                     break;
                 }
                 termion::event::Key::Esc => {
@@ -121,12 +126,13 @@ fn wait_for_key_press() -> Direction {
                     exit(0);
                 }
                 _ => {
-                    stdout.lock().flush().unwrap();
+                    dir = None;
                 }
             }
         }
         thread::sleep(Duration::from_millis(50));
     }
+    println!("{:?} pressed", dir);
     dir
 }
 

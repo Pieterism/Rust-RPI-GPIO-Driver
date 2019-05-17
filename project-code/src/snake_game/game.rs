@@ -8,7 +8,8 @@ use super::super::utils::frame::Frame;
 use super::super::utils::pixel::Pixel;
 
 
-const MOVING_PERIOD: f64 = 0.2; // in second
+const MOVING_PERIOD: f64 = 0.2;
+// in second
 const RESTART_TIME: f64 = 3.0; // in second
 
 pub struct Game {
@@ -18,7 +19,7 @@ pub struct Game {
     food_exist: bool,
     food_x: i32,
     food_y: i32,
-    FOOD_BLOCK:Pixel,
+    FOOD_BLOCK: Pixel,
     // Game Space
     width: i32,
     height: i32,
@@ -38,32 +39,23 @@ impl Game {
             food_exist: true,
             food_x: 5,
             food_y: 3,
-            FOOD_BLOCK:Pixel::new_colored_pixel(255,0,0),
+            FOOD_BLOCK: Pixel::new_colored_pixel(255, 0, 0),
             width: COLUMNS as i32,
             height: ROWS as i32,
-            is_game_over: false
+            is_game_over: false,
         }
     }
 
-    pub fn key_pressed(&mut self, dir:Direction) {
-        if self.is_game_over {
-            return;
-        }
+    pub fn key_pressed(&mut self, dir: Option<Direction>) {
+        println!("Key pressed: {:?}",dir);
 
-        let direction = match dir {
-            dir => Some(Direction::UP),
-            dir => Some(Direction::DOWN),
-            dir => Some(Direction::LEFT),
-            dir => Some(Direction::RIGHT),
-            _ => None
-        };
-
-        if direction.unwrap() == self.snake.head_direction().opposite() {
+        if dir.unwrap() == self.snake.head_direction().opposite() {
+            println!("opposite direction");
             return;
         }
 
         // Check if the snake hits the border
-        self.update_snake(direction);
+        self.update_snake(dir);
     }
 
     pub fn draw(&self, frame: &mut Frame) {
@@ -104,6 +96,10 @@ impl Game {
         }
     }
 
+    pub fn is_game_over(&mut self) -> bool {
+        self.is_game_over
+    }
+
     fn check_eating(&mut self) {
         let (head_x, head_y): (i32, i32) = self.snake.head_position();
         if self.food_exist && self.food_x == head_x && self.food_y == head_y {
@@ -115,6 +111,7 @@ impl Game {
     fn check_if_the_snake_alive(&self, dir: Option<Direction>) -> bool {
         let (next_x, next_y) = self.snake.next_head_position(dir);
 
+        println!("check snake alive next head position ({},{})", next_x, next_y);
         // Check if the snake hits itself
         if self.snake.is_overlap_except_tail(next_x, next_y) {
             return false;
@@ -142,7 +139,9 @@ impl Game {
     }
 
     fn update_snake(&mut self, dir: Option<Direction>) {
+        println!("Update snake: {:?}", dir);
         if self.check_if_the_snake_alive(dir) {
+            eprintln!("Moving forward");
             self.snake.move_forward(dir);
             self.check_eating();
         } else {

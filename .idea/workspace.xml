@@ -33,32 +33,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="500">
-                  <caret line="128" selection-start-line="128" selection-end-line="128" />
-                  <folding>
-                    <element signature="n#!!block;n#sanity_check#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/project-code/src/utils/frame.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-127">
-                  <caret line="16" selection-start-line="16" selection-end-line="23" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/snake.rs">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="232">
-                  <caret line="129" selection-start-line="129" selection-end-line="129" />
-                  <folding>
-                    <element signature="e#2536#2633#0" />
-                  </folding>
+                <state relative-caret-position="345">
+                  <caret line="81" column="9" lean-forward="true" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
                 </state>
               </provider>
             </entry>
@@ -66,20 +42,30 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/game.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="274">
-                  <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
+                <state relative-caret-position="147">
+                  <caret line="115" column="81" lean-forward="true" selection-start-line="115" selection-start-column="81" selection-end-line="115" selection-end-column="81" />
                   <folding>
                     <element signature="n#!!block;n#Game#0" />
-                    <element signature="e#791#1125#0" />
-                    <element signature="e#1715#2070#0" />
-                    <element signature="e#2118#2588#0" />
-                    <element signature="e#2621#2872#0" />
-                    <element signature="e#3334#3842#0" />
-                    <element signature="e#4155#4351#0" />
+                    <element signature="e#2424#2425#0" expanded="true" />
+                    <element signature="e#2456#2457#0" expanded="true" />
+                    <element signature="e#3965#4161#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/snake.rs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="144">
+                  <caret line="115" column="12" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
+                  <folding>
+                    <element signature="e#2707#2708#0" expanded="true" />
+                    <element signature="e#2743#2744#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -110,6 +96,10 @@
       <find>PIN_A</find>
       <find>&lt;&lt;</find>
       <find>SN</find>
+      <find>+ 1</find>
+      <find>key</find>
+      <find>game ov</find>
+      <find>is_game_over</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -160,9 +150,9 @@
         <option value="$PROJECT_DIR$/project-code/src/utils/gpio_driver.rs" />
         <option value="$PROJECT_DIR$/project-code/src/snake_game/maintest.rs" />
         <option value="$PROJECT_DIR$/project-code/Cargo.toml" />
-        <option value="$PROJECT_DIR$/project-code/src/snake_game/game.rs" />
         <option value="$PROJECT_DIR$/project-code/src/snake_game/snake.rs" />
         <option value="$PROJECT_DIR$/project-code/src/main.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/snake_game/game.rs" />
       </list>
     </option>
   </component>
@@ -180,8 +170,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -634,19 +624,19 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="170078000" />
+    <option name="totallyTimeSpent" value="176569000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="935" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.115661316" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11676812" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4991699" weight="0.32754344" />
@@ -655,10 +645,11 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" sideWeight="0.4975097" visible="true" weight="0.22704715" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4975097" weight="0.22704715" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4975097" weight="0.3312655" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4975097" visible="true" weight="0.36228287" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50249034" side_tool="true" weight="0.29776675" />
+      <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -869,13 +860,6 @@
     <entry file="file://$PROJECT_DIR$/project-code/resources/testbeeld.ppm">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1789">
-          <caret line="424" lean-forward="true" selection-start-line="424" selection-end-line="424" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/index.ppm" />
     <entry file="file://$PROJECT_DIR$/project-code/resources/testfile.ppm">
       <provider selected="true" editor-type-id="images" />
@@ -898,13 +882,6 @@
     <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/mod.rs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/utils/file_reader.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1635">
@@ -926,20 +903,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/maintest.rs" />
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/frame.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-127">
+          <caret line="16" selection-start-line="16" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/reference_implementation.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="613">
+          <caret line="428" lean-forward="true" selection-start-line="428" selection-end-line="428" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/utils/gpio_driver.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="307" selection-start-line="307" selection-end-line="307" />
+        <state relative-caret-position="-64">
+          <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
           <folding>
-            <element signature="e#1756#2133#0" />
-            <element signature="e#2197#2505#0" />
-            <element signature="e#2552#2777#0" />
-            <element signature="e#2826#3051#0" />
-            <element signature="e#3118#3202#0" />
-            <element signature="e#3242#4935#0" />
-            <element signature="e#5075#5994#0" />
-            <element signature="e#6146#6793#0" />
-            <element signature="e#6093#7178#0" />
             <element signature="n#!!block;n#mmap_bcm_register#0" />
             <element signature="n#!!block;n#get_plane_bits#0" />
             <element signature="n#!!block;n#get_row_bits#0" />
@@ -951,57 +934,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project-code/Cargo.toml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/maintest.rs">
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/pixel.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="360">
+          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/frame.rs">
+    <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-127">
-          <caret line="16" selection-start-line="16" selection-end-line="23" selection-end-column="5" />
+        <state relative-caret-position="345">
+          <caret line="81" column="9" lean-forward="true" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/snake.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="129" selection-start-line="129" selection-end-line="129" />
+        <state relative-caret-position="144">
+          <caret line="115" column="12" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
           <folding>
-            <element signature="e#2536#2633#0" />
+            <element signature="e#2707#2708#0" expanded="true" />
+            <element signature="e#2743#2744#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/game.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
+        <state relative-caret-position="147">
+          <caret line="115" column="81" lean-forward="true" selection-start-line="115" selection-start-column="81" selection-end-line="115" selection-end-column="81" />
           <folding>
             <element signature="n#!!block;n#Game#0" />
-            <element signature="e#791#1125#0" />
-            <element signature="e#1715#2070#0" />
-            <element signature="e#2118#2588#0" />
-            <element signature="e#2621#2872#0" />
-            <element signature="e#3334#3842#0" />
-            <element signature="e#4155#4351#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="128" selection-start-line="128" selection-end-line="128" />
-          <folding>
-            <element signature="n#!!block;n#sanity_check#0" />
+            <element signature="e#2424#2425#0" expanded="true" />
+            <element signature="e#2456#2457#0" expanded="true" />
+            <element signature="e#3965#4161#0" />
           </folding>
         </state>
       </provider>

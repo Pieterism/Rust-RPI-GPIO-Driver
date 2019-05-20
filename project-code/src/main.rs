@@ -75,6 +75,7 @@ pub fn main() {
 
                 game.key_pressed(option);
                 game.draw(&mut frame);
+                gpio.render_frame(interrupt_received.clone(), &mut frame, &timer);
 
             }
             gpio.render_frame(interrupt_received.clone(), &mut frame, &timer);

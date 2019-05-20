@@ -77,20 +77,20 @@ impl Snake {
         // The snake moves
         let new_block = match self.moving_direction {
             Direction::UP => Block {
-                x: last_x,
-                y: last_y - 1,
-            },
-            Direction::DOWN => Block {
-                x: last_x,
-                y: last_y + 1,
-            },
-            Direction::LEFT => Block {
                 x: last_x - 1,
                 y: last_y,
             },
-            Direction::RIGHT => Block {
+            Direction::DOWN => Block {
                 x: last_x + 1,
                 y: last_y,
+            },
+            Direction::LEFT => Block {
+                x: last_x,
+                y: last_y - 1,
+            },
+            Direction::RIGHT => Block {
+                x: last_x,
+                y: last_y + 1,
             }
         };
         self.body.push_front(new_block);
@@ -124,10 +124,10 @@ impl Snake {
 
         // The snake moves
         match moving_dir {
-            Direction::UP => (head_x, head_y - 1),
-            Direction::DOWN => (head_x, head_y + 1),
-            Direction::LEFT => (head_x - 1, head_y),
-            Direction::RIGHT => (head_x + 1, head_y)
+            Direction::UP => (head_x - 1, head_y),
+            Direction::DOWN => (head_x + 1, head_y),
+            Direction::LEFT => (head_x, head_y - 1),
+            Direction::RIGHT => (head_x, head_y + 1)
         }
     }
 

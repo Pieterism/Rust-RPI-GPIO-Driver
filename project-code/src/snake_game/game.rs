@@ -103,10 +103,13 @@ impl Game {
 
     fn check_eating(&mut self) {
         let (head_x, head_y): (i32, i32) = self.snake.head_position();
-        if self.food_exist && self.food_x == head_x && self.food_y == head_y {
-            self.food_exist = false;
-            self.snake.restore_last_removed();
+        for bl in self.snake.get_body_blocks(){
+            if self.food_exist && self.food_x == bl.x && self.food_y == bl.y {
+                self.food_exist = false;
+                self.snake.restore_last_removed();
+            }
         }
+
     }
 
     fn check_if_the_snake_alive(&self, dir: Option<Direction>) -> bool {

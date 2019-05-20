@@ -151,4 +151,8 @@ impl Snake {
         }
         return false;
     }
+
+    pub fn get_body_blocks(&self){
+        self.body
+    }
 }

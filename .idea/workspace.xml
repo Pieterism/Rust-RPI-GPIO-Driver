@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="969a170f-e8a0-4b71-8f5b-70f6bdea44ae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-code/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-code/src/snake_game/game.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/snake_game/game.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project-code/src/snake_game/snake.rs" beforeDir="false" afterPath="$PROJECT_DIR$/project-code/src/snake_game/snake.rs" afterDir="false" />
     </list>
@@ -30,11 +29,27 @@
     <splitter split-orientation="horizontal" split-proportion="0.45869836">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="345">
-                  <caret line="81" column="9" lean-forward="true" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
+                <state relative-caret-position="1680">
+                  <caret line="112" column="9" lean-forward="true" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/project-code/src/utils/gpio_driver.rs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="437">
+                  <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
+                  <folding>
+                    <element signature="n#!!block;n#mmap_bcm_register#0" />
+                    <element signature="n#!!block;n#get_plane_bits#0" />
+                    <element signature="n#!!block;n#get_row_bits#0" />
+                    <element signature="n#!!block;n#set_row_mask#0" />
+                    <element signature="n#!!block;n#get_row_bits_test#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -46,12 +61,12 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/game.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="147">
-                  <caret line="115" column="81" lean-forward="true" selection-start-line="115" selection-start-column="81" selection-end-line="115" selection-end-column="81" />
+                <state relative-caret-position="361">
+                  <caret line="108" column="50" lean-forward="true" selection-start-line="108" selection-start-column="50" selection-end-line="108" selection-end-column="50" />
                   <folding>
                     <element signature="n#!!block;n#Game#0" />
-                    <element signature="e#2424#2425#0" expanded="true" />
-                    <element signature="e#2456#2457#0" expanded="true" />
+                    <element signature="e#1190#1519#0" />
+                    <element signature="e#3850#4164#0" />
                     <element signature="e#3965#4161#0" />
                   </folding>
                 </state>
@@ -61,11 +76,14 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/snake.rs">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="144">
-                  <caret line="115" column="12" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
+                <state relative-caret-position="481">
+                  <caret line="155" column="17" selection-start-line="155" selection-start-column="17" selection-end-line="155" selection-end-column="17" />
                   <folding>
+                    <element signature="e#783#1325#0" />
                     <element signature="e#2707#2708#0" expanded="true" />
                     <element signature="e#2743#2744#0" expanded="true" />
+                    <element signature="e#4098#4099#0" expanded="true" />
+                    <element signature="e#4122#4123#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -98,8 +116,8 @@
       <find>SN</find>
       <find>+ 1</find>
       <find>key</find>
-      <find>game ov</find>
       <find>is_game_over</find>
+      <find>game ov</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -150,8 +168,8 @@
         <option value="$PROJECT_DIR$/project-code/src/utils/gpio_driver.rs" />
         <option value="$PROJECT_DIR$/project-code/src/snake_game/maintest.rs" />
         <option value="$PROJECT_DIR$/project-code/Cargo.toml" />
-        <option value="$PROJECT_DIR$/project-code/src/snake_game/snake.rs" />
         <option value="$PROJECT_DIR$/project-code/src/main.rs" />
+        <option value="$PROJECT_DIR$/project-code/src/snake_game/snake.rs" />
         <option value="$PROJECT_DIR$/project-code/src/snake_game/game.rs" />
       </list>
     </option>
@@ -588,7 +606,21 @@
       <option name="project" value="LOCAL" />
       <updated>1558096469743</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="update moving direction">
+      <created>1558366183937</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1558366183937</updated>
+    </task>
+    <task id="LOCAL-00033" summary="update border game over">
+      <created>1558380208530</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1558380208530</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -624,7 +656,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176569000" />
+    <option name="totallyTimeSpent" value="183233000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="935" extended-state="6" />
@@ -645,9 +677,9 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4975097" weight="0.22704715" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" sideWeight="0.4975097" visible="true" weight="0.22704715" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.4975097" visible="true" weight="0.36228287" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4975097" weight="0.36228287" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50249034" side_tool="true" weight="0.29776675" />
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -762,7 +794,9 @@
     <MESSAGE value="keypress added" />
     <MESSAGE value="keypress added, exit on wrong key" />
     <MESSAGE value="update keypress game.rs" />
-    <option name="LAST_COMMIT_MESSAGE" value="update keypress game.rs" />
+    <MESSAGE value="update moving direction" />
+    <MESSAGE value="update border game over" />
+    <option name="LAST_COMMIT_MESSAGE" value="update border game over" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Cargo.lock" />
@@ -918,20 +952,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project-code/src/utils/gpio_driver.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-64">
-          <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
-          <folding>
-            <element signature="n#!!block;n#mmap_bcm_register#0" />
-            <element signature="n#!!block;n#get_plane_bits#0" />
-            <element signature="n#!!block;n#get_row_bits#0" />
-            <element signature="n#!!block;n#set_row_mask#0" />
-            <element signature="n#!!block;n#get_row_bits_test#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project-code/Cargo.toml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -948,30 +968,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/main.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="81" column="9" lean-forward="true" selection-start-line="81" selection-start-column="9" selection-end-line="81" selection-end-column="9" />
+        <state relative-caret-position="1680">
+          <caret line="112" column="9" lean-forward="true" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project-code/src/utils/gpio_driver.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
+          <folding>
+            <element signature="n#!!block;n#mmap_bcm_register#0" />
+            <element signature="n#!!block;n#get_plane_bits#0" />
+            <element signature="n#!!block;n#get_row_bits#0" />
+            <element signature="n#!!block;n#set_row_mask#0" />
+            <element signature="n#!!block;n#get_row_bits_test#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/snake.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="115" column="12" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="12" />
+        <state relative-caret-position="481">
+          <caret line="155" column="17" selection-start-line="155" selection-start-column="17" selection-end-line="155" selection-end-column="17" />
           <folding>
+            <element signature="e#783#1325#0" />
             <element signature="e#2707#2708#0" expanded="true" />
             <element signature="e#2743#2744#0" expanded="true" />
+            <element signature="e#4098#4099#0" expanded="true" />
+            <element signature="e#4122#4123#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project-code/src/snake_game/game.rs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="115" column="81" lean-forward="true" selection-start-line="115" selection-start-column="81" selection-end-line="115" selection-end-column="81" />
+        <state relative-caret-position="361">
+          <caret line="108" column="50" lean-forward="true" selection-start-line="108" selection-start-column="50" selection-end-line="108" selection-end-column="50" />
           <folding>
             <element signature="n#!!block;n#Game#0" />
-            <element signature="e#2424#2425#0" expanded="true" />
-            <element signature="e#2456#2457#0" expanded="true" />
+            <element signature="e#1190#1519#0" />
+            <element signature="e#3850#4164#0" />
             <element signature="e#3965#4161#0" />
           </folding>
         </state>

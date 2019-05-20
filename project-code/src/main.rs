@@ -107,7 +107,6 @@ fn sanity_check(args: &Vec<String>) {
 }
 
 fn wait_for_key_press() -> Option<Direction> {
-    let mut stdout = stdout().into_raw_mode().unwrap();
     let mut stdin = termion::async_stdin().keys();
     let mut dir: Option<Direction>;
 
@@ -140,7 +139,7 @@ fn wait_for_key_press() -> Option<Direction> {
                 }
             }
         }
-        thread::sleep(Duration::from_millis(100 ));
+        thread::sleep(Duration::from_millis(10 ));
     }
     println!("{:?} pressed", dir);
     dir

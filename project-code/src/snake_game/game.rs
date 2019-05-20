@@ -60,7 +60,6 @@ impl Game {
 
     pub fn draw(&self, frame: &mut Frame) {
         frame.clear_frame();
-        //Draw the snake
 
         self.snake.draw(frame);
 
@@ -73,7 +72,7 @@ impl Game {
         frame.draw_border();
 
         //Draw game over
-        if self.is_game_over { frame.draw_game_over() }
+        if self.is_game_over {frame.draw_game_over()}
     }
 
     pub fn update(&mut self, delta_time: f64) {
@@ -120,7 +119,7 @@ impl Game {
         }
 
         // Check if the snake overlaps with the border
-        next_x > 0 && next_y > 0 && next_x < self.width - 1 && next_y < self.height - 1
+        next_x > 0 && next_y > 0 && next_x < self.height - 1 && next_y < self.width - 1
     }
 
     fn add_food(&mut self) {

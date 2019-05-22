@@ -1,21 +1,22 @@
-use mmap::{MemoryMap, MapOption};
+//necessary for running on RaspPi
+use std;
+use std::error::Error;
+use std::fs::OpenOptions;
+use std::os::unix::fs::OpenOptionsExt;
+use std::os::unix::io::AsRawFd;
 use std::sync::Arc;
 use std::sync::atomic::AtomicBool;
 use std::sync::atomic::Ordering;
-use std::fs::OpenOptions;
-use std::os::unix::fs::OpenOptionsExt;
-use std::error::Error;
-use std::os::unix::io::AsRawFd;
-use super::image::Image;
+
+use libc;
+use mmap::{MapOption, MemoryMap};
+use time;
+
 use super::frame::Frame;
+use super::image::Image;
 use super::pixel::Pixel;
 use super::time::Timer;
-
-//necessary for running on RaspPi
-use std;
-use time;
-use libc;
-
+use time::Timespec;
 
 const PIN_OE: u64 = 4;
 const PIN_CLK: u64 = 17;
@@ -91,7 +92,7 @@ impl GPIO {
     fn set_bits(self: &mut GPIO, value: u32) {
         unsafe {
             std::ptr::write_volatile(self.gpio_set_bits_, value);
-            for i in 0..self.slowdown_ {
+            for _iter in 0..self.slowdown_ {
                 std::ptr::write_volatile(self.gpio_set_bits_, value);
             }
         }
@@ -100,7 +101,7 @@ impl GPIO {
     fn clear_bits(self: &mut GPIO, value: u32) {
         unsafe {
             std::ptr::write_volatile(self.gpio_clr_bits_, value);
-            for i in 0..self.slowdown_ {
+            for _iter in 0..self.slowdown_ {
                 std::ptr::write_volatile(self.gpio_clr_bits_, value);
             }
         }
@@ -165,7 +166,7 @@ impl GPIO {
     pub fn render_image_frame(&mut self, interrupt_received: Arc<AtomicBool>, image: &Image, frame: &mut Frame, timer: &Timer, scrolling: bool) {
         frame.next_image_frame(&image);
         let mut prev_frame_time = time::get_time();
-        let mut current_time = time::get_time();
+        let mut current_time: Timespec;
 
         while interrupt_received.load(Ordering::SeqCst) == false {
             for row_counter in 0..ROWS / 2 {
@@ -189,7 +190,7 @@ impl GPIO {
         self.set_bits(GPIO_BIT!(PIN_OE));
     }
 
-    pub fn render_frame(&mut self, interrupt_received: Arc<AtomicBool>, frame: &mut Frame, timer: &Timer) {
+    pub fn render_frame(&mut self, frame: &mut Frame, timer: &Timer) {
             for row_counter in 0..ROWS / 2 {
                 for bitplane_counter in 0..COLOR_DEPTH {
                     self.send_values(&timer, &frame, row_counter, bitplane_counter);

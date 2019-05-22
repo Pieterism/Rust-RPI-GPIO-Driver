@@ -1,4 +1,5 @@
 use std::collections::LinkedList;
+
 use super::super::utils::frame::Frame;
 use super::super::utils::pixel::Pixel;
 
@@ -22,15 +23,15 @@ impl Direction {
 }
 
 #[derive(Debug, Clone)]
-struct Block {
-    x: i32,
-    y: i32,
+pub struct Block {
+    pub x: i32,
+    pub y: i32,
 }
 
 pub struct Snake {
     SNAKE_BLOCK: Pixel,
     moving_direction: Direction,
-    body: LinkedList<Block>,
+    pub body: LinkedList<Block>,
     last_removed_block: Option<Block>,
 }
 
@@ -49,6 +50,14 @@ impl Snake {
             x: init_x,
             y: init_y,
         });
+        body.push_back(Block {
+            x: init_x-1,
+            y: init_y-1,
+        });
+        body.push_back(Block {
+            x: init_x-2,
+            y: init_y-2,
+        });
 
         Snake {
             SNAKE_BLOCK: Pixel::new_colored_pixel(0, 255, 0),
@@ -65,16 +74,12 @@ impl Snake {
     }
 
     pub fn move_forward(&mut self, dir: Option<Direction>) {
-        // Change moving direction
         match dir {
             Some(d) => self.moving_direction = d,
             None => {}
         }
 
-        // Retrieve the position of the head block
         let (last_x, last_y): (i32, i32) = self.head_position();
-
-        // The snake moves
         let new_block = match self.moving_direction {
             Direction::UP => Block {
                 x: last_x - 1,
@@ -93,6 +98,7 @@ impl Snake {
                 y: last_y + 1,
             }
         };
+
         self.body.push_front(new_block);
         let removed_blk = self.body.pop_back().unwrap();
         self.last_removed_block = Some(removed_blk);
@@ -108,21 +114,14 @@ impl Snake {
     }
 
     pub fn next_head_position(&self, dir: Option<Direction>) -> (i32, i32) {
-        // Retrieve the position of the head block
         let (head_x, head_y): (i32, i32) = self.head_position();
-
-        println!("head position({},{})", head_x, head_y);
-
-        // Get moving direction
         let mut moving_dir = self.moving_direction;
+
         match dir {
             Some(d) => moving_dir = d,
             None => {}
         }
 
-        println!("Move direction {:?}", moving_dir);
-
-        // The snake moves
         match moving_dir {
             Direction::UP => (head_x - 1, head_y),
             Direction::DOWN => (head_x + 1, head_y),
@@ -143,16 +142,12 @@ impl Snake {
                 return true;
             }
 
-            // For excluding the tail
             checked += 1;
+
             if checked == self.body.len() - 1 {
                 break;
             }
         }
         return false;
-    }
-
-    pub fn get_body_blocks(&self){
-        self.body
     }
 }

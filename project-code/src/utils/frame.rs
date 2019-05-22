@@ -1,9 +1,10 @@
-use super::pixel::Pixel;
-use super::image::Image;
-use super::file_reader::read_ppm_file;
-use super::gpio_driver::ROWS;
-use super::gpio_driver::COLUMNS;
 use std::path::Path;
+
+use super::file_reader::read_ppm_file;
+use super::gpio_driver::COLUMNS;
+use super::gpio_driver::ROWS;
+use super::image::Image;
+use super::pixel::Pixel;
 
 const GAME_OVER_IMG_PATH: &str = "resources/snake/game_over.ppm";
 
@@ -15,7 +16,7 @@ pub struct Frame {
 
 impl Frame {
     pub fn new() -> Frame {
-        let mut frame: Frame = Frame {
+        let frame: Frame = Frame {
             BORDER_PIXEL: Pixel::new_colored_pixel(230, 230, 230),
             pos: 0,
             pixels: vec![vec![Pixel::new(); COLUMNS as usize]; ROWS as usize],
